@@ -1,0 +1,45 @@
+{
+  "name": "nodejs-boilerplate",
+  "version": "0.0.1",
+  "description": "This is the boilerplate for Node.js project.",
+  "main": "index.js",
+  "scripts": {
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build",
+    "eslint": "eslint",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subakaev/nodejs-boilerplate.git"
+  },
+  "author": "Sergey Bakaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subakaev/nodejs-boilerplate/issues"
+  },
+  "homepage": "https://github.com/subakaev/nodejs-boilerplate#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.26.2",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "firebase": "^7.24.0",
+    "node-cron": "^2.0.3",
+    "puppeteer": "^5.3.1"
+  }
+}

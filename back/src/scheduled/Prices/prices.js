@@ -94,7 +94,7 @@ export default async function prices(productList) {
   for (const product of productList) {
    switch (product.status) {
        case "officemag": officeMag(product); break;
-       case "wildberries": wildberries(product) break;
+       case "wildberries": wildberries(product); break;
    }
   }
 }

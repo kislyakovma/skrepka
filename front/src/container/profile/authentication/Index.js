@@ -9,12 +9,12 @@ const AuthLayout = WraperContent => {
       <Row>
         <Col xxl={8} xl={8} lg={10} md={10} xs={24}>
           <Aside>
-            <div className="auth-side-content main-logo" >
+            <div className="auth-side-content main-logo">
               {/* <img src={require('../../../static/img/auth/topShape.png')} alt="" className="topShape" />
               <img src={require('../../../static/img/auth/bottomShape.png')} alt="" className="bottomShape" /> */}
               <Content>
-                <img  src={require('../../../static/img/logo.svg')} alt="" />
-               
+                <img src={require('../../../static/img/logo.svg')} alt="" fill={'#fff'} />
+
                 {/* <Heading as="h1">Сервис</Heading>
                 <img
                   className="auth-content-figure"

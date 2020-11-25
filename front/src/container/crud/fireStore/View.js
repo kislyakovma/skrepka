@@ -132,7 +132,7 @@ const ViewPage = () => {
           <div>
             <Button className="btn-add_new" size="default" key="1" type="primary">
               <Link to="/admin/firestore/fbAdd">
-                <FeatherIcon icon="plus" size={14} /> Add New
+                <FeatherIcon icon="plus" size={14} /> Добавить
               </Link>
             </Button>
           </div>
@@ -146,7 +146,7 @@ const ViewPage = () => {
           </div>,
         ]}
         ghost
-        title="Data List"
+        title="Пользователи"
       />
       <Main>
         <Row gutter={15}>

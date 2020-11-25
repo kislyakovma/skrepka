@@ -1,7 +1,7 @@
 import * as cron from 'node-cron';
+import { product } from 'puppeteer';
 import prices from './Prices/prices';
 import firebase from '../config/firebase';
-import { product } from 'puppeteer';
 
 const db = firebase.firestore();
 let productList = [];

@@ -16,8 +16,9 @@ const Grid = () => {
       productsAll: state.products.data,
       isLoader: state.products.loading,
     };
-  });
 
+  });
+  const user = useSelector(state => state.auth.user);
   const [state, setState] = useState({
     products: productsAll,
     current: 0,
@@ -83,7 +84,18 @@ const Grid = () => {
                     </p>
 
                     <div className="product-single-action">
-                      <Button
+                      {user.role === 'admin' ? <Button
+                        size="small"
+                        type="white"
+                        className="btn-cart"
+                        outlined={true}
+                        onClick={() => {
+                          console.log('миша сосет');
+                        }}
+                      >
+                        <FeatherIcon icon="clipboard" size={14} />
+                         Редактировать 
+                      </Button> :<> <Button
                         size="small"
                         type="white"
                         className="btn-cart"
@@ -96,10 +108,11 @@ const Grid = () => {
                          В Корзину
                       </Button>
                       <Link to={`/admin/ecommerce/productDetails/${id}`}>
-                        <Button size="small" type="primary">
-                          О товаре
-                        </Button>
-                      </Link>
+                      <Button size="small" type="primary">
+                        О товаре  
+                      </Button>
+                    </Link>
+                    </> }
                     </div>
                   </figcaption>
                 </ProductCard>

@@ -58,7 +58,7 @@ const Product = () => {
 
   return (
     <>
-      <PageHeader
+      <PageHeader 
         ghost
         title="Магазин"
         buttons={[

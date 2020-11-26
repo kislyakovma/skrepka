@@ -25,7 +25,7 @@ const List = () => {
       return length / size + 1;
     }
   };
-
+  const user = useSelector(state => state.auth.user);
   const [state, setState] = useState({
     products: productsAll,
     current: 0,
@@ -74,7 +74,7 @@ const List = () => {
                           <Heading className="product-single-title" as="h5">
                             <NavLink to={`/admin/ecommerce/productDetails/${id}`}>{name}</NavLink>
                           </Heading>
-                          <p>{description}</p>
+                          <p>{description.substr(0, 200)}</p>
                         </div>
                       </Col>
                       <Col xxl={6} xs={8}>
@@ -98,11 +98,25 @@ const List = () => {
                           </p>
 
                           <div className="product-single-action">
-                            <Button
+                            {user.role === 'admin' ?  <Button
                               className="btn-cart"
                               size="small"
                               type="white"
                               outlined
+                              onClick={() => {
+                                dispatch(
+                                  cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }),
+                                );
+                              }}
+                            >
+                              <FeatherIcon icon="clipboard" size={14} />Редактировать
+                            </Button>
+                             :  <>
+                               <Button
+                              className="btn-cart"
+                              size="small"
+                              type="white"
+                              outlined  
                               onClick={() => {
                                 dispatch(
                                   cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }),
@@ -114,6 +128,8 @@ const List = () => {
                             <Button size="small" type="primary">
                               О товаре
                             </Button>
+                            </>
+                            }
                           </div>
                         </div>
                       </Col>

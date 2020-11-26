@@ -49,13 +49,15 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
           {/* <Menu.Item key="performance">
         <NavLink onClick={toggleCollapsed} to={`${path}/performance`}>
           Site Performance
-        </NavLink>
+        </NavLink>}
+
       </Menu.Item>
+          */}
       <Menu.Item key="ecommerce">
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce`}>
-          Ecommerce
+        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
+          Магазин
         </NavLink>
-      </Menu.Item> */}
+       </Menu.Item> 
         </SubMenu>
         <SubMenu key="firestore" icon={!topMenu && <FeatherIcon icon="database" />} title="Данные">
           <Menu.Item key="fbView">

@@ -63,18 +63,7 @@ const EditProduct = () => {
     <>
       <PageHeader
         ghost
-        title="Edit Product"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
+        title="Редактировать товар"
       />
       <Main>
         <Row gutter={15}>

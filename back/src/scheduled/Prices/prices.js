@@ -35,7 +35,7 @@ const officeMag = async (product) => {
                     oldPrice: false,
                     popular: 105,
                     brand,
-                    category: 'stationery',
+                    category: product.category,
                     img: product.imgUrl,
                     imgUrl: product.imgUrl,
                     description,
@@ -54,10 +54,10 @@ const wildberries = async (product) => {
         .then((page) => page.goto(product.url).then(() => page.content()))
         .then((html) => {
             const $ = cheerio.load(html);
-            const description = $('.infoDescription').first().text();
-            const brand = $('.ProductBrand__name').first().text();
-            const name = $('.Product__name').first().text().split(',')[0];
-            const price = $('.Price--best')
+            const description = $('.j-description p').first().text();
+            const brand = $('.brand').first().text();
+            const name = $('.name').first().text();
+            const price = $('.final-cost')
                 .first()
                 .text()
                 .replace(/[^,\d]/g, '')
@@ -77,7 +77,7 @@ const wildberries = async (product) => {
                     oldPrice: false,
                     popular: 105,
                     brand,
-                    category: 'stationery',
+                    category: product.category,
                     img: product.imgUrl,
                     imgUrl: product.imgUrl,
                     description,

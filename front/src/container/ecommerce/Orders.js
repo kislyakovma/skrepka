@@ -16,7 +16,7 @@ import { CalendarButtonPageHeader } from '../../components/buttons/calendar-butt
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const { searchData, orders } = useSelector(state => {
+  const { searchData, orders } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       orders: state.orders.data,
@@ -45,15 +45,15 @@ const Orders = () => {
     }
   }, [orders, selectedRowKeys]);
 
-  const handleSearch = searchText => {
-    const data = searchData.filter(value => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((value) => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
     });
   };
 
-  const handleChangeForFilter = e => {
+  const handleChangeForFilter = (e) => {
     dispatch(orderFilter('status', e.target.value));
   };
 
@@ -97,38 +97,38 @@ const Orders = () => {
 
   const columns = [
     {
-      title: 'Order Id',
+      title: 'Номер заказа',
       dataIndex: 'id',
       key: 'id',
     },
     {
-      title: 'customer',
+      title: 'Компания',
       dataIndex: 'customer',
       key: 'customer',
     },
     {
-      title: 'Status',
+      title: 'Статус',
       dataIndex: 'status',
       key: 'status',
     },
     {
-      title: 'Amount',
+      title: 'Сумма',
       dataIndex: 'amount',
       key: 'amount',
     },
     {
-      title: 'Date',
+      title: 'Дата',
       dataIndex: 'date',
       key: 'date',
     },
     {
-      title: 'Action',
+      title: '',
       dataIndex: 'action',
       key: 'action',
     },
   ];
 
-  const onSelectChange = selectedRowKey => {
+  const onSelectChange = (selectedRowKey) => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
 
@@ -140,55 +140,17 @@ const Orders = () => {
 
   return (
     <>
-      <PageHeader
-        ghost
-        title="Orders"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
-      />
+      <PageHeader ghost title="Ваши заказы" />
       <Main>
         <Cards headless>
           <Row gutter={15}>
             <Col xs={24}>
               <TopToolBox>
                 <Row gutter={15} className="justify-content-center">
-                  <Col lg={6} xs={24}>
-                    <div className="table-search-box">
-                      <AutoComplete onSearch={handleSearch} dataSource={notData} width="100%" patterns />
-                    </div>
-                  </Col>
-                  <Col xxl={14} lg={16} xs={24}>
-                    <div className="table-toolbox-menu">
-                      <span className="toolbox-menu-title"> Status:</span>
-                      <Radio.Group onChange={handleChangeForFilter} defaultValue="">
-                        <Radio.Button value="">All</Radio.Button>
-                        {item.length &&
-                          [...new Set(filterKey)].map(value => {
-                            return (
-                              <Radio.Button key={value} value={value}>
-                                {value}
-                              </Radio.Button>
-                            );
-                          })}
-                      </Radio.Group>
-                    </div>
-                  </Col>
                   <Col xxl={4} xs={24}>
                     <div className="table-toolbox-actions">
                       <Button size="small" type="secondary" transparented>
-                        Export
-                      </Button>
-                      <Button size="small" type="primary">
-                        <FeatherIcon icon="plus" size={12} /> Add Order
+                        Экспортировать
                       </Button>
                     </div>
                   </Col>
@@ -200,7 +162,6 @@ const Orders = () => {
             <Col md={24}>
               <TableWrapper className="table-order table-responsive">
                 <Table
-                  rowSelection={rowSelection}
                   dataSource={dataSource}
                   columns={columns}
                   pagination={{ pageSize: 7, showSizeChanger: true, total: orders.length }}

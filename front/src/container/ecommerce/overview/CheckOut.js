@@ -15,7 +15,7 @@ import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl } = useSelector(state => {
+  const { cartData, rtl } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       isLoading: state.cart.loading,
@@ -33,7 +33,6 @@ const CheckOut = ({ onCurrentChange }) => {
   const { status, isFinished, current } = state;
 
   const incrementUpdate = (id, quantity) => {
-    
     const data = parseInt(quantity, 10) + 1;
     dispatch(cartUpdateQuantity(id, data, cartData));
   };
@@ -43,7 +42,7 @@ const CheckOut = ({ onCurrentChange }) => {
     dispatch(cartUpdateQuantity(id, data, cartData));
   };
 
-  const cartDeleted = id => {
+  const cartDeleted = (id) => {
     const confirm = window.confirm('Are you sure to delete this product?');
     if (confirm) dispatch(cartDelete(id, cartData));
   };
@@ -92,7 +91,7 @@ const CheckOut = ({ onCurrentChange }) => {
   let subtotal = 0;
 
   if (cartData !== null) {
-    cartData.map(data => {
+    cartData.map((data) => {
       const { id, img, name, quantity, price, size, color } = data;
       subtotal += parseInt(quantity, 10) * parseInt(price, 10);
       return dataSource.push({
@@ -100,7 +99,7 @@ const CheckOut = ({ onCurrentChange }) => {
         product: (
           <div className="cart-single">
             <FigureCart>
-              <img style={{ width: 80 }} src={require(`../../../${img}`)} alt="" />
+              <img style={{ width: 80 }} src={img} alt="" />
               <figcaption>
                 <div className="cart-single__info">
                   <Heading as="h6">{name}</Heading>
@@ -151,6 +150,20 @@ const CheckOut = ({ onCurrentChange }) => {
     });
   }
 
+  const templates = [
+    {
+      name: 'НБКИ - АСЛАНЯН',
+      info: {
+        phone: '+7(999)999-99-99',
+        name: 'Асланян Марианна',
+        organization: 'НБКИ',
+        address: 'Большая Никитская, 24/1 ст5',
+        city: 'Москва',
+        zip: '125009',
+      },
+    },
+  ];
+
   const columns = [
     {
       title: 'Product',
@@ -182,87 +195,43 @@ const CheckOut = ({ onCurrentChange }) => {
         status={status}
         steps={[
           {
-            title: 'Create Account',
-            icon: <FontAwesome name="check" />,
-            content: (
-              <BasicFormWrapper className="basic-form-inner">
-                <div className="atbd-form-checkout">
-                  <Row justify="center">
-                    <Col sm={22} xs={24}>
-                      <div className="create-account-form">
-                        <Heading as="h4">1. Please Create Your Account</Heading>
-                        <Form form={form} name="account">
-                          <Form.Item name="username" label="Username">
-                            <Input placeholder="Username" />
-                          </Form.Item>
-                          <Form.Item name="email" rules={[{ type: 'email' }]} label="Email Address">
-                            <Input placeholder="name@gmail.com" />
-                          </Form.Item>
-                          <Form.Item
-                            name="password"
-                            rules={[
-                              {
-                                min: 6,
-                                message: 'Enter a valid password. Min 6 characters long.',
-                              },
-                            ]}
-                            label="Password"
-                          >
-                            <Input.Password placeholder="Password" />
-                            <span className="input-message">Enter a valid password. Min 6 characters long</span>
-                          </Form.Item>
-                        </Form>
-                      </div>
-                    </Col>
-                  </Row>
-                </div>
-              </BasicFormWrapper>
-            ),
-          },
-          {
-            title: 'Shipping Address',
+            title: 'Данные о покупателе',
             content: (
               <BasicFormWrapper className="basic-form-inner">
                 <div className="atbd-form-checkout">
                   <Row justify="center">
                     <Col sm={22} xs={24}>
                       <div className="shipping-form">
-                        <Heading as="h4">2. Please Fill in Your Shipping Address</Heading>
+                        <Heading as="h4">Пожалуйста, заполните данные </Heading>
+                        <Form.Item name="template" initialValue="" label="Шаблон">
+                          <Select style={{ width: '100%' }} placeholder="Выбрать шаблон быстрого заполнения">
+                            {templates.map((item) => {
+                              return <Option value={templates.indexOf(item)}>{item.name}</Option>;
+                            })}
+                          </Select>
+                        </Form.Item>
                         <Form form={form} name="address">
-                          <Form.Item name="name" label="Contact Name">
-                            <Input placeholder="Ibn adam" />
+                          <Form.Item name="name" label="Контактное лицо">
+                            <Input placeholder="Фамилия Имя" />
                           </Form.Item>
-                          <Form.Item
-                            name="company"
-                            label={
-                              <span>
-                                Company Name <span>(Optional)</span>
-                              </span>
-                            }
-                          >
-                            <Input placeholder="adam" />
+                          <Form.Item name="company" label={<span>Название организации</span>}>
+                            <Input placeholder="Название организации" />
                           </Form.Item>
-                          <Form.Item name="phone" label="Phone Number">
-                            <Input placeholder="+880" />
+                          <Form.Item name="phone" label="Номер телефона">
+                            <Input placeholder="+7(999)999-99-99" />
                           </Form.Item>
-                          <Form.Item name="country" initialValue="" label="Country/Region">
-                            <Select style={{ width: '100%' }}>
-                              <Option value="">Please Select</Option>
-                              <Option value="bangladesh">Bangladesh</Option>
-                              <Option value="india">India</Option>
-                            </Select>
-                          </Form.Item>
-                          <Form.Item name="street" label="Street Address">
-                            <Input placeholder="House Number and Street Name" />
+
+                          <Form.Item name="street" label="Адрес">
+                            <Input placeholder="Улица, дом, офис" />
                           </Form.Item>
                           <Form.Item name="street2" label="">
-                            <Input placeholder="Apartment, Suite, Unit etc." />
+                            <Input placeholder="Примечание к адресу" />
                           </Form.Item>
-                          <Form.Item name="city" label="City">
-                            <Input placeholder="Enter City" />
+                          <Form.Item name="city" label="Город">
+                            <Input placeholder="Город" />
                           </Form.Item>
-                          <Form.Item name="zip" label="Zip/Postal Code">
-                            <Input placeholder="Enter Zip" />
+                          <Form.Item name="zip" label="Индекс">
+                            <Input placeholder="Индекс" />
                           </Form.Item>
                         </Form>
                       </div>
@@ -324,7 +293,7 @@ const CheckOut = ({ onCurrentChange }) => {
                                       <Form.Item name="month" initialValue="" label="Expiration Date">
                                         <Select style={{ width: '100%' }}>
                                           <Option value="">MM</Option>
-                                          {month.map(value => (
+                                          {month.map((value) => (
                                             <Option key={value} value={value}>
                                               {value}
                                             </Option>
@@ -335,7 +304,7 @@ const CheckOut = ({ onCurrentChange }) => {
                                         <Select style={{ width: '100%' }}>
                                           <Option value="">YY</Option>
                                           <Option value={new Date().getFullYear()}>{new Date().getFullYear()}</Option>
-                                          {month.map(value => (
+                                          {month.map((value) => (
                                             <Option
                                               key={value}
                                               value={parseInt(new Date().getFullYear(), 10) + parseInt(value, 10)}

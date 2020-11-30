@@ -47,7 +47,7 @@ const Steps = ({
   };
 
   // console.log(steps);
-  const onChanges = curr => {
+  const onChanges = (curr) => {
     // console.log('onChange:', current);
     setState({ currents: curr });
     if (onChange) onChange(curr);
@@ -69,7 +69,7 @@ const Steps = ({
   ) : (
     <>
       <StepsStyle current={currents} direction={direction} status={status} progressDot={progressDot} size={size}>
-        {steps !== undefined && steps.map(item => <Step key={item.title} title={item.title} />)}
+        {steps !== undefined && steps.map((item) => <Step key={item.title} title={item.title} />)}
       </StepsStyle>
 
       <div
@@ -97,7 +97,7 @@ const Steps = ({
 
                     {state.currents < steps.length - 1 && (
                       <Button className="btn-next" type="primary" onClick={() => next()}>
-                        Save & Next
+                        Сохранить & Продолжить
                         <FeatherIcon icon="arrow-right" size={16} />
                       </Button>
                     )}

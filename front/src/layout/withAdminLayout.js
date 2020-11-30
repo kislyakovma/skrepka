@@ -18,7 +18,7 @@ const { darkTheme } = require('../config/theme/themeVariables');
 const { Header, Footer, Sider, Content } = Layout;
 // const { darkMode } = config;
 
-const ThemeLayout = WrappedComponent => {
+const ThemeLayout = (WrappedComponent) => {
   class LayoutComponent extends Component {
     constructor(props) {
       super(props);
@@ -79,7 +79,7 @@ const ThemeLayout = WrappedComponent => {
         });
       };
 
-      const handleSearchHide = e => {
+      const handleSearchHide = (e) => {
         e.preventDefault();
         this.setState({
           searchHide: !searchHide,
@@ -198,7 +198,7 @@ const ThemeLayout = WrappedComponent => {
                     to="/admin"
                   >
                     <img
-                      src={!darkMode ? require(`../static/img/logo.svg`) : require(`../static/img/logo.svg`)}
+                      src={!darkMode ? require(`../static/img/logoTop.svg`) : require(`../static/img/logoTop.svg`)}
                       alt=""
                     />
                   </Link>
@@ -300,7 +300,7 @@ const ThemeLayout = WrappedComponent => {
     }
   }
 
-  const mapStateToProps = state => {
+  const mapStateToProps = (state) => {
     return {
       ChangeLayoutMode: state.ChangeLayoutMode.data,
       rtl: state.ChangeLayoutMode.rtlData,
@@ -308,11 +308,11 @@ const ThemeLayout = WrappedComponent => {
     };
   };
 
-  const mapStateToDispatch = dispatch => {
+  const mapStateToDispatch = (dispatch) => {
     return {
-      changeRtl: rtl => dispatch(changeRtlMode(rtl)),
-      changeLayout: show => dispatch(changeLayoutMode(show)),
-      changeMenuMode: show => dispatch(changeMenuMode(show)),
+      changeRtl: (rtl) => dispatch(changeRtlMode(rtl)),
+      changeLayout: (show) => dispatch(changeLayoutMode(show)),
+      changeMenuMode: (show) => dispatch(changeMenuMode(show)),
     };
   };
 

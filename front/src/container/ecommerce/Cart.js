@@ -28,16 +28,9 @@ const ShoppingCart = () => {
     current: 0,
   });
 
-  let subtotal = 0;
 
-  if (cartData !== null) {
-    console.log(cartData);
-    cartData.map(data => {
-      const { quantity, price } = data;
-      subtotal += parseInt(quantity, 10) * parseInt(price, 10);
-      return subtotal;
-    });
-  }
+
+
 
   const onHandleCurrent = current => {
     setState({
@@ -91,7 +84,7 @@ const ShoppingCart = () => {
                         </Cards>
                       }
                     >
-                      <Ordersummary subtotal={subtotal} isExact={isExact} path={path} />
+                      <Ordersummary  isExact={isExact} path={path} cartData={cartData} />
                     </Suspense>
                   </Col>
                 </Row>

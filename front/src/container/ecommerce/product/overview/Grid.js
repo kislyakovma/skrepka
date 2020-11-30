@@ -11,14 +11,17 @@ import { cartAdd } from '../../../../redux/cart/actionCreator';
 
 const Grid = () => {
   const dispatch = useDispatch();
-  const { productsAll, isLoader } = useSelector(state => {
+  const cartData = useSelector((state) => {
+    return state.cart.data;
+  });
+
+  const { productsAll, isLoader } = useSelector((state) => {
     return {
       productsAll: state.products.data,
       isLoader: state.products.loading,
     };
-
   });
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const [state, setState] = useState({
     products: productsAll,
     current: 0,
@@ -84,35 +87,45 @@ const Grid = () => {
                     </p>
 
                     <div className="product-single-action">
-                      {user.role === 'admin' ? <Button
-                        size="small"
-                        type="white"
-                        className="btn-cart"
-                        outlined={true}
-                        onClick={() => {
-                          console.log('миша сосет');
-                        }}
-                      >
-                        <FeatherIcon icon="clipboard" size={14} />
-                         Редактировать 
-                      </Button> :<> <Button
-                        size="small"
-                        type="white"
-                        className="btn-cart"
-                        outlined={true}
-                        onClick={() => {
-                          dispatch(cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }));
-                        }}
-                      >
-                        <FeatherIcon icon="shopping-bag" size={14} />
-                         В Корзину
-                      </Button>
-                      <Link to={`/admin/ecommerce/productDetails/${id}`}>
-                      <Button size="small" type="primary">
-                        О товаре  
-                      </Button>
-                    </Link>
-                    </> }
+                      {user.role === 'admin' ? (
+                        <Button
+                          size="small"
+                          type="white"
+                          className="btn-cart"
+                          outlined={true}
+                          onClick={() => {
+                            console.log('миша сосет');
+                          }}
+                        >
+                          <FeatherIcon icon="clipboard" size={14} />
+                          Редактировать
+                        </Button>
+                      ) : (
+                        <>
+                          {' '}
+                          <Button
+                            size="small"
+                            type="white"
+                            className="btn-cart"
+                            outlined={true}
+                            onClick={() => {
+                              dispatch(
+                                cartAdd(
+                                  { id, name, rate, price, oldPrice, popular, description, img, modified },
+                                  cartData,
+                                ),
+                              );
+                            }}
+                          >
+                            <FeatherIcon icon="shopping-bag" size={14} />В Корзину
+                          </Button>
+                          <Link to={`/admin/ecommerce/productDetails/${id}`}>
+                            <Button size="small" type="primary">
+                              О товаре
+                            </Button>
+                          </Link>
+                        </>
+                      )}
                     </div>
                   </figcaption>
                 </ProductCard>

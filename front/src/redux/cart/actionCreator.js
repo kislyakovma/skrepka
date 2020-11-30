@@ -18,7 +18,7 @@ const {
 } = actions;
 
 const cartGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartDataBegin());
       dispatch(cartDataSuccess([]));
@@ -27,18 +27,12 @@ const cartGetData = () => {
     }
   };
 };
-const cartAdd = product => {
-  return async dispatch => {
-    console.log(product);
-    dispatch(cartAddProduct(product));
-  };
-};
 
 const cartUpdateQuantity = (id, quantity, cartData) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartUpdateBegin());
-      const data = cartData.map(item => {
+      const data = cartData.map((item) => {
         if (item.id === id) item.quantity = quantity;
         return item;
       });
@@ -48,12 +42,31 @@ const cartUpdateQuantity = (id, quantity, cartData) => {
     }
   };
 };
+const cartAdd = (product, cartData) => {
+  let flag = false;
+  let duplicate = {};
+  cartData.map((item) => {
+    if (item.id === product.id) {
+      flag = true;
+      duplicate = item;
+    }
+  });
+
+  if (flag) {
+    console.log(product);
+    return cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData);
+  } else {
+    return async (dispatch) => {
+      dispatch(cartAddProduct(product));
+    };
+  }
+};
 
 const cartDelete = (id, chartData) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartDeleteBegin());
-      const data = chartData.filter(item => item.id !== id);
+      const data = chartData.filter((item) => item.id !== id);
       setTimeout(() => {
         dispatch(cartDeleteSuccess(data));
       }, 500);

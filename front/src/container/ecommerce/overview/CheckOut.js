@@ -33,6 +33,7 @@ const CheckOut = ({ onCurrentChange }) => {
   const { status, isFinished, current } = state;
 
   const incrementUpdate = (id, quantity) => {
+    
     const data = parseInt(quantity, 10) + 1;
     dispatch(cartUpdateQuantity(id, data, cartData));
   };

@@ -9,7 +9,7 @@ import Heading from '../../../components/heading/heading';
 import { Button } from '../../../components/buttons/buttons';
 import { cartGetData } from '../../../redux/cart/actionCreator';
 
-const Ordersummary = ({ subtotal, isExact, path }) => {
+const Ordersummary = ({  isExact, path, cartData }) => {
   const dispatch = useDispatch();
   const { rtl } = useSelector(state => {
     return {
@@ -23,6 +23,17 @@ const Ordersummary = ({ subtotal, isExact, path }) => {
     promo: 0,
     current: 0,
   });
+  let subtotal = 0;
+  if (cartData !== null) {
+    console.log(cartData);
+    cartData.map(data => {
+      const { quantity, price } = data;
+      console.log(quantity);
+      console.log(price);
+      subtotal += quantity * price;
+      // return subtotal;
+    });
+  }
 
   const submitPromo = values => {
     setState({ ...state, promo: values });

@@ -11,6 +11,7 @@ import { Button } from '../../../components/buttons/buttons';
 import { BasicFormWrapper } from '../../styled';
 import { FigureCart, CheckoutWrapper, ProductTable, OrderSummary } from '../Style';
 import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
+import { template } from 'leaflet/src/core/Util';
 
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
@@ -28,9 +29,38 @@ const CheckOut = ({ onCurrentChange }) => {
     status: 'process',
     isFinished: false,
     current: 1,
+    template: {},
+    templates: [
+      {
+        name: 'НБКИ - АСЛАНЯН',
+        info: {
+          phone: '+7(999)999-99-99',
+          name: 'Асланян Марианна',
+          company: 'НБКИ',
+          address: 'Большая Никитская, 24/1 ст5',
+          city: 'Москва',
+          zip: '125009',
+        },
+      },
+    ],
+    companies: [{ name: 'АО НБКИ', img: 'https://www.nbki.ru/local/templates/nbki_usfulinfo/public/images/logo.png' }],
   });
 
   const { status, isFinished, current } = state;
+
+  useEffect(() => {
+    console.log(state.template.name);
+    if (state.template.info) {
+      form.setFieldsValue({
+        name: state.template.info.name,
+        company: state.template.info.company,
+        phone: state.template.info.phone,
+        street: state.template.info.address,
+        city: state.template.info.city,
+        zip: state.template.info.zip,
+      });
+    }
+  }, [state.template]);
 
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
@@ -150,20 +180,6 @@ const CheckOut = ({ onCurrentChange }) => {
     });
   }
 
-  const templates = [
-    {
-      name: 'НБКИ - АСЛАНЯН',
-      info: {
-        phone: '+7(999)999-99-99',
-        name: 'Асланян Марианна',
-        organization: 'НБКИ',
-        address: 'Большая Никитская, 24/1 ст5',
-        city: 'Москва',
-        zip: '125009',
-      },
-    },
-  ];
-
   const columns = [
     {
       title: 'Product',
@@ -204,9 +220,15 @@ const CheckOut = ({ onCurrentChange }) => {
                       <div className="shipping-form">
                         <Heading as="h4">Пожалуйста, заполните данные </Heading>
                         <Form.Item name="template" initialValue="" label="Шаблон">
-                          <Select style={{ width: '100%' }} placeholder="Выбрать шаблон быстрого заполнения">
-                            {templates.map((item) => {
-                              return <Option value={templates.indexOf(item)}>{item.name}</Option>;
+                          <Select
+                            style={{ width: '100%' }}
+                            placeholder="Выбрать шаблон быстрого заполнения"
+                            onSelect={(value) => {
+                              setState({ ...state, template: JSON.parse(value) });
+                            }}
+                          >
+                            {state.templates.map((item) => {
+                              return <Option value={JSON.stringify(item)}>{item.name}</Option>;
                             })}
                           </Select>
                         </Form.Item>
@@ -242,100 +264,105 @@ const CheckOut = ({ onCurrentChange }) => {
             ),
           },
           {
-            title: 'Payment Method',
+            title: 'Реквизиты',
             content: (
               <BasicFormWrapper className="basic-form-inner">
                 <div className="atbd-form-checkout">
                   <Row justify="center">
                     <Col sm={22} xs={24}>
                       <div className="payment-method-form">
-                        <Heading as="h4">3. Please Please Select Your Payment Method</Heading>
+                        <Heading as="h4">Введите реквизиты компании</Heading>
                         <div className="shipping-selection">
                           <Radio.Group style={{ width: '100%' }}>
-                            <div className="shipping-selection__card">
-                              <Radio style={{ width: '100%' }} value="card">
-                                <Cards
-                                  headless
-                                  bodyStyle={{
-                                    backgroundColor: '#F8F9FB',
-                                    borderRadius: '20px',
-                                    border: '1px solid #F1F2F6',
-                                  }}
-                                >
-                                  <div className="supported-card d-flex">
-                                    <span>Credit/Debit Card</span>
-                                    <div className="supported-card_logos">
-                                      <img
-                                        style={{ width: '50px' }}
-                                        src={require('../../../static/img/cards-logo/ms.png')}
-                                        alt=""
-                                      />
-                                      <img
-                                        style={{ width: '50px' }}
-                                        src={require('../../../static/img/cards-logo/american-express.png')}
-                                        alt=""
-                                      />
-                                      <img
-                                        style={{ width: '50px' }}
-                                        src={require('../../../static/img/cards-logo/visa.png')}
-                                        alt=""
-                                      />
-                                    </div>
-                                  </div>
-                                  <Cards headless style={{ marginBottom: 0 }}>
-                                    <Form form={form} name="info">
-                                      <Form.Item name="number" label="Card Number">
-                                        <Input placeholder="6547-8702-6987-2527" />
-                                      </Form.Item>
-                                      <Form.Item name="name" label="Name on Card">
-                                        <Input placeholder="Full name" />
-                                      </Form.Item>
-                                      <Form.Item name="month" initialValue="" label="Expiration Date">
-                                        <Select style={{ width: '100%' }}>
-                                          <Option value="">MM</Option>
-                                          {month.map((value) => (
-                                            <Option key={value} value={value}>
-                                              {value}
-                                            </Option>
-                                          ))}
-                                        </Select>
-                                      </Form.Item>
-                                      <Form.Item name="year" initialValue="">
-                                        <Select style={{ width: '100%' }}>
-                                          <Option value="">YY</Option>
-                                          <Option value={new Date().getFullYear()}>{new Date().getFullYear()}</Option>
-                                          {month.map((value) => (
-                                            <Option
-                                              key={value}
-                                              value={parseInt(new Date().getFullYear(), 10) + parseInt(value, 10)}
-                                            >
-                                              {parseInt(new Date().getFullYear(), 10) + parseInt(value, 10)}
-                                            </Option>
-                                          ))}
-                                        </Select>
-                                      </Form.Item>
-                                      <Form.Item name="cvv" label="CVV">
-                                        <div className="cvv-wrap">
-                                          <Input style={{ width: '60%' }} placeholder="XXX" />
-                                          <Link className="input-leftText" to="#">
-                                            What is this?
-                                          </Link>
-                                        </div>
-                                      </Form.Item>
-                                    </Form>
-                                  </Cards>
-                                </Cards>
-                              </Radio>
-                            </div>
-                            <div className="shipping-selection__paypal">
-                              <Radio value="payPal" style={{ width: '100%' }}>
-                                Pay With PayPal
-                                <img src={require('../../../static/img/PayPalLogo.png')} alt="paypal" />
-                              </Radio>
-                            </div>
+                            {/*<div className="shipping-selection__card">*/}
+                            {/*  <Radio style={{ width: '100%' }} value="card">*/}
+                            {/*    <Cards*/}
+                            {/*      headless*/}
+                            {/*      bodyStyle={{*/}
+                            {/*        backgroundColor: '#F8F9FB',*/}
+                            {/*        borderRadius: '20px',*/}
+                            {/*        border: '1px solid #F1F2F6',*/}
+                            {/*      }}*/}
+                            {/*    >*/}
+                            {/*      <div className="supported-card d-flex">*/}
+                            {/*        <span>Credit/Debit Card</span>*/}
+                            {/*        <div className="supported-card_logos">*/}
+                            {/*          <img*/}
+                            {/*            style={{ width: '50px' }}*/}
+                            {/*            src={require('../../../static/img/cards-logo/ms.png')}*/}
+                            {/*            alt=""*/}
+                            {/*          />*/}
+                            {/*          <img*/}
+                            {/*            style={{ width: '50px' }}*/}
+                            {/*            src={require('../../../static/img/cards-logo/american-express.png')}*/}
+                            {/*            alt=""*/}
+                            {/*          />*/}
+                            {/*          <img*/}
+                            {/*            style={{ width: '50px' }}*/}
+                            {/*            src={require('../../../static/img/cards-logo/visa.png')}*/}
+                            {/*            alt=""*/}
+                            {/*          />*/}
+                            {/*        </div>*/}
+                            {/*      </div>*/}
+                            {/*      <Cards headless style={{ marginBottom: 0 }}>*/}
+                            {/*        <Form form={form} name="info">*/}
+                            {/*          <Form.Item name="number" label="Card Number">*/}
+                            {/*            <Input placeholder="6547-8702-6987-2527" />*/}
+                            {/*          </Form.Item>*/}
+                            {/*          <Form.Item name="name" label="Name on Card">*/}
+                            {/*            <Input placeholder="Full name" />*/}
+                            {/*          </Form.Item>*/}
+                            {/*          <Form.Item name="month" initialValue="" label="Expiration Date">*/}
+                            {/*            <Select style={{ width: '100%' }}>*/}
+                            {/*              <Option value="">MM</Option>*/}
+                            {/*              {month.map((value) => (*/}
+                            {/*                <Option key={value} value={value}>*/}
+                            {/*                  {value}*/}
+                            {/*                </Option>*/}
+                            {/*              ))}*/}
+                            {/*            </Select>*/}
+                            {/*          </Form.Item>*/}
+                            {/*          <Form.Item name="year" initialValue="">*/}
+                            {/*            <Select style={{ width: '100%' }}>*/}
+                            {/*              <Option value="">YY</Option>*/}
+                            {/*              <Option value={new Date().getFullYear()}>{new Date().getFullYear()}</Option>*/}
+                            {/*              {month.map((value) => (*/}
+                            {/*                <Option*/}
+                            {/*                  key={value}*/}
+                            {/*                  value={parseInt(new Date().getFullYear(), 10) + parseInt(value, 10)}*/}
+                            {/*                >*/}
+                            {/*                  {parseInt(new Date().getFullYear(), 10) + parseInt(value, 10)}*/}
+                            {/*                </Option>*/}
+                            {/*              ))}*/}
+                            {/*            </Select>*/}
+                            {/*          </Form.Item>*/}
+                            {/*          <Form.Item name="cvv" label="CVV">*/}
+                            {/*            <div className="cvv-wrap">*/}
+                            {/*              <Input style={{ width: '60%' }} placeholder="XXX" />*/}
+                            {/*              <Link className="input-leftText" to="#">*/}
+                            {/*                What is this?*/}
+                            {/*              </Link>*/}
+                            {/*            </div>*/}
+                            {/*          </Form.Item>*/}
+                            {/*        </Form>*/}
+                            {/*      </Cards>*/}
+                            {/*    </Cards>*/}
+                            {/*  </Radio>*/}
+                            {/*</div>*/}
+                            {state.companies.map((item) => {
+                              return (
+                                <div className="shipping-selection__paypal">
+                                  <Radio value="payPal" style={{ width: '100%' }}>
+                                    {item.name}
+                                    <img src={item.img} alt="paypal" style={{ maxHeight: '40px' }} />
+                                  </Radio>
+                                </div>
+                              );
+                            })}
+
                             <div className="shipping-selection__cash">
                               <Radio value="cash" style={{ width: '100%' }}>
-                                Cash on delivery
+                                Другие реквизиты
                               </Radio>
                             </div>
                           </Radio.Group>

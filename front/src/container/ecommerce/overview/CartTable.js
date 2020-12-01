@@ -67,7 +67,7 @@ const CartTable = () => {
             <Button onClick={() => decrementUpdate(id, quantity)} className="btn-dec" type="default">
               <FeatherIcon icon="minus" size={12} />
             </Button>
-            {quantity}
+            <Input className = 'btn-inc' style ={{padding: 20, marginLeft: '0', minWidth:'65px', textAlign: "center", fontSize: 15 }} placeholder={quantity} bordered={false} />
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">
               <FeatherIcon icon="plus" size={12} />
             </Button>

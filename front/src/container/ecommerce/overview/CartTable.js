@@ -22,8 +22,13 @@ const CartTable = () => {
     coupon: 0,
     promo: 0,
     current: 0,
+    currentQuantity: null
   });
-
+  // useEffect(()=>{}, [state.currentQuantity])
+  const quantityUpdate = (id, quantity) => {
+    const data = parseInt(quantity, 10);
+    dispatch(cartUpdateQuantity(id, data, cartData));
+  };
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
     dispatch(cartUpdateQuantity(id, data, cartData));
@@ -67,7 +72,10 @@ const CartTable = () => {
             <Button onClick={() => decrementUpdate(id, quantity)} className="btn-dec" type="default">
               <FeatherIcon icon="minus" size={12} />
             </Button>
-            <Input className = 'btn-inc' style ={{padding: 20, marginLeft: '0', minWidth:'65px', textAlign: "center", fontSize: 15 }} placeholder={quantity} bordered={false} />
+            <Input onChange = {(e)=>{
+              if (e.target.value.length > 4){return}
+             if (e.target.value !== ''){quantityUpdate(id, parseInt(e.target.value))}else{quantityUpdate(id, 0)}
+              }} value = {quantity != 0 ? quantity: ''} className = 'btn-inc' style ={{padding: 20, marginLeft: '0', minWidth:'65px', textAlign: "center", fontSize: 15 }}  bordered={false} />
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">
               <FeatherIcon icon="plus" size={12} />
             </Button>

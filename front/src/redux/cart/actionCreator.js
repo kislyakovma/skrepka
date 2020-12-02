@@ -43,6 +43,7 @@ const cartUpdateQuantity = (id, quantity, cartData) => {
   };
 };
 const cartAdd = (product, cartData) => {
+  //TUT
   let flag = false;
   let duplicate = {};
   cartData.map((item) => {

@@ -121,6 +121,7 @@ const cartAdd = (product, cartData, email) => {
 };
 
 const cartDelete = (id, chartData) => {
+  
   return async (dispatch) => {
     try {
       dispatch(cartDeleteBegin());

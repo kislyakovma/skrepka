@@ -24,12 +24,9 @@ const Ordersummary = ({  isExact, path, cartData }) => {
     current: 0,
   });
   let subtotal = 0;
-  if (cartData !== null) {
-    console.log(cartData);
+  if ((cartData !== null) && (cartData !== {}) ) {
     cartData.map(data => {
       const { quantity, price } = data;
-      console.log(quantity);
-      console.log(price);
       subtotal += quantity * price;
       // return subtotal;
     });

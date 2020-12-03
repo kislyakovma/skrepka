@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import firebase from '../../config/database/firebase';
 import products from '../../demoData/cart.json';
 import { arSA } from 'date-fns/locale';
+import { setOptions } from 'leaflet/src/core/Util';
 
 const db = firebase.firestore();
 
@@ -24,35 +25,36 @@ const {
 } = actions;
 
 const rememberCart = (email, cookies) => {
-  console.log('REMEMBER!!!!!');
-  if(cookies !== {}){
- return async dispatch =>{
-    try{
-    dispatch(cartDataBegin());
-    dispatch(cartRemember(cookies))
-    } catch (err) {
-      dispatch(cartDataErr(err));
-    }
-  }
+  return async dispatch => {
+    dispatch(cartDataBegin())
+  if(cookies.length !== 0){
+    
+    
+      try {
+       
+        dispatch(cartRemember(cookies))
+      } catch (err) {
+        dispatch(logoutErr(err));
+      }
+        
   }else {
     db.collection('users')
     .doc(email)
     .get()
     .then(doc => {
-      if(doc.exists){
-        return async dispatch =>{
+      if(doc.exists){                
           try{
-          dispatch(cartDataBegin());
+          
           dispatch(cartRemember(doc.data().cart))
           } catch (err) {
             dispatch(cartDataErr(err));
           }
-        }
+        
       }
     })
     
   }
- 
+}
 
 }
 
@@ -98,20 +100,22 @@ const cartAdd = (product, cartData, email) => {
   });
 
   if (flag) {
-    console.log(duplicate);
+   
     return async dispatch => { 
     cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData);
     }
   } else {
+    var huy ={cart: cartData}
     cartData.push(product)
+   
     db.collection('users')
     .doc(email)
-    .set({cart: cartData})
+    .set(huy, {merge: true})
     .then(() => {
       Cookies.set('cart', JSON.stringify(cartData));
     })
     return async (dispatch) => {
-      dispatch(cartAddProduct(product));
+      dispatch(rememberCart(email, cartData));
     };
   }
 };

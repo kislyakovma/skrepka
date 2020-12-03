@@ -13,6 +13,8 @@ import { ShareButtonPageHeader } from '../../../components/buttons/share-button/
 import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
 import { Cards } from '../../../components/cards/frame/cards-frame';
+import {rememberCart} from '../../../redux/cart/actionCreator'
+import Cookies from 'js-cookie';
 
 const Filters = lazy(() => import('./overview/Filters'));
 const Grid = lazy(() => import('./overview/Grid'));
@@ -22,8 +24,9 @@ const Product = () => {
   const { path } = useRouteMatch();
   const dispatch = useDispatch();
   const searchData = useSelector(state => state.headerSearchData);
-  const { productsAll } = useSelector(state => {
+  const { productsAll, user } = useSelector(state => {
     return {
+      user: state.auth.user,
       productsAll: state.products.data,
     };
   });
@@ -53,6 +56,7 @@ const Product = () => {
   };
 
   useEffect(() => {
+    
     dispatch(initProduct());
   }, []);
 

@@ -35,7 +35,7 @@ const ProviderConfig = () => {
   const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    rememberCart(user.email, JSON.parse(Cookies.get('cart')) ? JSON.parse(Cookies.get('cart')): {})
+    dispatch(rememberCart(user.email, Cookies.get('cart') ? JSON.parse(Cookies.get('cart')): [] ))
     let unmounted = false;
     if (!unmounted) {
       setPath(window.location.pathname);

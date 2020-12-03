@@ -46,7 +46,8 @@ const CartTable = () => {
 
   const productTableData = [];
 
-  if (cartData !== null) {
+  if ((cartData !== null) && (cartData !== {}) ) {
+    console.log(cartData);
     cartData.map(data => {
       const { id, img, name, quantity, price, size, color } = data;
       if (data.quantity === undefined) {

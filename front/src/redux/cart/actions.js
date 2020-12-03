@@ -24,6 +24,7 @@ const actions = {
   },
 
   cartRemember: data =>{
+    console.log(data + 'PENIS');
     return{
       type: actions.CART_REMEMBER,
       data

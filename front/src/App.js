@@ -14,7 +14,7 @@ import './static/css/style.css';
 import config from './config/config';
 import ProtectedRoute from './components/utilities/protectedRoute';
 import 'react-toastify/dist/ReactToastify.css';
-import {rememberCart} from './redux/cart/actionCreator'
+import { rememberCart } from './redux/cart/actionCreator';
 import Cookies from 'js-cookie';
 import { tinkoffApi } from './config/api/index';
 
@@ -31,11 +31,12 @@ const ProviderConfig = () => {
     };
   });
 
-  
   const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    dispatch(rememberCart(user.email, Cookies.get('cart') ? JSON.parse(Cookies.get('cart')): [] ))
+    if (user.email) {
+      dispatch(rememberCart(user.email, Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []));
+    }
     let unmounted = false;
     if (!unmounted) {
       setPath(window.location.pathname);
@@ -44,9 +45,7 @@ const ProviderConfig = () => {
     return () => (unmounted = true);
   }, [setPath]);
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <ConfigProvider direction={rtl ? 'rtl' : 'ltr'}>

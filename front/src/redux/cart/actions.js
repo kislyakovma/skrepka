@@ -14,11 +14,20 @@ const actions = {
   CART_DELETE_ERR: 'CART_DELETE_ERR',
   CART_ADD_PRODUCT: 'CART_ADD_PRODUCT',
 
+  CART_REMEMBER: 'CART_REMEMBER',
+
   cartAddProduct: data => {
     return {
       type: actions.CART_ADD_PRODUCT,
       data,
     };
+  },
+
+  cartRemember: data =>{
+    return{
+      type: actions.CART_REMEMBER,
+      data
+    }
   },
 
   cartDataBegin: () => {

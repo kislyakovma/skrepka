@@ -12,10 +12,12 @@ import { cartAdd } from '../../../../redux/cart/actionCreator';
 
 const List = () => {
   const dispatch = useDispatch();
-  const { productsAll, isLoader } = useSelector(state => {
+  const { productsAll, isLoader, cartData, user } = useSelector(state => {
     return {
       productsAll: state.products.data,
       isLoader: state.products.loading,
+      cartData: state.cart.data,
+      user: state.auth.user
     };
   });
   const sizeOfList = (list, size) => {
@@ -25,7 +27,6 @@ const List = () => {
       return length / size + 1;
     }
   };
-  const user = useSelector(state => state.auth.user);
   const [state, setState] = useState({
     products: productsAll,
     current: 0,
@@ -119,7 +120,9 @@ const List = () => {
                               outlined  
                               onClick={() => {
                                 dispatch(
-                                  cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }),
+                                  cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified },
+                                    cartData, user.email),
+                                
                                 );
                               }}
                             >

@@ -1,6 +1,10 @@
 import actions from './actions';
+import Cookies from 'js-cookie';
+import firebase from '../../config/database/firebase';
 import products from '../../demoData/cart.json';
 import { arSA } from 'date-fns/locale';
+
+const db = firebase.firestore();
 
 const {
   cartDataBegin,
@@ -15,11 +19,49 @@ const {
   cartDeleteSuccess,
   cartDeleteErr,
   cartAddProduct,
+
+  cartRemember,
 } = actions;
 
+const rememberCart = (email, cookies) => {
+  console.log('REMEMBER!!!!!');
+  if(cookies !== {}){
+ return async dispatch =>{
+    try{
+    dispatch(cartDataBegin());
+    dispatch(cartRemember(cookies))
+    } catch (err) {
+      dispatch(cartDataErr(err));
+    }
+  }
+  }else {
+    db.collection('users')
+    .doc(email)
+    .get()
+    .then(doc => {
+      if(doc.exists){
+        return async dispatch =>{
+          try{
+          dispatch(cartDataBegin());
+          dispatch(cartRemember(doc.data().cart))
+          } catch (err) {
+            dispatch(cartDataErr(err));
+          }
+        }
+      }
+    })
+    
+  }
+ 
+
+}
+
 const cartGetData = () => {
+  
+  
   return async (dispatch) => {
     try {
+
       dispatch(cartDataBegin());
       dispatch(cartDataSuccess([]));
     } catch (err) {
@@ -42,8 +84,10 @@ const cartUpdateQuantity = (id, quantity, cartData) => {
     }
   };
 };
-const cartAdd = (product, cartData) => {
-  //TUT
+const cartAdd = (product, cartData, email) => {
+
+
+
   let flag = false;
   let duplicate = {};
   cartData.map((item) => {
@@ -54,9 +98,18 @@ const cartAdd = (product, cartData) => {
   });
 
   if (flag) {
-    console.log(product);
-    return cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData);
+    console.log(duplicate);
+    return async dispatch => { 
+    cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData);
+    }
   } else {
+    cartData.push(product)
+    db.collection('users')
+    .doc(email)
+    .set({cart: cartData})
+    .then(() => {
+      Cookies.set('cart', JSON.stringify(cartData));
+    })
     return async (dispatch) => {
       dispatch(cartAddProduct(product));
     };
@@ -77,4 +130,4 @@ const cartDelete = (id, chartData) => {
   };
 };
 
-export { cartGetData, cartUpdateQuantity, cartDelete, cartAdd };
+export { cartGetData, rememberCart, cartUpdateQuantity, cartDelete, cartAdd };

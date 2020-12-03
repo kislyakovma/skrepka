@@ -112,7 +112,7 @@ const Grid = () => {
                               dispatch(
                                 cartAdd(
                                   { id, name, rate, price, oldPrice, popular, description, img, modified },
-                                  cartData,
+                                  cartData, user.email
                                 ),
                               );
                             }}

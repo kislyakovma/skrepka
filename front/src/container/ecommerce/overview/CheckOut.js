@@ -30,6 +30,8 @@ const CheckOut = ({ onCurrentChange }) => {
     isFinished: false,
     current: 1,
     template: {},
+    values: {},
+    requisites: {},
     templates: [
       {
         name: 'НБКИ - АСЛАНЯН',
@@ -43,7 +45,20 @@ const CheckOut = ({ onCurrentChange }) => {
         },
       },
     ],
-    companies: [{ name: 'АО НБКИ', img: 'https://www.nbki.ru/local/templates/nbki_usfulinfo/public/images/logo.png' }],
+    companies: [
+      {
+        name: 'АО НБКИ',
+        img: 'https://www.nbki.ru/local/templates/nbki_usfulinfo/public/images/logo.png',
+        requisites: {
+          bik: '044525225',
+          bank: 'ПАО СБЕРБАНК',
+          checkingAcc: '40702810538170107483',
+          inn: '7703548386',
+          ogrn: '1057746710713',
+          kpp: '770301001',
+        },
+      },
+    ],
   });
 
   const { status, isFinished, current } = state;
@@ -224,7 +239,7 @@ const CheckOut = ({ onCurrentChange }) => {
                             style={{ width: '100%' }}
                             placeholder="Выбрать шаблон быстрого заполнения"
                             onSelect={(value) => {
-                              setState({ ...state, template: JSON.parse(value) });
+                              setState({ ...state, template: JSON.parse(value), values: JSON.parse(value) });
                             }}
                           >
                             {state.templates.map((item) => {
@@ -232,7 +247,13 @@ const CheckOut = ({ onCurrentChange }) => {
                             })}
                           </Select>
                         </Form.Item>
-                        <Form form={form} name="address">
+                        <Form
+                          form={form}
+                          name="address"
+                          onChange={(values) => {
+                            setState({ ...state, values });
+                          }}
+                        >
                           <Form.Item name="name" label="Контактное лицо">
                             <Input placeholder="Фамилия Имя" />
                           </Form.Item>
@@ -352,7 +373,14 @@ const CheckOut = ({ onCurrentChange }) => {
                             {state.companies.map((item) => {
                               return (
                                 <div className="shipping-selection__paypal">
-                                  <Radio value="payPal" style={{ width: '100%' }}>
+                                  <Radio
+                                    value={item.requisites}
+                                    style={{ width: '100%' }}
+                                    onChange={(e) => {
+                                      console.log(e.target.value);
+                                      setState({ ...state, requisites: e, currentCompany: item.name });
+                                    }}
+                                  >
                                     {item.name}
                                     <img src={item.img} alt="paypal" style={{ maxHeight: '40px' }} />
                                   </Radio>
@@ -375,60 +403,48 @@ const CheckOut = ({ onCurrentChange }) => {
             ),
           },
           {
-            title: 'Review Order',
+            title: 'Проверка заказа',
             content:
               status !== 'finish' ? (
                 <BasicFormWrapper style={{ width: '100%' }}>
                   <div className="atbd-review-order" style={{ width: '100%' }}>
-                    <Heading as="h4">4. Review and confirm Order</Heading>
+                    <Heading as="h4">Проверьте и подтвердите заказ</Heading>
                     <Cards bodyStyle={{ backgroundColor: '#F8F9FB', borderRadius: 10 }} headless>
                       <div className="atbd-review-order__single">
                         <Cards headless>
                           <div className="atbd-review-order__shippingTitle">
                             <Heading as="h5">
-                              Shipping Information
+                              Доставка
                               <Link to="#">
                                 <FeatherIcon icon="edit" />
-                                Edit
+                                Редактировать
                               </Link>
                             </Heading>
                           </div>
                           <article className="atbd-review-order__shippingInfo">
-                            <Radio.Group style={{ width: '100%' }}>
-                              <Radio value="ms" style={{ width: '100%' }}>
-                                <div className="shipping-info-text">
-                                  <Heading as="h6">Ibn Adam</Heading>
-                                  <Heading as="h6">Phone: +61412345678</Heading>
-                                  <p>
-                                    795 Folsom Ave, Suite 600 <br />
-                                    San Francisco, CA 94107 <br />
-                                    United States
-                                  </p>
-                                </div>
-                              </Radio>
-                            </Radio.Group>
-                            <Link className="btn-addNew" to="#">
-                              + Add New Address
-                            </Link>
+                            <div className="shipping-info-text">
+                              <Heading as="h6">Ibn Adam</Heading>
+                              <Heading as="h6">Phone: +61412345678</Heading>
+                              <p>
+                                795 Folsom Ave, Suite 600 <br />
+                                San Francisco, CA 94107 <br />
+                                United States
+                              </p>
+                            </div>
                           </article>
                         </Cards>
                       </div>
                       <div className="atbd-review-order__single">
                         <Cards headless>
                           <div>
-                            <Heading as="h5">Payment Method</Heading>
+                            <Heading as="h5">Реквизиты для счета</Heading>
                           </div>
-                          <Radio.Group style={{ width: '100%' }}>
-                            <Radio value="ms" style={{ width: '100%' }}>
-                              <div className="method-info">
-                                <img src={require('../../../static/img/ms.svg')} alt="" />
-                                **** **** **** 2597
-                              </div>
-                            </Radio>
-                          </Radio.Group>
-                          <Link className="btn-addCard" to="#">
-                            + Add New Card
-                          </Link>
+
+                          <div className="method-info">
+                            <Heading as="h5">{state.currentCompany}</Heading>
+                            <p>{state.requisites.bank}</p>
+                            <p>{state.requisites.bik}</p>
+                          </div>
                         </Cards>
                       </div>
 

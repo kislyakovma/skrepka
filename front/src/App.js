@@ -22,7 +22,7 @@ const { theme } = config;
 
 const ProviderConfig = () => {
   const dispatch = useDispatch();
-  const { rtl, isLoggedIn, topMenu, user } = useSelector(state => {
+  const { rtl, isLoggedIn, topMenu, user } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
       topMenu: state.ChangeLayoutMode.topMenu,
@@ -35,7 +35,13 @@ const ProviderConfig = () => {
 
   useEffect(() => {
     if (user.email) {
-      dispatch(rememberCart(user.email, Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []));
+      if (localStorage.getItem('cart')) {
+        console.log(JSON.parse(localStorage.getItem('cart')));
+        dispatch(rememberCart(user.email, JSON.parse(localStorage.getItem('cart'))));
+      } else {
+        console.log('AHUET');
+        dispatch(rememberCart(user.email, []));
+      }
     }
     let unmounted = false;
     if (!unmounted) {

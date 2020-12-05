@@ -9,7 +9,7 @@ import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart
 
 const CartTable = () => {
   const dispatch = useDispatch();
-  const { cartData, isLoading } = useSelector(state => {
+  const { cartData, isLoading } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       isLoading: state.cart.loading,
@@ -22,7 +22,7 @@ const CartTable = () => {
     coupon: 0,
     promo: 0,
     current: 0,
-    currentQuantity: null
+    currentQuantity: null,
   });
   // useEffect(()=>{}, [state.currentQuantity])
   const quantityUpdate = (id, quantity) => {
@@ -39,16 +39,15 @@ const CartTable = () => {
     dispatch(cartUpdateQuantity(id, data, cartData));
   };
 
-  const cartDeleted = id => {
+  const cartDeleted = (id) => {
     const confirm = window.confirm('Уверены что хотите удалить товар из корзианы?');
     if (confirm) dispatch(cartDelete(id, cartData));
   };
 
   const productTableData = [];
 
-  if ((cartData !== null) && (cartData !== {}) ) {
-    console.log(cartData);
-    cartData.map(data => {
+  if (cartData !== null && cartData !== {}) {
+    cartData.map((data) => {
       const { id, img, name, quantity, price, size, color } = data;
       if (data.quantity === undefined) {
         data.quantity = 1;
@@ -73,10 +72,22 @@ const CartTable = () => {
             <Button onClick={() => decrementUpdate(id, quantity)} className="btn-dec" type="default">
               <FeatherIcon icon="minus" size={12} />
             </Button>
-            <Input onChange = {(e)=>{
-              if (e.target.value.length > 4){return}
-             if (e.target.value !== ''){quantityUpdate(id, parseInt(e.target.value))}else{quantityUpdate(id, 0)}
-              }} value = {quantity != 0 ? quantity: ''} className = 'btn-inc' style ={{padding: 20, marginLeft: '0', minWidth:'65px', textAlign: "center", fontSize: 15 }}  bordered={false} />
+            <Input
+              onChange={(e) => {
+                if (e.target.value.length > 4) {
+                  return;
+                }
+                if (e.target.value !== '') {
+                  quantityUpdate(id, parseInt(e.target.value));
+                } else {
+                  quantityUpdate(id, 0);
+                }
+              }}
+              value={quantity != 0 ? quantity : ''}
+              className="btn-inc"
+              style={{ padding: 20, marginLeft: '0', minWidth: '65px', textAlign: 'center', fontSize: 15 }}
+              bordered={false}
+            />
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">
               <FeatherIcon icon="plus" size={12} />
             </Button>
@@ -130,7 +141,7 @@ const CartTable = () => {
     },
   ];
 
-  const submitCoupon = values => {
+  const submitCoupon = (values) => {
     setState({ ...state, coupon: values });
   };
 

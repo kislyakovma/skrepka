@@ -13,7 +13,7 @@ import { ShareButtonPageHeader } from '../../../components/buttons/share-button/
 import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
 import { Cards } from '../../../components/cards/frame/cards-frame';
-import {rememberCart} from '../../../redux/cart/actionCreator'
+import { rememberCart } from '../../../redux/cart/actionCreator';
 import Cookies from 'js-cookie';
 
 const Filters = lazy(() => import('./overview/Filters'));
@@ -23,8 +23,8 @@ const List = lazy(() => import('./overview/List'));
 const Product = () => {
   const { path } = useRouteMatch();
   const dispatch = useDispatch();
-  const searchData = useSelector(state => state.headerSearchData);
-  const { productsAll, user } = useSelector(state => {
+  const searchData = useSelector((state) => state.headerSearchData);
+  const { productsAll, user } = useSelector((state) => {
     return {
       user: state.auth.user,
       productsAll: state.products.data,
@@ -39,13 +39,12 @@ const Product = () => {
 
   const { notData } = state;
 
-  const handleSearch = searchText => {
-    console.log(productsAll);
+  const handleSearch = (searchText) => {
     dispatch(search(searchText));
-    const data = productsAll.filter(item => item.name.toUpperCase().startsWith(searchText.toUpperCase()));
+    const data = productsAll.filter((item) => item.name.toUpperCase().startsWith(searchText.toUpperCase()));
   };
 
-  const onSorting = e => {
+  const onSorting = (e) => {
     if (state.sorted === 0) {
       setState({ sorted: 1 });
       dispatch(sorting(e.target.value, productsAll, state.sorted));
@@ -56,13 +55,12 @@ const Product = () => {
   };
 
   useEffect(() => {
-    
     dispatch(initProduct());
   }, []);
 
   return (
     <>
-      <PageHeader 
+      <PageHeader
         ghost
         title="Магазин"
         buttons={[

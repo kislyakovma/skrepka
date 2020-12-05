@@ -25,9 +25,10 @@ const {
 } = actions;
 
 const rememberCart = (email, cookies) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(cartDataBegin());
     if (cookies.length !== 0) {
+      console.log(cookies);
       try {
         dispatch(cartRemember(cookies));
       } catch (err) {
@@ -37,7 +38,7 @@ const rememberCart = (email, cookies) => {
       db.collection('users')
         .doc(email)
         .get()
-        .then(doc => {
+        .then((doc) => {
           if (doc.exists) {
             try {
               if (doc.data().cart) {
@@ -55,7 +56,7 @@ const rememberCart = (email, cookies) => {
 };
 
 const cartGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartDataBegin());
       dispatch(cartDataSuccess([]));
@@ -66,10 +67,10 @@ const cartGetData = () => {
 };
 
 const cartUpdateQuantity = (id, quantity, cartData) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartUpdateBegin());
-      const data = cartData.map(item => {
+      const data = cartData.map((item) => {
         if (item.id === id) item.quantity = quantity;
         return item;
       });
@@ -80,40 +81,40 @@ const cartUpdateQuantity = (id, quantity, cartData) => {
   };
 };
 const cartAdd = (product, cartData, email) => {
-  let flag = false;
-  let duplicate = {};
-  cartData.map(item => {
-    if (item.id === product.id) {
-      flag = true;
-      duplicate = item;
+  return async (dispatch) => {
+    console.log(product);
+    let flag = false;
+    let duplicate = {};
+    cartData.map((item) => {
+      if (item.id === product.id) {
+        flag = true;
+        duplicate = item;
+      }
+    });
+
+    if (flag) {
+      dispatch(cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData));
+    } else {
+      cartData.push(product);
+      console.log(cartData);
+      db.collection('users')
+        .doc(email)
+        .set({ cart: cartData }, { merge: true })
+        .then(() => {
+          console.log('AUE');
+          localStorage.setItem('cart', JSON.stringify(cartData));
+          // Cookies.set('cart', JSON.stringify(cartData), { expires: 8 });
+          dispatch(rememberCart(email, cartData));
+        });
     }
-  });
-
-  if (flag) {
-    return async dispatch => {
-      cartUpdateQuantity(product.id, duplicate.quantity ? duplicate.quantity + 1 : 2, cartData);
-    };
-  } else {
-    var huy = { cart: cartData };
-    cartData.push(product);
-
-    db.collection('users')
-      .doc(email)
-      .set(huy, { merge: true })
-      .then(() => {
-        Cookies.set('cart', JSON.stringify(cartData));
-      });
-    return async dispatch => {
-      dispatch(rememberCart(email, cartData));
-    };
-  }
+  };
 };
 
 const cartDelete = (id, chartData) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(cartDeleteBegin());
-      const data = chartData.filter(item => item.id !== id);
+      const data = chartData.filter((item) => item.id !== id);
       setTimeout(() => {
         dispatch(cartDeleteSuccess(data));
       }, 500);

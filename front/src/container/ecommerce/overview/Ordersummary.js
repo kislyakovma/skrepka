@@ -9,9 +9,9 @@ import Heading from '../../../components/heading/heading';
 import { Button } from '../../../components/buttons/buttons';
 import { cartGetData } from '../../../redux/cart/actionCreator';
 
-const Ordersummary = ({  isExact, path, cartData }) => {
+const Ordersummary = ({ isExact, path, cartData }) => {
   const dispatch = useDispatch();
-  const { rtl } = useSelector(state => {
+  const { rtl } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
     };
@@ -24,22 +24,27 @@ const Ordersummary = ({  isExact, path, cartData }) => {
     current: 0,
   });
   let subtotal = 0;
-  if ((cartData !== null) && (cartData !== {}) ) {
-    cartData.map(data => {
+
+  if (cartData !== null && cartData !== {}) {
+    cartData.map((data) => {
       const { quantity, price } = data;
-      subtotal += quantity * price;
-      // return subtotal;
+      if (quantity) {
+        subtotal += quantity * price;
+      } else {
+        subtotal += price;
+      }
+      return subtotal;
     });
   }
 
-  const submitPromo = values => {
+  const submitPromo = (values) => {
     setState({ ...state, promo: values });
   };
 
   const { Option } = Select;
 
   const onSubmit = () => {
-    document.querySelectorAll('button span').forEach(item => {
+    document.querySelectorAll('button span').forEach((item) => {
       if (item.innerHTML === 'Done') {
         item.click();
       }

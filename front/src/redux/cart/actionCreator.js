@@ -4,6 +4,7 @@ import firebase from '../../config/database/firebase';
 import products from '../../demoData/cart.json';
 import { arSA } from 'date-fns/locale';
 import { setOptions } from 'leaflet/src/core/Util';
+import { fi } from 'react-date-range/dist/locale';
 
 const db = firebase.firestore();
 
@@ -110,14 +111,29 @@ const cartAdd = (product, cartData, email) => {
   };
 };
 
-const cartDelete = (id, chartData) => {
+const cartDelete = (id, chartData, email) => {
   return async (dispatch) => {
     try {
       dispatch(cartDeleteBegin());
+      const deleteData = chartData.filter((item) => item.id == id);
       const data = chartData.filter((item) => item.id !== id);
-      setTimeout(() => {
-        dispatch(cartDeleteSuccess(data));
-      }, 500);
+      try {
+        db.collection('users')
+          .doc(email)
+          .update({ cart: firebase.firestore.FieldValue.arrayRemove(deleteData[0]) })
+          .then(() => {
+            console.log(deleteData[0]);
+            localStorage.setItem(
+              'cart',
+              JSON.stringify(JSON.parse(localStorage.getItem('cart')).filter((item) => item.id !== id)),
+            );
+            setTimeout(() => {
+              dispatch(cartDeleteSuccess(data));
+            }, 500);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     } catch (err) {
       dispatch(cartDeleteErr(err));
     }

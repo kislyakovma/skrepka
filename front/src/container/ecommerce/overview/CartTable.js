@@ -9,11 +9,12 @@ import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart
 
 const CartTable = () => {
   const dispatch = useDispatch();
-  const { cartData, isLoading } = useSelector((state) => {
+  const { cartData, isLoading, user } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       isLoading: state.cart.loading,
       rtl: state.ChangeLayoutMode.rtlData,
+      user: state.auth.user,
     };
   });
 
@@ -41,7 +42,7 @@ const CartTable = () => {
 
   const cartDeleted = (id) => {
     const confirm = window.confirm('Уверены что хотите удалить товар из корзианы?');
-    if (confirm) dispatch(cartDelete(id, cartData));
+    if (confirm) dispatch(cartDelete(id, cartData, user.email));
   };
 
   const productTableData = [];

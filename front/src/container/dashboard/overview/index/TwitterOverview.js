@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Spin } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Col, Row, Spin} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { LineChartWrapper, ChartContainer } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {ChartContainer, LineChartWrapper} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { ChartjsLineChart } from '../../../../components/charts/chartjs';
-import { twitterOverviewGetData, twitterOverviewFilterData } from '../../../../redux/chartContent/actionCreator';
-import { customTooltips } from '../../../../components/utilities/utilities';
+import {ChartjsLineChart} from '../../../../components/charts/chartjs';
+import {twitterOverviewFilterData, twitterOverviewGetData} from '../../../../redux/chartContent/actionCreator';
+import {customTooltips} from '../../../../components/utilities/utilities';
 
 const TwitterOverview = () => {
   const dispatch = useDispatch();

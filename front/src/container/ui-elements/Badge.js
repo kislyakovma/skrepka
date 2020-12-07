@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { Row, Col, Badge, Switch } from 'antd';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Badge, Col, Row, Switch} from 'antd';
+import {Link, NavLink} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ClockCircleOutlined, BellOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import {BellOutlined, ClockCircleOutlined, MinusOutlined, PlusOutlined} from '@ant-design/icons';
 import {
-  BadgeWraperStyle,
-  BadgeStandAloneStyle,
-  BadgeOverflowStyle,
-  BadgeRedStyle,
-  BadgeDynamicStyle,
+    BadgeDynamicStyle,
+    BadgeOverflowStyle,
+    BadgeRedStyle,
+    BadgeStandAloneStyle,
+    BadgeWraperStyle,
 } from './ui-elements-styled';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { BtnGroup, Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {BtnGroup, Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const colors = [
   'pink',

@@ -1,15 +1,15 @@
-import React, { lazy, Suspense } from 'react';
-import { Row, Col, Skeleton } from 'antd';
+import React, {lazy, Suspense} from 'react';
+import {Col, Row, Skeleton} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink, Switch, Route, useRouteMatch } from 'react-router-dom';
-import { SettingWrapper } from './overview/style';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { Main } from '../../styled';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Button } from '../../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
+import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
+import {SettingWrapper} from './overview/style';
+import {PageHeader} from '../../../components/page-headers/page-headers';
+import {Main} from '../../styled';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {Button} from '../../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../../components/buttons/calendar-button/calendar-button';
 
 const UserCards = lazy(() => import('../../pages/overview/UserCard'));
 const CoverSection = lazy(() => import('../overview/CoverSection'));

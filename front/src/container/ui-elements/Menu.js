@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Row, Col, Menu } from 'antd';
+import React, {useState} from 'react';
+import {Col, Menu, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {Link} from 'react-router-dom';
+import {AppstoreOutlined, MailOutlined, SettingOutlined} from '@ant-design/icons';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const { SubMenu } = Menu;
 const Menus = () => {

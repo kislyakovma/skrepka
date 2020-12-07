@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Spin } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Spin} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { CardBarChart } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {Link, NavLink} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {CardBarChart} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { ChartjsBarChartTransparent } from '../../../../components/charts/chartjs';
+import {ChartjsBarChartTransparent} from '../../../../components/charts/chartjs';
 
-import { cashFlowGetData, cashFlowFilterData } from '../../../../redux/chartContent/actionCreator';
+import {cashFlowFilterData, cashFlowGetData} from '../../../../redux/chartContent/actionCreator';
 
 const CashFlow = () => {
   const dispatch = useDispatch();

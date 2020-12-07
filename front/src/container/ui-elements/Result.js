@@ -1,14 +1,14 @@
 import React from 'react';
-import { Row, Col, Result, Button, Typography } from 'antd';
+import {Button, Col, Result, Row, Typography} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink } from 'react-router-dom';
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {NavLink} from 'react-router-dom';
+import {CloseCircleOutlined} from '@ant-design/icons';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const { Paragraph, Text } = Typography;
 const Results = () => {

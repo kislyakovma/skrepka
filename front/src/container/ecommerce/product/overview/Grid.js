@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Rate, Pagination, Spin } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Col, Pagination, Row, Spin} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { ProductCard, PaginationWrapper, NotFoundWrapper } from '../../Style';
-import { updateWishList } from '../../../../redux/product/actionCreator';
-import { cartAdd } from '../../../../redux/cart/actionCreator';
+import {Button} from '../../../../components/buttons/buttons';
+import {NotFoundWrapper, PaginationWrapper, ProductCard} from '../../Style';
+import {cartAdd} from '../../../../redux/cart/actionCreator';
 
 const Grid = () => {
   const dispatch = useDispatch();

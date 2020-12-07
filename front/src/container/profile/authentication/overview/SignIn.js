@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
-import { Form, Input, Button, notification } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import React, {useEffect, useState} from 'react';
+import {NavLink, useHistory} from 'react-router-dom';
+import {Button, Form, Input, notification} from 'antd';
+import {useDispatch, useSelector} from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { AuthWrapper } from './style';
-import { login } from '../../../../redux/authentication/actionCreator';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
+import {AuthWrapper} from './style';
+import {login} from '../../../../redux/authentication/actionCreator';
+import {Checkbox} from '../../../../components/checkbox/checkbox';
 import Heading from '../../../../components/heading/heading';
-import firebase from '../../../../config/database/firebase';
 
 const SignIn = () => {
   const history = useHistory();

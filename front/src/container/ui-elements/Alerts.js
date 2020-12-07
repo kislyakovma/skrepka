@@ -1,14 +1,14 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Col, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main, AlertList } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {AlertList, Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
 import Alert from '../../components/alerts/alerts';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const Alerts = () => {
   return (

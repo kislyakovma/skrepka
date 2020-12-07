@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Masonry from 'react-masonry-css';
-import { Input, Upload, message, Comment, Avatar } from 'antd';
+import {Avatar, Comment, Input, message, Upload} from 'antd';
 import Picker from 'emoji-picker-react';
 import moment from 'moment';
-import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
-import { AllPosts, BackShadowEmoji, Title } from './style';
-import { Cards } from '../../../../../components/cards/frame/cards-frame';
-import { Button } from '../../../../../components/buttons/buttons';
-import { likeUpdate, commentUpdate, postDelete } from '../../../../../redux/profile/actionCreator';
+import SimpleReactLightbox, {SRLWrapper} from 'simple-react-lightbox';
+import {AllPosts, BackShadowEmoji, Title} from './style';
+import {Cards} from '../../../../../components/cards/frame/cards-frame';
+import {Button} from '../../../../../components/buttons/buttons';
+import {commentUpdate, likeUpdate, postDelete} from '../../../../../redux/profile/actionCreator';
 
 const ExampleComment = ({ children, replay }) => (
   <Comment

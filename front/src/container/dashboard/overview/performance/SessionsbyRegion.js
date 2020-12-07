@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Table } from 'antd';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Col, Row, Table} from 'antd';
+import {Link, NavLink} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {Scrollbars} from 'react-custom-scrollbars';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { VectorMap } from 'react-jvectormap';
-import { RegionList, RegionMap } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { regionFilterData, regionGetData } from '../../../../redux/chartContent/actionCreator';
+import {useDispatch, useSelector} from 'react-redux';
+import {VectorMap} from 'react-jvectormap';
+import {RegionList, RegionMap} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {regionFilterData, regionGetData} from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>

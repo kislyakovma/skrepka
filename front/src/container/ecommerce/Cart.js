@@ -1,16 +1,13 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
-import { Row, Col, Skeleton } from 'antd';
+import React, {lazy, Suspense, useState} from 'react';
+import {Col, Row, Skeleton} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
-import { cartGetData, cartDeleteAll } from '../../redux/cart/actionCreator';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Button} from '../../components/buttons/buttons';
+import {cartDeleteAll} from '../../redux/cart/actionCreator';
 
 const Checkout = lazy(() => import('./overview/CheckOut'));
 const CartTable = lazy(() => import('./overview/CartTable'));

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Col } from 'antd';
-import { SocialMediaWrapper } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { SocialMediaContent } from '../../../../components/social-media/overview';
+import {Col, Row} from 'antd';
+import {SocialMediaWrapper} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {SocialMediaContent} from '../../../../components/social-media/overview';
 
 const SocialMediaOverview = () => {
   return (

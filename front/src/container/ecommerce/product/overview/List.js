@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Rate, Pagination, Spin } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Col, Pagination, Row, Spin} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
+import {useDispatch, useSelector} from 'react-redux';
 import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { ProductCard, PaginationWrapper } from '../../Style';
-import { updateWishList } from '../../../../redux/product/actionCreator';
-import { cartAdd } from '../../../../redux/cart/actionCreator';
+import {Button} from '../../../../components/buttons/buttons';
+import {PaginationWrapper, ProductCard} from '../../Style';
+import {cartAdd} from '../../../../redux/cart/actionCreator';
 
 const List = () => {
   const dispatch = useDispatch();

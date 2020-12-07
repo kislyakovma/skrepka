@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Progress, Table } from 'antd';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Progress, Table} from 'antd';
+import {Link, NavLink} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { TrafficTableWrapper } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { trafficChanelGetData, trafficChanelFilterData } from '../../../../redux/chartContent/actionCreator';
+import {useDispatch, useSelector} from 'react-redux';
+import {TrafficTableWrapper} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {trafficChanelFilterData, trafficChanelGetData} from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>

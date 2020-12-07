@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Select } from 'antd';
+import React, {useState} from 'react';
+import {Form, Input, Select} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { OrderSummary } from '../Style';
-import { Cards } from '../../../components/cards/frame/cards-frame';
+import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {OrderSummary} from '../Style';
+import {Cards} from '../../../components/cards/frame/cards-frame';
 import Heading from '../../../components/heading/heading';
-import { Button } from '../../../components/buttons/buttons';
-import { cartGetData } from '../../../redux/cart/actionCreator';
+import {Button} from '../../../components/buttons/buttons';
 
 const Ordersummary = ({ isExact, path, cartData }) => {
   const dispatch = useDispatch();

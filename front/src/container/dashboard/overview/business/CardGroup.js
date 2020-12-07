@@ -1,13 +1,13 @@
 import React from 'react';
-import { Row, Col, Progress } from 'antd';
+import {Col, Progress, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
 
-import { Focard, RatioCard } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {Focard, RatioCard} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { ChartjsAreaChart } from '../../../../components/charts/chartjs';
+import {ChartjsAreaChart} from '../../../../components/charts/chartjs';
 
-import { chartLinearGradient } from '../../../../components/utilities/utilities';
+import {chartLinearGradient} from '../../../../components/utilities/utilities';
 
 const CardGroup = () => {
   return (

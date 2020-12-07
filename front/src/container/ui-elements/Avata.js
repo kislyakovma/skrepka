@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Row, Col, Avatar, Badge } from 'antd';
+import React, {useState} from 'react';
+import {Avatar, Badge, Col, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { UserOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { AvatarWraperStyle } from './ui-elements-styled';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {UserOutlined} from '@ant-design/icons';
+import {useSelector} from 'react-redux';
+import {AvatarWraperStyle} from './ui-elements-styled';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const UserList = ['U', 'Lucy', 'Tom', 'Edward'];
 const ColorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];

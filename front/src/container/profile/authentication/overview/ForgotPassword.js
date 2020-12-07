@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { Form, Input, Button } from 'antd';
-import { AuthWrapper } from './style';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
+import {Button, Form, Input} from 'antd';
+import {AuthWrapper} from './style';
 import Heading from '../../../../components/heading/heading';
 
 const ForgotPassword = () => {

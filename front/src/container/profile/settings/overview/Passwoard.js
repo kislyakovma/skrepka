@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Button } from 'antd';
-import { ChangePasswordWrapper } from './style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { BasicFormWrapper } from '../../../styled';
+import React, {useState} from 'react';
+import {Button, Col, Form, Input, Row} from 'antd';
+import {ChangePasswordWrapper} from './style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {BasicFormWrapper} from '../../../styled';
 import Heading from '../../../../components/heading/heading';
 
 const Password = () => {

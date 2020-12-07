@@ -1,8 +1,8 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import { Col, Row } from 'antd';
+import {Col, Row} from 'antd';
 import Heading from '../../../components/heading/heading';
-import { ActivitiesWrapper } from '../style';
+import {ActivitiesWrapper} from '../style';
 
 const Activities = () => {
   return (

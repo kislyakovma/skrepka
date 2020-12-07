@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Radio, Table } from 'antd';
-import { NavLink, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { CardGroup } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { socialTrafficGetData, socialTrafficFilterData } from '../../../../redux/chartContent/actionCreator';
+import React, {useEffect} from 'react';
+import {Radio, Table} from 'antd';
+import {Link, NavLink} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {CardGroup} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {socialTrafficFilterData, socialTrafficGetData} from '../../../../redux/chartContent/actionCreator';
 
 const SocialTrafficMetrics = () => {
   const dispatch = useDispatch();

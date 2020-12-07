@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Rate } from 'antd';
-import { useDispatch } from 'react-redux';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {Link} from 'react-router-dom/cjs/react-router-dom.min';
+import {Rate} from 'antd';
+import {useDispatch} from 'react-redux';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { Slider } from '../../../../components/slider/slider';
-import { CheckboxGroup } from '../../../../components/checkbox/checkbox';
-import { Sidebar, SidebarSingle } from '../../Style';
+import {Sidebar, SidebarSingle} from '../../Style';
 import {
-  filterByPriceRange,
-  filterByRating,
-  filterByBrand,
-  filterByCategory,
+    filterByBrand,
+    filterByCategory,
+    filterByPriceRange,
+    filterByRating,
 } from '../../../../redux/product/actionCreator';
 
 const Filters = () => {

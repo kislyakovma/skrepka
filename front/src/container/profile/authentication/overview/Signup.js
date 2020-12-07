@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
-import { Form, Input, Button } from 'antd';
-import { AuthWrapper } from './style';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
+import {useDispatch} from 'react-redux';
+import {toast} from 'react-toastify';
+import {Button, Form, Input} from 'antd';
+import {AuthWrapper} from './style';
+import {Checkbox} from '../../../../components/checkbox/checkbox';
 import Heading from '../../../../components/heading/heading';
-import { fbDataSubmit, fbFileUploder, fbFileClear } from '../../../../redux/firestore/actionCreator';
+import {fbDataSubmit, fbFileClear} from '../../../../redux/firestore/actionCreator';
 
 const SignUp = () => {
   const dispatch = useDispatch();

@@ -1,18 +1,13 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Skeleton } from 'antd';
-import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
+import React, {lazy, Suspense, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Col, Row, Skeleton} from 'antd';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { Main } from '../../styled';
-import { filterSinglePage, initProduct } from '../../../redux/product/actionCreator';
-import { ProductDetailsWrapper } from '../Style';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Button } from '../../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
+import {PageHeader} from '../../../components/page-headers/page-headers';
+import {Main} from '../../styled';
+import {filterSinglePage, initProduct} from '../../../redux/product/actionCreator';
+import {ProductDetailsWrapper} from '../Style';
+import {Cards} from '../../../components/cards/frame/cards-frame';
 
 const DetailsRight = lazy(() => import('./overview/DetailsRight'));
 

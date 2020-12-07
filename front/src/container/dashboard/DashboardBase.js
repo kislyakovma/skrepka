@@ -1,17 +1,17 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Col, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { DashboardBaseStyleWrap } from './style';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button } from '../../components/buttons/buttons';
-import { Main } from '../styled';
+import {DashboardBaseStyleWrap} from './style';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Button} from '../../components/buttons/buttons';
+import {Main} from '../styled';
 import Palette from '../../components/color-palette/palette';
 import config from '../../config/config';
 import Heading from '../../components/heading/heading';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 // @Todo console warning from button
 

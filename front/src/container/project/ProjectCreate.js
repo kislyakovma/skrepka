@@ -1,16 +1,16 @@
-import React, { lazy, useState, Suspense } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Spin, Select } from 'antd';
-import { Switch, NavLink, Route, Link } from 'react-router-dom';
+import React, {lazy, Suspense, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Col, Row, Select, Spin} from 'antd';
+import {Link, NavLink, Route, Switch} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
 import CreateProject from './overview/CreateProject';
-import { ProjectHeader, ProjectSorting } from './style';
-import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { Button } from '../../components/buttons/buttons';
-import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
-import { Main } from '../styled';
-import { PageHeader } from '../../components/page-headers/page-headers';
+import {ProjectHeader, ProjectSorting} from './style';
+import {AutoComplete} from '../../components/autoComplete/autoComplete';
+import {Button} from '../../components/buttons/buttons';
+import {filterProjectByStatus, sortingProjectByCategory} from '../../redux/project/actionCreator';
+import {Main} from '../styled';
+import {PageHeader} from '../../components/page-headers/page-headers';
 
 const Grid = lazy(() => import('./overview/Grid'));
 const List = lazy(() => import('./overview/List'));

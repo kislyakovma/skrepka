@@ -1,11 +1,11 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Col, Row} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Main } from './styled';
-import { PageHeader } from '../components/page-headers/page-headers';
-import { Cards } from '../components/cards/frame/cards-frame';
+import {Main} from './styled';
+import {PageHeader} from '../components/page-headers/page-headers';
+import {Cards} from '../components/cards/frame/cards-frame';
 import Heading from '../components/heading/heading';
-import { Button } from '../components/buttons/buttons';
+import {Button} from '../components/buttons/buttons';
 
 const Calendar = () => {
   // const onChange = (date, dateString) => {

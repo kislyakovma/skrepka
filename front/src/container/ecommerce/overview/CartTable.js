@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Form, Input, Spin } from 'antd';
+import React, {useState} from 'react';
+import {Form, Input, Spin, Table} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FigureCart, ProductTable, CouponForm } from '../Style';
+import {useDispatch, useSelector} from 'react-redux';
+import {FigureCart, ProductTable} from '../Style';
 import Heading from '../../../components/heading/heading';
-import { Button } from '../../../components/buttons/buttons';
-import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
+import {Button} from '../../../components/buttons/buttons';
+import {cartDelete, cartUpdateQuantity} from '../../../redux/cart/actionCreator';
 
 const CartTable = () => {
   const dispatch = useDispatch();

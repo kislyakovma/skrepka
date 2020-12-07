@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Spin } from 'antd';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Spin} from 'antd';
+import {Link, NavLink} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { PerformanceChartWrapper, Pstates } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {useDispatch, useSelector} from 'react-redux';
+import {PerformanceChartWrapper, Pstates} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { ChartjsAreaChart } from '../../../../components/charts/chartjs';
-import { chartLinearGradient, customTooltips } from '../../../../components/utilities/utilities';
-import { performanceFilterData, performanceGetData, setIsLoading } from '../../../../redux/chartContent/actionCreator';
+import {ChartjsAreaChart} from '../../../../components/charts/chartjs';
+import {chartLinearGradient, customTooltips} from '../../../../components/utilities/utilities';
+import {performanceFilterData, performanceGetData, setIsLoading} from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>

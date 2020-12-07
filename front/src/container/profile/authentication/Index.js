@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col } from 'antd';
-import { Aside, Content } from './overview/style';
-import Heading from '../../../components/heading/heading';
+import {Col, Row} from 'antd';
+import {Aside, Content} from './overview/style';
 
 const AuthLayout = WraperContent => {
   return () => {

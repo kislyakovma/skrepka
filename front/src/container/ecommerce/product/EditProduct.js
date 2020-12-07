@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Select, InputNumber, Radio, Upload, message } from 'antd';
+import React, {useState} from 'react';
+import {Col, Form, Input, InputNumber, message, Radio, Row, Select, Upload} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Main, BasicFormWrapper } from '../../styled';
-import { Button } from '../../../components/buttons/buttons';
-import { AddProductForm } from '../Style';
+import {PageHeader} from '../../../components/page-headers/page-headers';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {BasicFormWrapper, Main} from '../../styled';
+import {Button} from '../../../components/buttons/buttons';
+import {AddProductForm} from '../Style';
 import Heading from '../../../components/heading/heading';
-import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
 
 const { Option } = Select;
 const { Dragger } = Upload;

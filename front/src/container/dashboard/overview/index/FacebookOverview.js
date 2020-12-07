@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { Row, Col, Radio, Spin } from 'antd';
+import React, {useEffect} from 'react';
+import {Col, Radio, Row, Spin} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Focard, CardGroup } from '../../style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
+import {useDispatch, useSelector} from 'react-redux';
+import {CardGroup, Focard} from '../../style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import { ChartjsAreaChart } from '../../../../components/charts/chartjs';
-import { forcastOverviewGetData, forcastOverviewFilterData } from '../../../../redux/chartContent/actionCreator';
-import { chartLinearGradient } from '../../../../components/utilities/utilities';
+import {ChartjsAreaChart} from '../../../../components/charts/chartjs';
+import {forcastOverviewFilterData, forcastOverviewGetData} from '../../../../redux/chartContent/actionCreator';
+import {chartLinearGradient} from '../../../../components/utilities/utilities';
 
 const FacebookOverview = () => {
   const dispatch = useDispatch();

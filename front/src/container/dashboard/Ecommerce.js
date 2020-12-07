@@ -1,16 +1,16 @@
-import React, { lazy, Suspense } from 'react';
-import { Row, Col, Skeleton } from 'antd';
+import React, {lazy, Suspense} from 'react';
+import {Col, Row, Skeleton} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { CardBarChart2, EChartCard } from './style';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button } from '../../components/buttons/buttons';
-import { Main } from '../styled';
+import {CardBarChart2, EChartCard} from './style';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Button} from '../../components/buttons/buttons';
+import {Main} from '../styled';
 import Heading from '../../components/heading/heading';
-import { ChartjsBarChartTransparent } from '../../components/charts/chartjs';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {ChartjsBarChartTransparent} from '../../components/charts/chartjs';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const TotalRevenue = lazy(() => import('./overview/ecommerce/TotalRevenue'));
 const RevenueGenerated = lazy(() => import('./overview/ecommerce/RevenueGenerated'));

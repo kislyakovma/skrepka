@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Rate } from 'antd';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import Heading from '../../../../components/heading/heading';
-import { updateWishList } from '../../../../redux/product/actionCreator';
-import { Button } from '../../../../components/buttons/buttons';
-import { cartAdd } from '../../../../redux/cart/actionCreator';
+import {updateWishList} from '../../../../redux/product/actionCreator';
+import {Button} from '../../../../components/buttons/buttons';
+import {cartAdd} from '../../../../redux/cart/actionCreator';
 
 const DetailsRight = ({ product }) => {
   const dispatch = useDispatch();

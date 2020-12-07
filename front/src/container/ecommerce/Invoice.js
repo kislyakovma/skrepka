@@ -1,16 +1,16 @@
 import React from 'react';
-import { Row, Col, Table } from 'antd';
+import {Col, Row, Table} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { useSelector } from 'react-redux';
-import { InvoiceHeader, InvoiceLetterBox, InvoiceAction, ProductTable, OrderSummary } from './Style';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
+import {useSelector} from 'react-redux';
+import {InvoiceAction, InvoiceHeader, InvoiceLetterBox, OrderSummary, ProductTable} from './Style';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
+import {Cards} from '../../components/cards/frame/cards-frame';
 import Heading from '../../components/heading/heading';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import {Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
 
 const Invoice = () => {
   const { rtl } = useSelector(state => {

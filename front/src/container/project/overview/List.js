@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Progress, Pagination, Tag } from 'antd';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Col, Pagination, Progress, Row, Table, Tag} from 'antd';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import Heading from '../../../components/heading/heading';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { ProjectPagination, ProjectListTitle, ProjectListAssignees, ProjectList } from '../style';
-import { Dropdown } from '../../../components/dropdown/dropdown';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {ProjectList, ProjectListAssignees, ProjectListTitle, ProjectPagination} from '../style';
+import {Dropdown} from '../../../components/dropdown/dropdown';
 
 const List = () => {
   const project = useSelector(state => state.projects.data);

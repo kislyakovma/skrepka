@@ -15,7 +15,7 @@ const {
   CART_DELETE_ERR,
   CART_ADD_PRODUCT,
 
-  CART_REMEMBER
+  CART_REMEMBER,
 } = actions;
 
 const initialState = {

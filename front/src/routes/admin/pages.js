@@ -1,5 +1,5 @@
-import React, { lazy } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import React, {lazy} from 'react';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
 
 const NotFound = lazy(() => import('../../container/pages/404'));
 const Maintenance = lazy(() => import('../../container/pages/Maintenance'));

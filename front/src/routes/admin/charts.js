@@ -1,5 +1,5 @@
-import React, { lazy } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import React, {lazy} from 'react';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
 
 const ChartJs = lazy(() => import('../../container/charts/ChartJs'));
 const GoogleChart = lazy(() => import('../../container/charts/GoogleCharts'));

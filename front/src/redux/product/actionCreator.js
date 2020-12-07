@@ -1,7 +1,6 @@
 import actions from './actions';
 import initialState from '../../demoData/products.json';
 import firebase from '../../config/database/firebase';
-import { da } from 'date-fns/locale';
 import * as JsSearch from 'js-search';
 
 const db = firebase.firestore();

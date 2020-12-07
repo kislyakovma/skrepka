@@ -1,9 +1,4 @@
 import actions from './actions';
-import Cookies from 'js-cookie';
-import firebase from '../../config/database/firebase';
-
-
-
 
 
 const {

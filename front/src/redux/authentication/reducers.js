@@ -1,4 +1,3 @@
-import { da } from 'date-fns/locale';
 import Cookies from 'js-cookie';
 import actions from './actions';
 

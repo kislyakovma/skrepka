@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Upload, Select } from 'antd';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Col, Form, Input, Row, Select, Upload} from 'antd';
+import {Link} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { BasicFormWrapper } from '../../styled';
-import { Button } from '../../../components/buttons/buttons';
+import {BasicFormWrapper} from '../../styled';
+import {Button} from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;

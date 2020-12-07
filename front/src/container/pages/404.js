@@ -1,9 +1,9 @@
 import React from 'react';
-import { ErrorWrapper } from './style';
-import { NavLink } from 'react-router-dom';
-import { Main } from '../styled';
+import {ErrorWrapper} from './style';
+import {NavLink} from 'react-router-dom';
+import {Main} from '../styled';
 import Heading from '../../components/heading/heading';
-import { Button } from '../../components/buttons/buttons';
+import {Button} from '../../components/buttons/buttons';
 
 const NotFound = () => {
   return (

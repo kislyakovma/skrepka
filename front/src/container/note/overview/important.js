@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Row, Col } from 'antd';
-import { NoteCardWrap } from '../style';
+import {useSelector} from 'react-redux';
+import {Col, Row} from 'antd';
+import {NoteCardWrap} from '../style';
 import NoteCard from '../../../components/note/Card';
-import { Cards } from '../../../components/cards/frame/cards-frame';
+import {Cards} from '../../../components/cards/frame/cards-frame';
 
 const Favorite = () => {
   const { noteData } = useSelector(state => {

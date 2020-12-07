@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Form, Input, Select, DatePicker, Radio, Upload, Spin } from 'antd';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload} from 'antd';
+import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { RecordFormWrapper } from './style';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Button } from '../../../components/buttons/buttons';
-import { Main, BasicFormWrapper } from '../../styled';
-import { fbDataUpdate, fbDataSingle, fbFileUploder } from '../../../redux/firestore/actionCreator';
+import {RecordFormWrapper} from './style';
+import {PageHeader} from '../../../components/page-headers/page-headers';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {Button} from '../../../components/buttons/buttons';
+import {BasicFormWrapper, Main} from '../../styled';
+import {fbDataSingle, fbDataUpdate, fbFileUploder} from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;

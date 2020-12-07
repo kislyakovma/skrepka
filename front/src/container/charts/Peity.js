@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { Row, Col } from 'antd';
-import { Line } from 'peity-react';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main } from '../styled';
+import React, {useLayoutEffect, useState} from 'react';
+import {Col, Row} from 'antd';
+import {Line} from 'peity-react';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Main} from '../styled';
 
 const Peity = () => {
   const [state, setState] = useState({

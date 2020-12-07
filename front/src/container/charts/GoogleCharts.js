@@ -1,28 +1,28 @@
 import React from 'react';
-import { Row, Col } from 'antd';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main } from '../styled';
+import {Col, Row} from 'antd';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Main} from '../styled';
 import {
-  barChartData,
-  materialDesignChart,
-  comboChartData,
-  lineChartData,
-  MultilineChartData,
-  organizationChartData,
-  pieChartData,
+    barChartData,
+    comboChartData,
+    lineChartData,
+    materialDesignChart,
+    MultilineChartData,
+    organizationChartData,
+    pieChartData,
 } from '../../demoData/google-charts.json';
 import {
-  GoogleBasicBarChart,
-  GoogleMaterialBarChart,
-  GoogleStackedChart,
-  GoogleCustomColorChart,
-  GoogleOrgChart,
-  GoogleComboChart,
-  GoogleLineChart,
-  GoogleMultiLineChart,
-  GoogleBasicPieChart,
-  Google3dPieChart,
+    Google3dPieChart,
+    GoogleBasicBarChart,
+    GoogleBasicPieChart,
+    GoogleComboChart,
+    GoogleCustomColorChart,
+    GoogleLineChart,
+    GoogleMaterialBarChart,
+    GoogleMultiLineChart,
+    GoogleOrgChart,
+    GoogleStackedChart,
 } from '../../components/charts/google-chart';
 
 const GoogleChart = () => {

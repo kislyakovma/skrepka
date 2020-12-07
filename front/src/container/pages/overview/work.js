@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, DatePicker, Radio } from 'antd';
-import { Link } from 'react-router-dom';
-import { BasicFormWrapper } from '../../styled';
-import { Button } from '../../../components/buttons/buttons';
+import React, {useState} from 'react';
+import {Col, DatePicker, Form, Input, Radio, Row} from 'antd';
+import {Link} from 'react-router-dom';
+import {BasicFormWrapper} from '../../styled';
+import {Button} from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
 const dateFormat = 'MM/DD/YYYY';

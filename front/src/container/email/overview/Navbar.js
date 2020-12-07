@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { Input, Form } from 'antd';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
+import {Form, Input} from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { EmailNav } from './style';
-import { Button } from '../../../components/buttons/buttons';
+import {Link} from 'react-router-dom';
+import {EmailNav} from './style';
+import {Button} from '../../../components/buttons/buttons';
 import Title from '../../../components/heading/heading';
 
 const EmailNavbar = ({ path, toggleCollapsed }) => {

@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { Table } from 'antd';
+import {Table} from 'antd';
 
 const Style = Styled(Table)`
   margin-bottom: 30px;  

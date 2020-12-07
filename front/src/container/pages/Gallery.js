@@ -1,17 +1,17 @@
-import React, { useState, Suspense, lazy } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {lazy, Suspense, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import { Row, Col, Spin, Skeleton } from 'antd';
-import { Link } from 'react-router-dom';
-import { GalleryNav } from './style';
-import { Main } from '../styled';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { galleryFilter } from '../../redux/gallary/actionCreator';
-import { Button } from '../../components/buttons/buttons';
-import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
-import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
-import { Cards } from '../../components/cards/frame/cards-frame';
+import {Col, Row, Skeleton, Spin} from 'antd';
+import {Link} from 'react-router-dom';
+import {GalleryNav} from './style';
+import {Main} from '../styled';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {galleryFilter} from '../../redux/gallary/actionCreator';
+import {Button} from '../../components/buttons/buttons';
+import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
+import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
+import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import {Cards} from '../../components/cards/frame/cards-frame';
 
 const GalleryCards = lazy(() => import('./overview/GalleryCard'));
 

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Row, Col, Table } from 'antd';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {Col, Row, Table} from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
-import { UserTableStyleWrapper } from './style';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main, TableWrapper, CardToolbox } from '../styled';
+import {Link} from 'react-router-dom';
+import {UserTableStyleWrapper} from './style';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {CardToolbox, Main, TableWrapper} from '../styled';
 import Heading from '../../components/heading/heading';
-import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { Button } from '../../components/buttons/buttons';
-import { Cards } from '../../components/cards/frame/cards-frame';
+import {AutoComplete} from '../../components/autoComplete/autoComplete';
+import {Button} from '../../components/buttons/buttons';
+import {Cards} from '../../components/cards/frame/cards-frame';
 
 const UserListDataTable = () => {
   const { searchData, users } = useSelector(state => {

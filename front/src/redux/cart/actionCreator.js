@@ -1,10 +1,5 @@
 import actions from './actions';
-import Cookies from 'js-cookie';
 import firebase from '../../config/database/firebase';
-import products from '../../demoData/cart.json';
-import { arSA } from 'date-fns/locale';
-import { setOptions } from 'leaflet/src/core/Util';
-import { fi } from 'react-date-range/dist/locale';
 
 const db = firebase.firestore();
 
@@ -67,7 +62,25 @@ const cartGetData = () => {
   };
 };
 
-const cartUpdateQuantity = (id, quantity, cartData) => {
+const cartDeleteAll = (email) => {
+  return async (dispatch) => {
+    try {
+      dispatch(cartDataBegin());
+      db.collection('users')
+        .doc(email)
+        .update({ cart: firebase.firestore.FieldValue.delete() })
+        .then(() => {
+          console.log('AUE');
+          localStorage.removeItem('cart');
+          dispatch(cartDataSuccess([]));
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const cartUpdateQuantity = (id, quantity, cartData, email) => {
   return async (dispatch) => {
     try {
       dispatch(cartUpdateBegin());
@@ -75,7 +88,17 @@ const cartUpdateQuantity = (id, quantity, cartData) => {
         if (item.id === id) item.quantity = quantity;
         return item;
       });
-      dispatch(cartUpdateSuccess(data));
+      const localData = JSON.parse(localStorage.getItem('cart')).map((item) => {
+        if (item.id === id) item.quantity = quantity;
+        return item;
+      });
+      db.collection('users')
+        .doc(email)
+        .update({ cart: localData })
+        .then(() => {
+          localStorage.setItem('cart', JSON.stringify(localData));
+          dispatch(cartUpdateSuccess(data));
+        });
     } catch (err) {
       dispatch(cartUpdateErr(err));
     }
@@ -140,4 +163,4 @@ const cartDelete = (id, chartData, email) => {
   };
 };
 
-export { cartGetData, rememberCart, cartUpdateQuantity, cartDelete, cartAdd };
+export { cartGetData, rememberCart, cartUpdateQuantity, cartDelete, cartAdd, cartDeleteAll };

@@ -1,6 +1,6 @@
-import React, { lazy } from 'react';
-import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { Route, useRouteMatch } from 'react-router-dom';
+import React, {lazy} from 'react';
+import {Switch} from 'react-router-dom/cjs/react-router-dom.min';
+import {Route, useRouteMatch} from 'react-router-dom';
 
 const FbView = lazy(() => import('../../container/crud/fireStore/View'));
 const FbAdd = lazy(() => import('../../container/crud/fireStore/addNew'));

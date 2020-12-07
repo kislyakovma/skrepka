@@ -91,7 +91,7 @@ const Steps = ({
                     {state.currents > 0 && (
                       <Button className="btn-prev" type="light" onClick={() => prev()}>
                         <FeatherIcon icon="arrow-left" size={16} />
-                        Previous
+                        Назад
                       </Button>
                     )}
 
@@ -104,7 +104,7 @@ const Steps = ({
 
                     {state.currents === steps.length - 1 && (
                       <Button type="primary" onClick={onDone}>
-                        Done
+                        Готово
                       </Button>
                     )}
                   </div>

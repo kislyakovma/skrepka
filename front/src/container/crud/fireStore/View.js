@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Table, Spin } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Col, Row, Spin, Table} from 'antd';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { RecordViewWrapper } from './style';
-import { Main, TableWrapper } from '../../styled';
-import { Button } from '../../../components/buttons/buttons';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { fbDataDelete, fbDataRead, fbDataSearch } from '../../../redux/firestore/actionCreator';
+import {RecordViewWrapper} from './style';
+import {Main, TableWrapper} from '../../styled';
+import {Button} from '../../../components/buttons/buttons';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {PageHeader} from '../../../components/page-headers/page-headers';
+import {fbDataDelete, fbDataRead, fbDataSearch} from '../../../redux/firestore/actionCreator';
 
 const ViewPage = () => {
   const dispatch = useDispatch();

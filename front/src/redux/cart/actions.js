@@ -1,5 +1,3 @@
-import { da } from 'date-fns/locale';
-
 const actions = {
   CART_DATA_BEGIN: 'CART_DATA_BEGIN',
   CART_DATA_SUCCESS: 'CART_DATA_SUCCESS',

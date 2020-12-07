@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Col } from 'antd';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main, FormGroupWrapper } from '../styled';
+import {Col, Row} from 'antd';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {FormGroupWrapper, Main} from '../styled';
 import SignIn from '../profile/authentication/overview/SignIn';
 import Signup from '../profile/authentication/overview/Signup';
 import ForgotPassword from '../profile/authentication/overview/ForgotPassword';

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Row, Col, Pagination } from 'antd';
-import { Link } from 'react-router-dom';
-import { SearchResultWrapper, ResultList } from './style';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Main } from '../styled';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {Col, Pagination, Row} from 'antd';
+import {Link} from 'react-router-dom';
+import {ResultList, SearchResultWrapper} from './style';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Main} from '../styled';
 import Heading from '../../components/heading/heading';
-import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { Cards } from '../../components/cards/frame/cards-frame';
+import {AutoComplete} from '../../components/autoComplete/autoComplete';
+import {Cards} from '../../components/cards/frame/cards-frame';
 
 const SearchResult = () => {
   const searchData = useSelector(state => state.headerSearchData);

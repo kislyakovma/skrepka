@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import FeatherIcon from 'feather-icons-react';
 import RichTextEditor from 'react-rte';
 import TagsInput from 'react-tagsinput';
 import 'react-tagsinput/react-tagsinput.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import propTypes from 'prop-types';
-import { Upload, message } from 'antd';
-import { MailBox } from './style';
-import { Button } from '../../../components/buttons/buttons';
+import {message, Upload} from 'antd';
+import {MailBox} from './style';
+import {Button} from '../../../components/buttons/buttons';
 
 const MailComposer = ({ onChange, onSend, defaultTag, replay }) => {
   const [state, setState] = useState({

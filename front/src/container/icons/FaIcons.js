@@ -1,11 +1,11 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Col, Row} from 'antd';
 import FontAwesome from 'react-fontawesome';
-import { Icon, IconWrapper } from './IconStyled';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main } from '../styled';
-import { faIcons } from '../../config/icon/icon.json';
+import {Icon, IconWrapper} from './IconStyled';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Main} from '../styled';
+import {faIcons} from '../../config/icon/icon.json';
 
 const FaIcons = () => {
   let key = 0;

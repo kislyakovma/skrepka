@@ -10,7 +10,7 @@ import { Button } from '../../components/buttons/buttons';
 import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
-import { cartGetData } from '../../redux/cart/actionCreator';
+import { cartGetData, cartDeleteAll } from '../../redux/cart/actionCreator';
 
 const Checkout = lazy(() => import('./overview/CheckOut'));
 const CartTable = lazy(() => import('./overview/CartTable'));
@@ -18,8 +18,11 @@ const Ordersummary = lazy(() => import('./overview/Ordersummary'));
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
-  const cartData = useSelector(state => {
+  const cartData = useSelector((state) => {
     return state.cart.data;
+  });
+  const user = useSelector((state) => {
+    return state.auth.user;
   });
   const { path, isExact } = useRouteMatch();
   const [state, setState] = useState({
@@ -28,11 +31,11 @@ const ShoppingCart = () => {
     current: 0,
   });
 
+  const onCartDelete = () => {
+    dispatch(cartDeleteAll(user.email));
+  };
 
-
-
-
-  const onHandleCurrent = current => {
+  const onHandleCurrent = (current) => {
     setState({
       ...state,
       current,
@@ -46,7 +49,15 @@ const ShoppingCart = () => {
         title="Корзина"
         buttons={[
           <div key="1" className="page-header-actions">
-            <Button size="small" key="4" type="primary">
+            <Button
+              size="small"
+              key="4"
+              type="primary"
+              onClick={() => {
+                console.log('NASVAY');
+                onCartDelete();
+              }}
+            >
               <FeatherIcon icon="trash" size={14} />
               Очистить корзину
             </Button>
@@ -84,7 +95,7 @@ const ShoppingCart = () => {
                         </Cards>
                       }
                     >
-                      <Ordersummary  isExact={isExact} path={path} cartData={cartData} />
+                      <Ordersummary isExact={isExact} path={path} cartData={cartData} />
                     </Suspense>
                   </Col>
                 </Row>

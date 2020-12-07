@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -13,9 +13,9 @@ import firebase from '../../../../config/database/firebase';
 const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.auth.loading);
-  const isFailedLogin = useSelector(state => state.auth.failedLogin);
-  const isLoggedIn = useSelector(state => state.auth.login);
+  const isLoading = useSelector((state) => state.auth.loading);
+  const isFailedLogin = useSelector((state) => state.auth.failedLogin);
+  const isLoggedIn = useSelector((state) => state.auth.login);
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -24,7 +24,7 @@ const SignIn = () => {
     submited: false,
   });
 
-  const handleSubmit = data => {
+  const handleSubmit = (data) => {
     dispatch(login(data.username, data.password)).then(() => {
       state.failed = !isLoggedIn;
     });
@@ -33,20 +33,32 @@ const SignIn = () => {
 
   useEffect(() => {
     if (state.failed) {
-      toast.dark('Неверные данные!', {
-        position: 'top-right',
-
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      notification.open({
+        duration: 3,
+        message: 'Неверные данные!',
+        description: 'Убедитесь, что ввели верные логин и пароль.',
+        className: 'custom-class',
+        style: {
+          fontFamily: 'Montserrat',
+        },
       });
+      // toast(' Неверные данные!', {
+      //   position: 'top-left',
+      //   autoClose: 3000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: false,
+      //   progress: undefined,
+      //   style: {
+      //     fontSize: 20,
+      //     fontWeight: '900',
+      //   },
+      // });
     }
   }, [state.submited]);
 
-  const onChange = checked => {
+  const onChange = (checked) => {
     setState({ ...state, checked });
   };
 

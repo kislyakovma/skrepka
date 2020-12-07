@@ -1,16 +1,16 @@
-import React, { useEffect, lazy, Suspense, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {lazy, Suspense, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import { Link, NavLink, Switch, Route } from 'react-router-dom';
-import { Tooltip, Row, Col, Spin } from 'antd';
+import {Link, NavLink, Route, Switch} from 'react-router-dom';
+import {Col, Row, Spin, Tooltip} from 'antd';
 import moment from 'moment';
 import propTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { MailDetailsWrapper, MessageAction, MessageDetails, ReplyList, MessageReply, MailRightAction } from './style';
-import { Dropdown } from '../../../components/dropdown/dropdown';
+import {MailDetailsWrapper, MailRightAction, MessageAction, MessageDetails, MessageReply, ReplyList} from './style';
+import {Dropdown} from '../../../components/dropdown/dropdown';
 import Heading from '../../../components/heading/heading';
-import { filterSinglePage, onStarUpdate } from '../../../redux/email/actionCreator';
-import { Cards } from '../../../components/cards/frame/cards-frame';
+import {filterSinglePage, onStarUpdate} from '../../../redux/email/actionCreator';
+import {Cards} from '../../../components/cards/frame/cards-frame';
 
 const MailComposer = lazy(() => import('./MailComposer'));
 

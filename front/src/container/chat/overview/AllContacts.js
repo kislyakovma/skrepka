@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {NavLink} from 'react-router-dom';
 import moment from 'moment';
 import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
-import { Badge } from 'antd';
-import { BlockSpan, ChatWrapper } from '../style';
-import { textRefactor } from '../../../components/utilities/utilities';
-import { filterSinglePage } from '../../../redux/chat/actionCreator';
-import { Button } from '../../../components/buttons/buttons';
+import {Badge} from 'antd';
+import {BlockSpan, ChatWrapper} from '../style';
+import {textRefactor} from '../../../components/utilities/utilities';
+import {filterSinglePage} from '../../../redux/chat/actionCreator';
+import {Button} from '../../../components/buttons/buttons';
 
 const AllContacts = ({ match }) => {
   const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Menu } from 'antd';
-import { NavLink, useRouteMatch,  useHistory  } from 'react-router-dom';
+import {Menu} from 'antd';
+import {NavLink, useHistory, useRouteMatch} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const { SubMenu } = Menu;
 

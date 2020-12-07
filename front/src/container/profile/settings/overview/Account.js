@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input } from 'antd';
-import { AccountWrapper } from './style';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { Button } from '../../../../components/buttons/buttons';
-import { BasicFormWrapper } from '../../../styled';
+import React, {useState} from 'react';
+import {Col, Form, Input, Row} from 'antd';
+import {AccountWrapper} from './style';
+import {Cards} from '../../../../components/cards/frame/cards-frame';
+import {Button} from '../../../../components/buttons/buttons';
+import {BasicFormWrapper} from '../../../styled';
 import Heading from '../../../../components/heading/heading';
 
 const Account = () => {

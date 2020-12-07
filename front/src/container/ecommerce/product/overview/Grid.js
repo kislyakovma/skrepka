@@ -64,11 +64,11 @@ const Grid = () => {
           </div>
         </Col>
       ) : products.length ? (
-        products.map(({ id, name, rate, price, oldPrice, popular, img, modified, description }) => {
+        products.map(({ id, name, rate, price, oldPrice, popular, img, modified, description, quantity }) => {
           if (modified) {
             return (
               <Col xxl={6} lg={12} xs={24} key={id}>
-                <ProductCard style={{ marginBottom: 30 }}>
+                <ProductCard style={{ marginBottom: 30, overflow: 'hidden' }}>
                   <figure>
                     <img src={img} alt={`img${id}`} />
                   </figure>
@@ -111,8 +111,9 @@ const Grid = () => {
                             onClick={() => {
                               dispatch(
                                 cartAdd(
-                                  { id, name, rate, price, oldPrice, popular, description, img, modified },
-                                  cartData, user.email
+                                  { id, name, rate, price, oldPrice, popular, description, img, modified, quantity },
+                                  cartData,
+                                  user.email,
                                 ),
                               );
                             }}

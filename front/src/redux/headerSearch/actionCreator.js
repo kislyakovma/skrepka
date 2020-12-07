@@ -1,5 +1,4 @@
 import actions from './actions';
-import initialState from '../../demoData/header-search.json';
 import firebase from '../../config/database/firebase';
 
 const db = firebase.firestore();

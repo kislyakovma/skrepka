@@ -1,5 +1,5 @@
-import React, { lazy } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import React, {lazy} from 'react';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
 
 const GoogleMaps = lazy(() => import('../../container/maps/GoogleMaps'));
 const Osm = lazy(() => import('../../container/maps/Leaflet'));

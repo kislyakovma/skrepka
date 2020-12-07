@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useState, useEffect } from 'react';
-import { Upload, message } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {message, Upload} from 'antd';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 import Picker from 'emoji-picker-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Scrollbars } from 'react-custom-scrollbars';
-import { SmileOutlined, MoreOutlined } from '@ant-design/icons';
-import { SingleChatWrapper, MessageList, Footer, BackShadowEmoji } from '../style';
+import {Scrollbars} from 'react-custom-scrollbars';
+import {MoreOutlined, SmileOutlined} from '@ant-design/icons';
+import {BackShadowEmoji, Footer, MessageList, SingleChatWrapper} from '../style';
 import Heading from '../../../components/heading/heading';
-import { Button } from '../../../components/buttons/buttons';
-import { updateGroupChat } from '../../../redux/chat/actionCreator';
-import { Cards } from '../../../components/cards/frame/cards-frame';
-import { Dropdown } from '../../../components/dropdown/dropdown';
+import {Button} from '../../../components/buttons/buttons';
+import {updateGroupChat} from '../../../redux/chat/actionCreator';
+import {Cards} from '../../../components/cards/frame/cards-frame';
+import {Dropdown} from '../../../components/dropdown/dropdown';
 
 const SingleGroupChat = ({ match }) => {
   const dispatch = useDispatch();

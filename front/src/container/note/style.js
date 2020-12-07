@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { Table } from 'antd';
+import {Table} from 'antd';
 
 const Span = Styled.span`
     &.active{

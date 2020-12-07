@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import {Link} from 'react-router-dom/cjs/react-router-dom.min';
 import propTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
-import { Style, EmailAuthor, EmailHeader } from './style';
+import {EmailAuthor, EmailHeader, Style} from './style';
 import Topbar from './Topbar';
-import { AutoComplete } from '../../../components/autoComplete/autoComplete';
+import {AutoComplete} from '../../../components/autoComplete/autoComplete';
 import Heading from '../../../components/heading/heading';
-import { textRefactor } from '../../../components/utilities/utilities';
-import { Dropdown } from '../../../components/dropdown/dropdown';
-import { onStarUpdate, onSortingAscending, onSortingDescending } from '../../../redux/email/actionCreator';
+import {textRefactor} from '../../../components/utilities/utilities';
+import {Dropdown} from '../../../components/dropdown/dropdown';
+import {onSortingAscending, onSortingDescending, onStarUpdate} from '../../../redux/email/actionCreator';
 
 const Content = ({ searchData, email }) => {
   const dispatch = useDispatch();

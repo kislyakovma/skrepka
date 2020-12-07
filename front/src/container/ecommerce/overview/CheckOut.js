@@ -117,7 +117,7 @@ const CheckOut = ({ onCurrentChange }) => {
   };
 
   const done = () => {
-    const confirm = window.confirm('Are sure to submit order?');
+    const confirm = window.confirm('Вы подтверждаете заказ?');
     onCurrentChange(current, PlaceOrder);
     if (confirm) {
       setState({
@@ -148,34 +148,24 @@ const CheckOut = ({ onCurrentChange }) => {
               <figcaption>
                 <div className="cart-single__info">
                   <Heading as="h6">{name}</Heading>
-                  <ul className="info-list">
-                    <li>
-                      <span className="info-title">Size :</span>
-                      <span>{size}</span>
-                    </li>
-                    <li>
-                      <span className="info-title"> Color :</span>
-                      <span>{color}</span>
-                    </li>
-                  </ul>
                 </div>
               </figcaption>
             </FigureCart>
           </div>
         ),
-        price: <span className="cart-single-price">${price}</span>,
+        price: <span className="cart-single-price">{price}₽</span>,
         quantity: (
           <div className="cart-single-quantity">
             <Button onClick={() => decrementUpdate(id, quantity)} className="btn-dec" type="default">
               <FeatherIcon icon="minus" size={12} />
             </Button>
-            {quantity}
+            {quantity ? quantity : 1}
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">
               <FeatherIcon icon="plus" size={12} />
             </Button>
           </div>
         ),
-        total: <span className="cart-single-t-price">${quantity * price}</span>,
+        total: <span className="cart-single-t-price">{quantity ? quantity * price : price}₽</span>,
         action: (
           <div className="table-action">
             <Button
@@ -374,15 +364,18 @@ const CheckOut = ({ onCurrentChange }) => {
                               return (
                                 <div className="shipping-selection__paypal">
                                   <Radio
-                                    value={item.requisites}
+                                    value={JSON.stringify(item.requisites)}
                                     style={{ width: '100%' }}
                                     onChange={(e) => {
                                       console.log(e.target.value);
-                                      setState({ ...state, requisites: e, currentCompany: item.name });
+                                      setState({
+                                        ...state,
+                                        requisites: JSON.parse(e.target.value),
+                                        currentCompany: item.name,
+                                      });
                                     }}
                                   >
                                     {item.name}
-                                    <img src={item.img} alt="paypal" style={{ maxHeight: '40px' }} />
                                   </Radio>
                                 </div>
                               );
@@ -423,13 +416,19 @@ const CheckOut = ({ onCurrentChange }) => {
                           </div>
                           <article className="atbd-review-order__shippingInfo">
                             <div className="shipping-info-text">
-                              <Heading as="h6">Ibn Adam</Heading>
-                              <Heading as="h6">Phone: +61412345678</Heading>
-                              <p>
-                                795 Folsom Ave, Suite 600 <br />
-                                San Francisco, CA 94107 <br />
-                                United States
-                              </p>
+                              {state.template.info ? (
+                                <>
+                                  <Heading as="h6">{state.template.info.name}</Heading>
+                                  <Heading as="h6">Телефон: {state.template.info.phone}</Heading>
+                                  <p>
+                                    {state.template.info.address} <br />
+                                    {state.template.info.city} <br />
+                                    {state.template.info.zip}
+                                  </p>
+                                </>
+                              ) : (
+                                <></>
+                              )}
                             </div>
                           </article>
                         </Cards>
@@ -442,8 +441,11 @@ const CheckOut = ({ onCurrentChange }) => {
 
                           <div className="method-info">
                             <Heading as="h5">{state.currentCompany}</Heading>
-                            <p>{state.requisites.bank}</p>
-                            <p>{state.requisites.bik}</p>
+                            <p>Банк: {state.requisites.bank}</p>
+                            <p>БИК: {state.requisites.bik}</p>
+                            <p>Р/С: {state.requisites.checkingAcc}</p>
+                            <p>КПП: {state.requisites.kpp}</p>
+                            <p>ИНН: {state.requisites.inn}</p>
                           </div>
                         </Cards>
                       </div>
@@ -462,22 +464,22 @@ const CheckOut = ({ onCurrentChange }) => {
                                 <OrderSummary>
                                   <div className="invoice-summary-inner">
                                     <ul className="summary-list">
-                                      <li>
-                                        <span className="summary-list-title">Subtotal :</span>
-                                        <span className="summary-list-text">{`$${subtotal}`}</span>
-                                      </li>
-                                      <li>
-                                        <span className="summary-list-title">Discount :</span>
-                                        <span className="summary-list-text">{`$${-20}`}</span>
-                                      </li>
-                                      <li>
-                                        <span className="summary-list-title">Shipping Charge :</span>
-                                        <span className="summary-list-text">{`$${30}`}</span>
-                                      </li>
+                                      {/*<li>*/}
+                                      {/*  <span className="summary-list-title">Сумма заказа :</span>*/}
+                                      {/*  <span className="summary-list-text">{`${subtotal}₽`}</span>*/}
+                                      {/*</li>*/}
+                                      {/*<li>*/}
+                                      {/*  <span className="summary-list-title">Discount :</span>*/}
+                                      {/*  <span className="summary-list-text">{`$${-20}`}</span>*/}
+                                      {/*</li>*/}
+                                      {/*<li>*/}
+                                      {/*  <span className="summary-list-title">Доставка :</span>*/}
+                                      {/*  <span className="summary-list-text">{`$${30}`}</span>*/}
+                                      {/*</li>*/}
                                     </ul>
                                     <Heading className="summary-total" as="h4">
-                                      <span className="summary-total-label">Total : </span>
-                                      <span className="summary-total-amount">{`$${subtotal + 30 - 20}`}</span>
+                                      <span className="summary-total-label">Итого : </span>
+                                      <span className="summary-total-amount">{`${subtotal}₽`}</span>
                                     </Heading>
                                   </div>
                                 </OrderSummary>
@@ -504,8 +506,8 @@ const CheckOut = ({ onCurrentChange }) => {
                           <span className="icon-success">
                             <FeatherIcon icon="check" />
                           </span>
-                          <Heading as="h3">Payment Successful</Heading>
-                          <p>Thank you! We have received your Payment</p>
+                          <Heading as="h3">Заказ создан</Heading>
+                          <p>Спасибо за покупку! Счет выставлен вам на почту.</p>
                         </Cards>
                       </Cards>
                     </div>

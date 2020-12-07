@@ -1,5 +1,5 @@
-import React, { lazy } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import React, {lazy} from 'react';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
 
 const Project = lazy(() => import('../../container/project/Project'));
 const ProjectDetails = lazy(() => import('../../container/project/ProjectDetails'));

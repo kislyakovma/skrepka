@@ -1,11 +1,11 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Col, Row} from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as Icons from '@ant-design/icons';
-import { AnIcon, IconWrapper } from './IconStyled';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main } from '../styled';
+import {AnIcon, IconWrapper} from './IconStyled';
+import {PageHeader} from '../../components/page-headers/page-headers';
+import {Cards} from '../../components/cards/frame/cards-frame';
+import {Main} from '../styled';
 
 const FeatherSvgIcons = () => {
   return (

@@ -28,16 +28,16 @@ const CartTable = () => {
   // useEffect(()=>{}, [state.currentQuantity])
   const quantityUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10);
-    dispatch(cartUpdateQuantity(id, data, cartData));
+    dispatch(cartUpdateQuantity(id, data, cartData, user.email));
   };
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
-    dispatch(cartUpdateQuantity(id, data, cartData));
+    dispatch(cartUpdateQuantity(id, data, cartData, user.email));
   };
 
   const decrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) >= 2 ? parseInt(quantity, 10) - 1 : 1;
-    dispatch(cartUpdateQuantity(id, data, cartData));
+    dispatch(cartUpdateQuantity(id, data, cartData, user.email));
   };
 
   const cartDeleted = (id) => {
@@ -155,7 +155,12 @@ const CartTable = () => {
           </div>
         ) : (
           <div className="table-cart table-responsive">
-            <Table pagination={false} dataSource={productTableData} columns={productTableColumns} />
+            <Table
+              pagination={false}
+              dataSource={productTableData}
+              columns={productTableColumns}
+              locale={{ emptyText: 'Здесь пока пусто' }}
+            />
           </div>
         )}
       </ProductTable>

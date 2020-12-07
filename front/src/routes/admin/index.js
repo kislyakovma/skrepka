@@ -1,13 +1,12 @@
-import React, { lazy, Suspense } from 'react';
-import { Spin } from 'antd';
-import { useSelector } from 'react-redux';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import React, {lazy, Suspense} from 'react';
+import {Spin} from 'antd';
+import {useSelector} from 'react-redux';
+import {Route, Switch, useRouteMatch} from 'react-router-dom';
 import Dashboard from './dashboard';
 import Pages from './pages';
 import Ecommerce from './ecommerce';
 import withAdminLayout from '../../layout/withAdminLayout';
-import { DrawerStyle } from '../../components/drawer/style';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import {Redirect} from 'react-router-dom/cjs/react-router-dom.min';
 
 const Charts = lazy(() => import('./charts'));
 const Components = lazy(() => import('./components'));

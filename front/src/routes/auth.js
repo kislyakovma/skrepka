@@ -1,6 +1,6 @@
-import React, { lazy, Suspense } from 'react';
-import { Spin } from 'antd';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, {lazy, Suspense} from 'react';
+import {Spin} from 'antd';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import AuthLayout from '../container/profile/authentication/Index';
 
 const Login = lazy(() => import('../container/profile/authentication/overview/SignIn'));

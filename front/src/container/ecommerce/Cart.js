@@ -1,5 +1,5 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {Col, Row, Skeleton} from 'antd';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+import { Row, Col, Skeleton } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

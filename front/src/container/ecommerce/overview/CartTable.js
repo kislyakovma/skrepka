@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Form, Input, Spin, Table} from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Table, Form, Input, Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FigureCart, ProductTable} from '../Style';
+import { useDispatch, useSelector } from 'react-redux';
+import { FigureCart, ProductTable, CouponForm } from '../Style';
 import Heading from '../../../components/heading/heading';
-import {Button} from '../../../components/buttons/buttons';
-import {cartDelete, cartUpdateQuantity} from '../../../redux/cart/actionCreator';
+import { Button } from '../../../components/buttons/buttons';
+import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
 
 const CartTable = () => {
   const dispatch = useDispatch();
@@ -86,7 +86,7 @@ const CartTable = () => {
               }}
               value={quantity != 0 ? quantity : ''}
               className="btn-inc"
-              style={{ padding: 20, marginLeft: '0', minWidth: '65px', textAlign: 'center', fontSize: 15 }}
+              style={{ padding: 20, marginLeft: '0', maxWidth: '40px', textAlign: 'center', fontSize: 15 }}
               bordered={false}
             />
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">

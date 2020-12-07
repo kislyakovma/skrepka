@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Col, Divider, Radio, Row, Table} from 'antd';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
+import React, { useState } from 'react';
+import { Row, Col, Table, Radio, Divider } from 'antd';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
 
 const Tables = () => {
   const [state, setState] = useState({
@@ -48,7 +48,7 @@ const Tables = () => {
     onChange: (selectedRowKeys, selectedRows) => {
       setState({ ...state, selectedRowKeys, selectedRows });
     },
-    getCheckboxProps: record => ({
+    getCheckboxProps: (record) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),

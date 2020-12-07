@@ -1,9 +1,9 @@
 import React from 'react';
-import {Menu} from 'antd';
-import {NavLink, useHistory, useRouteMatch} from 'react-router-dom';
+import { Menu } from 'antd';
+import { NavLink, useRouteMatch, useHistory } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const { SubMenu } = Menu;
 
@@ -13,7 +13,7 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
   const pathArray = pathName.split(path);
   const mainPath = pathArray[1];
   const mainPathSplit = mainPath.split('/');
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const history = useHistory();
 
   if (user.role === 'admin') {
@@ -54,11 +54,11 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
 
       </Menu.Item>
           */}
-      <Menu.Item key="ecommerce">
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
-          Магазин
-        </NavLink>
-       </Menu.Item> 
+          <Menu.Item key="ecommerce">
+            <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
+              Магазин
+            </NavLink>
+          </Menu.Item>
         </SubMenu>
         <SubMenu key="firestore" icon={!topMenu && <FeatherIcon icon="database" />} title="Данные">
           <Menu.Item key="fbView">
@@ -134,18 +134,54 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
         defaultOpenKeys={!topMenu ? [`${mainPathSplit.length > 2 ? mainPathSplit[1] : 'dashboard'}`] : []}
         overflowedIndicator={<FeatherIcon icon="more-vertical" />}
       >
-        <Menu.Item key="ecommerce" icon={!topMenu && <FeatherIcon onClick = {() => {history.push(`${path}/ecommerce/products`)}} icon="shopping-cart" />}>
+        <Menu.Item
+          key="ecommerce"
+          icon={
+            !topMenu && (
+              <FeatherIcon
+                onClick={() => {
+                  history.push(`${path}/ecommerce/products`);
+                }}
+                icon="shopping-cart"
+              />
+            )
+          }
+        >
           {' '}
           <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
             Магазин
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="orders" icon={!topMenu && <FeatherIcon onClick = {() => {history.push(`${path}/ecommerce/orders`)}} icon="package" />}>
+        <Menu.Item
+          key="orders"
+          icon={
+            !topMenu && (
+              <FeatherIcon
+                onClick={() => {
+                  history.push(`${path}/ecommerce/orders`);
+                }}
+                icon="package"
+              />
+            )
+          }
+        >
           <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/orders`}>
             Заказы
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="subscriptions" icon={!topMenu && <FeatherIcon onClick = {() => {history.push(`${path}/pricing`)}} icon="at-sign" />}>
+        <Menu.Item
+          key="subscriptions"
+          icon={
+            !topMenu && (
+              <FeatherIcon
+                onClick={() => {
+                  history.push(`${path}/pricing`);
+                }}
+                icon="at-sign"
+              />
+            )
+          }
+        >
           <NavLink onClick={toggleCollapsed} to={`${path}/pricing`}>
             Подписки
           </NavLink>

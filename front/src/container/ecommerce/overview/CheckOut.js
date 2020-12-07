@@ -1,15 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Form, Input, Radio, Row, Select, Table} from 'antd';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Form, Input, Select, Radio, Table } from 'antd';
+import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Steps} from '../../../components/steps/steps';
+import { useDispatch, useSelector } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
+import { Steps } from '../../../components/steps/steps';
 import Heading from '../../../components/heading/heading';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Button} from '../../../components/buttons/buttons';
-import {BasicFormWrapper} from '../../styled';
-import {CheckoutWrapper, FigureCart, OrderSummary, ProductTable} from '../Style';
-import {cartDelete, cartUpdateQuantity} from '../../../redux/cart/actionCreator';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Button } from '../../../components/buttons/buttons';
+import { BasicFormWrapper } from '../../styled';
+import { FigureCart, CheckoutWrapper, ProductTable, OrderSummary } from '../Style';
+import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
+import { template } from 'leaflet/src/core/Util';
 
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {

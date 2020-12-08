@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload} from 'antd';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload } from 'antd';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import {RecordFormWrapper} from './style';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Button} from '../../../components/buttons/buttons';
-import {BasicFormWrapper, Main} from '../../styled';
-import {fbDataSingle, fbDataUpdate, fbFileUploder} from '../../../redux/firestore/actionCreator';
+import { RecordFormWrapper } from './style';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Button } from '../../../components/buttons/buttons';
+import { BasicFormWrapper, Main } from '../../styled';
+import { fbDataSingle, fbDataUpdate, fbFileUploder } from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
+import { tr } from 'react-date-range/dist/locale';
 
 const { Option } = Select;
-const dateFormat = 'YYYY/MM/DD';
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { crud, isLoading, url, isFileLoading } = useSelector(state => {
+  const { crud, isLoading, url, isFileLoading } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
       isLoading: state.crud.loading,
@@ -28,15 +28,17 @@ const Edit = ({ match }) => {
   });
   const [state, setState] = useState({
     join: null,
+    searchSuggest: [],
+    selected: [],
   });
   const [form] = Form.useForm();
   useEffect(() => {
     if (fbDataSingle) {
-      dispatch(fbDataSingle(parseInt(match.params.id, 10)));
+      dispatch(fbDataSingle(match.params.id));
     }
   }, [dispatch, match.params.id]);
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     dispatch(
       fbDataUpdate(parseInt(match.params.id, 10), {
         ...values,
@@ -45,6 +47,30 @@ const Edit = ({ match }) => {
         id: parseInt(match.params.id, 10),
       }),
     );
+  };
+  useEffect(() => {
+    console.log(state.selected);
+  }, [state.selected]);
+
+  const getCompany = (query) => {
+    const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
+    const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
+    const options = {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Token ' + token,
+      },
+      body: JSON.stringify({ query: query }),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((result) => setState({ ...state, searchSuggest: result.suggestions }))
+
+      .catch((error) => console.log('error', error));
   };
 
   const onChange = (date, dateString) => {
@@ -70,6 +96,7 @@ const Edit = ({ match }) => {
       }
     },
   };
+  const options = state.searchSuggest.map((item) => <Option value={JSON.stringify(item)}>{item.value}</Option>);
 
   return (
     <>
@@ -82,7 +109,7 @@ const Edit = ({ match }) => {
           </Button>,
         ]}
         ghost
-        title="Update Your Recored"
+        title="Редактировать информацию"
       />
       <Main>
         <Row gutter={15}>
@@ -96,37 +123,7 @@ const Edit = ({ match }) => {
                 ) : (
                   <Row justify="center">
                     <Col xl={10} md={16} xs={24}>
-                      <figure className="pro-image align-center-v mt-25">
-                        {crud !== null && (
-                          <img
-                            src={
-                              url !== null
-                                ? url
-                                : crud.url !== null
-                                ? crud.url
-                                : require('../../../static/img/avatar/profileImage.png')
-                            }
-                            alt={crud.id}
-                          />
-                        )}
-
-                        <figcaption>
-                          <Upload {...props}>
-                            <Link className="upload-btn" to="#">
-                              <FeatherIcon icon="camera" size={16} />
-                            </Link>
-                          </Upload>
-                          <div className="info">
-                            <Heading as="h4">Profile Photo</Heading>
-                          </div>
-                          {isFileLoading && (
-                            <div className="isUploadSpain">
-                              <Spin />
-                            </div>
-                          )}
-                        </figcaption>
-                      </figure>
-                      {crud !== null && (
+                      {
                         <BasicFormWrapper>
                           <Form
                             className="add-record-form"
@@ -136,59 +133,39 @@ const Edit = ({ match }) => {
                             name="edit"
                             onFinish={handleSubmit}
                           >
-                            <Form.Item name="name" initialValue={crud.name} label="Name">
-                              <Input />
-                            </Form.Item>
-                            <Form.Item initialValue={crud.email} name="email" rules={[{ type: 'email' }]} label="Email">
-                              <Input />
-                            </Form.Item>
-                            <Form.Item name="country" initialValue={crud.country} label="Country">
-                              <Select style={{ width: '100%' }}>
-                                <Option value="">Please Select</Option>
-                                <Option value="bangladesh">Bangladesh</Option>
-                                <Option value="india">India</Option>
-                                <Option value="pakistan">Pakistan</Option>
-                                <Option value="srilanka">Srilanka</Option>
-                              </Select>
-                            </Form.Item>
-                            <Form.Item name="city" initialValue={crud.city} label="City">
-                              <Select style={{ width: '100%' }}>
-                                <Option value="">Please Select</Option>
-                                <Option value="dhaka">Dhaka</Option>
-                                <Option value="mymensingh">Mymensingh</Option>
-                                <Option value="khulna">Khulna</Option>
-                                <Option value="barisal">Barisal</Option>
-                              </Select>
-                            </Form.Item>
-                            <Form.Item name="company" initialValue={crud.company} label="Company">
-                              <Input />
-                            </Form.Item>
-                            <Form.Item name="position" initialValue={crud.position} label="Position">
-                              <Input />
-                            </Form.Item>
-                            <Form.Item label="Joining Date">
-                              <DatePicker
-                                defaultValue={moment(`${state.join === null ? crud.join : state.join}`, dateFormat)}
-                                onChange={onChange}
+                            <Form.Item name="company" label="Компании">
+                              <Select
+                                // showSearch={true}
+                                autoClearSearchValue
                                 style={{ width: '100%' }}
-                                format={dateFormat}
-                              />
+                                mode={'multiple'}
+                                notFoundContent={<p>Введите название компании</p>}
+                                onSearch={(e) => {
+                                  getCompany(e);
+                                }}
+                                onSelect={(e) => {
+                                  setState({ ...state, selected: state.selected.concat(JSON.parse(e)) });
+                                }}
+                                onDeselect={(e) => {
+                                  console.log(state.selected.filter((item) => JSON.stringify(item) !== e));
+                                  setState({
+                                    ...state,
+                                    selected: state.selected.filter((item) => JSON.stringify(item) !== e),
+                                  });
+                                }}
+                              >
+                                {options}
+                              </Select>
                             </Form.Item>
-                            <Form.Item name="status" initialValue={crud.status} label="Status">
-                              <Radio.Group>
-                                <Radio value="active">Active</Radio>
-                                <Radio value="deactivated">Deactivated</Radio>
-                                <Radio value="blocked">Blocked</Radio>
-                              </Radio.Group>
-                            </Form.Item>
+
                             <div className="record-form-actions text-right">
                               <Button htmlType="submit" type="primary">
-                                {isLoading ? 'Loading...' : 'Update'}
+                                {isLoading ? 'Загрузка...' : 'Обновить'}
                               </Button>
                             </div>
                           </Form>
                         </BasicFormWrapper>
-                      )}
+                      }
                     </Col>
                   </Row>
                 )}

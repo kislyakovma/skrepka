@@ -86,7 +86,18 @@ const CartTable = () => {
               }}
               value={quantity != 0 ? quantity : ''}
               className="btn-inc"
-              style={{ padding: 20, marginLeft: '0', maxWidth: '40px', textAlign: 'center', fontSize: 15 }}
+              style={{
+                height: '38px',
+                width: '65px',
+
+                padding: '0 12px',
+                borderRadius: '10px',
+                border: '0 none',
+                marginLeft: '0',
+                minWidth: '40px',
+                textAlign: 'center',
+                fontSize: 15,
+              }}
               bordered={false}
             />
             <Button onClick={() => incrementUpdate(id, quantity)} className="btn-inc" type="default">

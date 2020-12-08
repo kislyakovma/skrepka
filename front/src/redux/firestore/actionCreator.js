@@ -1,4 +1,4 @@
-import {notification} from 'antd';
+import { notification } from 'antd';
 import actions from './actions';
 
 const addNotificationSuccess = () => {
@@ -7,7 +7,7 @@ const addNotificationSuccess = () => {
   });
 };
 
-const addNotificationError = err => {
+const addNotificationError = (err) => {
   notification.error({
     message: err,
   });
@@ -19,7 +19,7 @@ const deleteNotificationSuccess = () => {
   });
 };
 
-const deleteNotificationError = err => {
+const deleteNotificationError = (err) => {
   notification.error({
     message: err,
   });
@@ -31,7 +31,7 @@ const updateNotificationSuccess = () => {
   });
 };
 
-const updateNotificationError = err => {
+const updateNotificationError = (err) => {
   notification.error({
     message: err,
   });
@@ -72,10 +72,7 @@ const fbDataSubmit = (collection, data) => {
     const db = getFirestore();
     try {
       await dispatch(fbAddBegin());
-      await db
-        .collection(collection)
-        .doc(`${data.id}`)
-        .set(data);
+      await db.collection(collection).doc(`${data.id}`).set(data);
       await dispatch(fbAddSuccess(data));
       await addNotificationSuccess();
     } catch (err) {
@@ -85,7 +82,7 @@ const fbDataSubmit = (collection, data) => {
   };
 };
 
-const fbNewUser = data => {
+const fbNewUser = (data) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const fb = getFirebase();
     try {
@@ -103,8 +100,8 @@ const fbDataRead = () => {
     const data = [];
     try {
       await dispatch(fbReadBegin());
-      const query = await db.collection('main').get();
-      await query.forEach(doc => {
+      const query = await db.collection('users').get();
+      await query.forEach((doc) => {
         data.push(doc.data());
       });
       await dispatch(fbReadSuccess(data));
@@ -114,17 +111,17 @@ const fbDataRead = () => {
   };
 };
 
-const fbDataSearch = value => {
+const fbDataSearch = (value) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const db = getFirestore();
     const data = [];
     try {
       await dispatch(fbSearchBegin());
-      const query = await db.collection('main').get();
-      await query.forEach(doc => {
+      const query = await db.collection('users').get();
+      await query.forEach((doc) => {
         data.push(doc.data());
       });
-      const searchValue = data.filter(item => item.name.toLowerCase().startsWith(value.toLowerCase()));
+      const searchValue = data.filter((item) => item.name.toLowerCase().startsWith(value.toLowerCase()));
       await dispatch(fbSearchSuccess(searchValue));
     } catch (err) {
       await dispatch(fbSearchErr(err));
@@ -144,11 +141,8 @@ const fbDataUpdate = (id, data) => {
           ...data,
         });
 
-      const query = await db
-        .collection('main')
-        .where('id', '==', id)
-        .get();
-      await query.forEach(doc => {
+      const query = await db.collection('main').where('id', '==', id).get();
+      await query.forEach((doc) => {
         dispatch(fbUpdateSuccess(doc.data()));
       });
 
@@ -160,18 +154,15 @@ const fbDataUpdate = (id, data) => {
   };
 };
 
-const fbDataDelete = id => {
+const fbDataDelete = (id) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const db = getFirestore();
     const data = [];
     try {
       await dispatch(fbDeleteBegin());
-      await db
-        .collection('main')
-        .doc(`${id}`)
-        .delete();
+      await db.collection('main').doc(`${id}`).delete();
       const query = await db.collection('main').get();
-      await query.forEach(doc => {
+      await query.forEach((doc) => {
         data.push(doc.data());
       });
       await dispatch(fbDeleteSuccess(data));
@@ -184,16 +175,13 @@ const fbDataDelete = id => {
   };
 };
 
-const fbDataSingle = id => {
+const fbDataSingle = (id) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const db = getFirestore();
     try {
       await dispatch(fbSingleDataBegin());
-      const query = await db
-        .collection('main')
-        .where('id', '==', id)
-        .get();
-      await query.forEach(doc => {
+      const query = await db.collection('users').where('email', '==', id).get();
+      await query.forEach((doc) => {
         dispatch(fbSingleDataSuccess(doc.data()));
       });
     } catch (err) {
@@ -202,21 +190,19 @@ const fbDataSingle = id => {
   };
 };
 
-const fbFileUploder = imageAsFile => {
+const fbFileUploder = (imageAsFile) => {
   return async (dispatch, getState, { getFirebase, getFirestore, storage }) => {
     try {
       await dispatch(fbUploadBegin());
-      const uploadTask = storage()
-        .ref(`/images/${imageAsFile.name}`)
-        .put(imageAsFile);
+      const uploadTask = storage().ref(`/images/${imageAsFile.name}`).put(imageAsFile);
 
       await uploadTask.on(
         'state_changed',
-        snapShot => {
+        (snapShot) => {
           // takes a snap shot of the process as it is happening
           console.log(snapShot);
         },
-        err => {
+        (err) => {
           // catches the errors
           console.log(err);
         },
@@ -225,7 +211,7 @@ const fbFileUploder = imageAsFile => {
             .ref('images')
             .child(imageAsFile.name)
             .getDownloadURL()
-            .then(fireBaseUrl => {
+            .then((fireBaseUrl) => {
               dispatch(fbUploadSuccess(fireBaseUrl));
             });
         },
@@ -237,7 +223,7 @@ const fbFileUploder = imageAsFile => {
 };
 
 const fbFileClear = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       await dispatch(fbUploadBegin());
       dispatch(fbUploadSuccess(null));

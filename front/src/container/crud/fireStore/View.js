@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Row, Spin, Table} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Col, Row, Spin, Table } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {RecordViewWrapper} from './style';
-import {Main, TableWrapper} from '../../styled';
-import {Button} from '../../../components/buttons/buttons';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {fbDataDelete, fbDataRead, fbDataSearch} from '../../../redux/firestore/actionCreator';
+import { RecordViewWrapper } from './style';
+import { Main, TableWrapper } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { fbDataDelete, fbDataRead, fbDataSearch } from '../../../redux/firestore/actionCreator';
 
 const ViewPage = () => {
   const dispatch = useDispatch();
-  const { crud, isLoading } = useSelector(state => {
+  const { crud, isLoading } = useSelector((state) => {
     return {
       crud: state.crud.data,
       isLoading: state.crud.loading,
@@ -31,7 +31,7 @@ const ViewPage = () => {
   }, [dispatch]);
   const dataSource = [];
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     const confirm = window.confirm('Are you sure delete this?');
     if (confirm) {
       dispatch(fbDataDelete(parseInt(id, 10)));
@@ -39,7 +39,7 @@ const ViewPage = () => {
     return false;
   };
 
-  const onHandleSearch = e => {
+  const onHandleSearch = (e) => {
     dispatch(fbDataSearch(e.target.value, crud));
   };
 
@@ -53,9 +53,6 @@ const ViewPage = () => {
             <img src={url !== null ? url : require('../../../static/img/avatar/profileImage.png')} alt={id} />
             <span>
               <span>{name}</span>
-              <span className="record-location">
-                {city},{country}
-              </span>
             </span>
           </div>
         ),
@@ -66,7 +63,7 @@ const ViewPage = () => {
         status: <span className={`status ${status}`}>{status}</span>,
         action: (
           <div className="table-actions">
-            <Link className="edit" to={`/admin/firestore/edit/${id}`}>
+            <Link className="edit" to={`/admin/firestore/edit/${email}`}>
               <FeatherIcon icon="edit" size={14} />
             </Link>
             &nbsp;&nbsp;&nbsp;
@@ -80,43 +77,29 @@ const ViewPage = () => {
 
   const columns = [
     {
-      title: 'Name',
+      title: 'Имя',
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'Email',
+      title: 'Почта',
       dataIndex: 'email',
       key: 'email',
     },
     {
-      title: 'Company',
+      title: 'Компания',
       dataIndex: 'company',
       key: 'company',
     },
+
     {
-      title: 'Position',
-      dataIndex: 'position',
-      key: 'position',
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },
-    {
-      title: 'Joining Date',
-      dataIndex: 'jdate',
-      key: 'jdate',
-    },
-    {
-      title: 'Actions',
+      title: 'Действия',
       dataIndex: 'action',
       key: 'action',
       width: '90px',
     },
   ];
-  const onSelectChange = selectedRowKey => {
+  const onSelectChange = (selectedRowKey) => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
 
@@ -142,7 +125,7 @@ const ViewPage = () => {
             <span className="search-icon">
               <FeatherIcon icon="search" size={14} />
             </span>
-            <input onChange={onHandleSearch} type="text" name="recored-search" placeholder="Search Here" />
+            <input onChange={onHandleSearch} type="text" name="recored-search" placeholder="Имя" />
           </div>,
         ]}
         ghost
@@ -159,12 +142,7 @@ const ViewPage = () => {
               ) : (
                 <div>
                   <TableWrapper className="table-data-view table-responsive">
-                    <Table
-                      rowSelection={rowSelection}
-                      pagination={{ pageSize: 10, showSizeChanger: true }}
-                      dataSource={dataSource}
-                      columns={columns}
-                    />
+                    <Table dataSource={dataSource} columns={columns} pagination={null} />
                   </TableWrapper>
                 </div>
               )}

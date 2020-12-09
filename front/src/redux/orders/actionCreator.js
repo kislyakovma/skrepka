@@ -1,18 +1,18 @@
 import actions from './actions';
-import initialState from '../../demoData/orders.json';
+const initialState = [];
 import firebase from '../../config/database/firebase';
 import { rememberCart } from '../cart/actionCreator';
 
 const db = firebase.firestore();
 
 const { filterOrderBegin, filterOrderSuccess, filterOrderErr } = actions;
-
+//Экшн для запроса в бд
 const orderFilter = (column, value) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       dispatch(filterOrderBegin());
 
-      const data = initialState.filter((item) => {
+      const data = initialState.filter(item => {
         if (value !== '') {
           return item[column] === value;
         }

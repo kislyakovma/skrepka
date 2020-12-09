@@ -19,7 +19,7 @@ const db = firebase.firestore();
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl, user } = useSelector((state) => {
+  const { cartData, rtl, user } = useSelector(state => {
     return {
       cartData: state.cart.data,
       rtl: state.ChangeLayoutMode.rtlData,
@@ -47,7 +47,7 @@ const CheckOut = ({ onCurrentChange }) => {
           zip: '125009',
         },
       },
-    ],
+    ], //РАСХАРДКОДИТЬ
     companies: [
       {
         name: 'АО НБКИ',
@@ -90,7 +90,7 @@ const CheckOut = ({ onCurrentChange }) => {
     dispatch(cartUpdateQuantity(id, data, cartData));
   };
 
-  const cartDeleted = (id) => {
+  const cartDeleted = id => {
     const confirm = window.confirm('Are you sure to delete this product?');
     if (confirm) dispatch(cartDelete(id, cartData));
   };
@@ -150,7 +150,7 @@ const CheckOut = ({ onCurrentChange }) => {
   let subtotal = 0;
 
   if (cartData !== null) {
-    cartData.map((data) => {
+    cartData.map(data => {
       const { id, img, name, quantity, price, size, color } = data;
       subtotal += parseInt(quantity, 10) * parseInt(price, 10);
       return dataSource.push({
@@ -242,11 +242,11 @@ const CheckOut = ({ onCurrentChange }) => {
                           <Select
                             style={{ width: '100%' }}
                             placeholder="Выбрать шаблон быстрого заполнения"
-                            onSelect={(value) => {
+                            onSelect={value => {
                               setState({ ...state, template: JSON.parse(value), values: JSON.parse(value) });
                             }}
                           >
-                            {state.templates.map((item) => {
+                            {state.templates.map(item => {
                               return <Option value={JSON.stringify(item)}>{item.name}</Option>;
                             })}
                           </Select>
@@ -254,7 +254,7 @@ const CheckOut = ({ onCurrentChange }) => {
                         <Form
                           form={form}
                           name="address"
-                          onChange={(values) => {
+                          onChange={values => {
                             setState({ ...state, values });
                           }}
                         >
@@ -374,13 +374,13 @@ const CheckOut = ({ onCurrentChange }) => {
                             {/*    </Cards>*/}
                             {/*  </Radio>*/}
                             {/*</div>*/}
-                            {state.companies.map((item) => {
+                            {state.companies.map(item => {
                               return (
                                 <div className="shipping-selection__paypal">
                                   <Radio
                                     value={JSON.stringify(item.requisites)}
                                     style={{ width: '100%' }}
-                                    onChange={(e) => {
+                                    onChange={e => {
                                       console.log(e.target.value);
                                       setState({
                                         ...state,

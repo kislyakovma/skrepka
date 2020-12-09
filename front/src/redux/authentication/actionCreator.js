@@ -17,11 +17,14 @@ const login = (email, password) => {
         if (data) {
           dispatch(loginSuccess(true));
           Cookies.set('logedIn', true);
+          localStorage.setItem('logedIn', true);
           db.collection('users')
             .doc(email)
             .get()
             .then(function(doc) {
               if (doc.exists) {
+                console.log(doc.data());
+                localStorage.setItem('user', JSON.stringify(doc.data()));
                 Cookies.set('user', JSON.stringify(doc.data()));
                 dispatch(setUser(doc.data()));
               } else {

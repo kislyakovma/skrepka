@@ -14,15 +14,14 @@ const actions = {
 
   CART_REMEMBER: 'CART_REMEMBER',
 
-  cartAddProduct: (data) => {
+  cartAddProduct: data => {
     return {
       type: actions.CART_ADD_PRODUCT,
       data,
     };
   },
 
-  cartRemember: (data) => {
-    console.log(data);
+  cartRemember: data => {
     return {
       type: actions.CART_REMEMBER,
       data,
@@ -35,14 +34,14 @@ const actions = {
     };
   },
 
-  cartDataSuccess: (data) => {
+  cartDataSuccess: data => {
     return {
       type: actions.CART_DATA_SUCCESS,
       data,
     };
   },
 
-  cartDataErr: (err) => {
+  cartDataErr: err => {
     return {
       type: actions.CART_DATA_ERR,
       err,
@@ -55,14 +54,14 @@ const actions = {
     };
   },
 
-  cartUpdateSuccess: (data) => {
+  cartUpdateSuccess: data => {
     return {
       type: actions.CART_UPDATE_SUCCESS,
       data,
     };
   },
 
-  cartUpdateErr: (err) => {
+  cartUpdateErr: err => {
     return {
       type: actions.CART_UPDATE_ERR,
       err,
@@ -75,14 +74,14 @@ const actions = {
     };
   },
 
-  cartDeleteSuccess: (data) => {
+  cartDeleteSuccess: data => {
     return {
       type: actions.CART_DELETE_SUCCESS,
       data,
     };
   },
 
-  cartDeleteErr: (err) => {
+  cartDeleteErr: err => {
     return {
       type: actions.CART_DELETE_ERR,
       err,

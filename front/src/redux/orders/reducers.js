@@ -2,7 +2,7 @@ import actions from './actions';
 import staticData from '../../demoData/orders.json';
 
 const initialState = {
-  data: staticData,
+  data: [],
   loading: false,
   error: null,
 };

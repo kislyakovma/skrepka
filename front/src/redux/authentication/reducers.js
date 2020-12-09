@@ -4,12 +4,12 @@ import actions from './actions';
 const { LOGIN_BEGIN, LOGIN_SUCCESS, LOGIN_ERR, LOGOUT_BEGIN, LOGOUT_SUCCESS, LOGOUT_ERR, SET_USER } = actions;
 
 const initState = {
-  login: Cookies.get('logedIn'),
+  login: localStorage.getItem('logedIn'),
   loading: false,
   error: null,
   failedLogin: true,
 
-  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : {},
+  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {},
 };
 
 /**

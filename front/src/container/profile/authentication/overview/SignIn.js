@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {NavLink, useHistory} from 'react-router-dom';
-import {Button, Form, Input, notification} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { Button, Form, Input, notification } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {AuthWrapper} from './style';
-import {login} from '../../../../redux/authentication/actionCreator';
-import {Checkbox} from '../../../../components/checkbox/checkbox';
+import { AuthWrapper } from './style';
+import { login } from '../../../../redux/authentication/actionCreator';
+import { Checkbox } from '../../../../components/checkbox/checkbox';
 import Heading from '../../../../components/heading/heading';
 
 const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.auth.loading);
-  const isFailedLogin = useSelector((state) => state.auth.failedLogin);
-  const isLoggedIn = useSelector((state) => state.auth.login);
+  const isLoading = useSelector(state => state.auth.loading);
+  const isFailedLogin = useSelector(state => state.auth.failedLogin);
+  const isLoggedIn = useSelector(state => state.auth.login);
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -22,7 +22,7 @@ const SignIn = () => {
     submited: false,
   });
 
-  const handleSubmit = (data) => {
+  const handleSubmit = data => {
     dispatch(login(data.username, data.password)).then(() => {
       state.failed = !isLoggedIn;
     });
@@ -30,6 +30,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
+    //СПИЗДИТЬ
     if (state.failed) {
       notification.open({
         duration: 3,
@@ -56,7 +57,7 @@ const SignIn = () => {
     }
   }, [state.submited]);
 
-  const onChange = (checked) => {
+  const onChange = checked => {
     setState({ ...state, checked });
   };
 

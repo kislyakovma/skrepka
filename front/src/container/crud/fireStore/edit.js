@@ -30,6 +30,7 @@ const Edit = ({ match }) => {
     join: null,
     searchSuggest: [],
     selected: [],
+    id: match.params.id,
   });
   const [form] = Form.useForm();
   useEffect(() => {
@@ -39,14 +40,7 @@ const Edit = ({ match }) => {
   }, [dispatch, match.params.id]);
 
   const handleSubmit = (values) => {
-    dispatch(
-      fbDataUpdate(parseInt(match.params.id, 10), {
-        ...values,
-        url: url !== null ? url : crud.url,
-        join: state.join,
-        id: parseInt(match.params.id, 10),
-      }),
-    );
+    console.log(state.selected);
   };
   useEffect(() => {
     console.log(state.selected);

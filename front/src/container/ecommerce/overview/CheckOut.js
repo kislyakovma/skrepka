@@ -11,16 +11,19 @@ import { Button } from '../../../components/buttons/buttons';
 import { BasicFormWrapper } from '../../styled';
 import { FigureCart, CheckoutWrapper, ProductTable, OrderSummary } from '../Style';
 import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
+import firebase from '../../../config/database/firebase';
 import { template } from 'leaflet/src/core/Util';
+
+const db = firebase.firestore();
 
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl } = useSelector((state) => {
+  const { cartData, rtl, user } = useSelector((state) => {
     return {
       cartData: state.cart.data,
-      isLoading: state.cart.loading,
       rtl: state.ChangeLayoutMode.rtlData,
+      user: state.auth.user,
     };
   });
   const [form] = Form.useForm();
@@ -116,16 +119,27 @@ const CheckOut = ({ onCurrentChange }) => {
     });
   };
 
+  const newOrder = (email, order) => {
+    const finalObject = Object.assign(order, { timestamp: Date.now(), status: 'new' });
+    db.collection('users')
+      .doc(email)
+      .update({ orders: firebase.firestore.FieldValue.arrayUnion(finalObject) })
+      .then(() => {
+        console.log('Заказ добавлен');
+        setState({
+          ...state,
+          status: 'finish',
+          isFinished: true,
+          current: 0,
+        });
+      });
+  };
+
   const done = () => {
     const confirm = window.confirm('Вы подтверждаете заказ?');
     onCurrentChange(current, PlaceOrder);
     if (confirm) {
-      setState({
-        ...state,
-        status: 'finish',
-        isFinished: true,
-        current: 0,
-      });
+      newOrder(user.email, { company: state.requisites, info: state.values, cart: cartData });
     }
   };
 

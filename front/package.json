@@ -25,6 +25,7 @@
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "moment": "^2.27.0",
+    "order-id": "^2.1.0",
     "peity-react": "0.0.7",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

@@ -7,12 +7,13 @@ import {PageHeader} from '../../components/page-headers/page-headers';
 import {Main, TableWrapper} from '../styled';
 import {Button} from '../../components/buttons/buttons';
 import {Cards} from '../../components/cards/frame/cards-frame';
-import {orderFilter} from '../../redux/orders/actionCreator';
+import {orderFilter, orderAddData} from '../../redux/orders/actionCreator';
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const { searchData, orders } = useSelector((state) => {
+  const { searchData, orders, user } = useSelector((state) => {
     return {
+      user: state.auth.user,
       searchData: state.headerSearchData,
       orders: state.orders.data,
     };
@@ -32,6 +33,7 @@ const Orders = () => {
    * @todo ternary issue
    */
   useEffect(() => {
+    dispatch(orderAddData(user.email))
     if (orders) {
       setState({
         item: orders,
@@ -55,21 +57,22 @@ const Orders = () => {
   const dataSource = [];
   if (orders.length) {
     orders.map((value, key) => {
-      const { status, orderId, customers, amount, date } = value;
+      var date = new Date(value.timestamp);
+      date = date.toLocaleString('ru-Ru', {timeZone: 'Europe/Moscow'})
+      const { status, orderId, info, cart, amount } = value;
       return dataSource.push({
-        key: key + 1,
         id: <span className="order-id">{orderId}</span>,
-        customer: <span className="customer-name">{customers}</span>,
+        customer: <span className="customer-name">{info.info.company}</span>,
         status: (
           <span
             className={`status ${
-              status === 'Shipped' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'
+              status === 'new' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'
             }`}
           >
-            {status}
+            { status === 'new' ? 'Новый' : status === 'Awaiting Shipment' ? 'warning' : 'error'}
           </span>
         ),
-        amount: <span className="ordered-amount">{amount}</span>,
+        amount: <span className="ordered-amount">{amount}₽</span>,
         date: <span className="ordered-date">{date}</span>,
         action: (
           <div className="table-actions">

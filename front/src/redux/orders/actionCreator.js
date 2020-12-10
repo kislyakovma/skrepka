@@ -26,4 +26,33 @@ const orderFilter = (column, value) => {
   };
 };
 
-export { orderFilter };
+const orderAddData = email => {
+  return async dispatch => {
+    try{
+         db.collection('users')
+      .doc(email)
+      .get()
+      .then(doc => {
+        console.log('Я В БД');
+        if (doc.exists){
+          try{
+            if (doc.data().orders){
+              dispatch(filterOrderSuccess(doc.data().orders))
+            }else{
+              dispatch(filterOrderSuccess([]))
+            }
+          } catch(err){
+            dispatch(filterOrderErr(err))
+          }
+        }else{
+          dispatch(filterOrderErr(err))
+        }
+      })
+    }
+    catch(err) {
+      dispatch(filterOrderErr(err))
+    }
+  }
+}
+
+export { orderFilter, orderAddData };

@@ -16,6 +16,25 @@ import { template } from 'leaflet/src/core/Util';
 
 const db = firebase.firestore();
 
+const orderid = require('order-id')('@KHJBAKSJDAjnaskdw@3');
+
+const getPrice = (cartData) => {
+  let subtotal = 0;
+  
+  if (cartData !== null && cartData !== {}) {
+    cartData.map((data) => {
+      const { quantity, price } = data;
+      if (quantity) {
+        subtotal += quantity * price;
+      } else {
+        subtotal += price;
+      }
+      
+    });
+    return subtotal;
+  }
+}
+
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
@@ -120,7 +139,7 @@ const CheckOut = ({ onCurrentChange }) => {
   };
 
   const newOrder = (email, order) => {
-    const finalObject = Object.assign(order, { timestamp: Date.now(), status: 'new' });
+    const finalObject = Object.assign(order, { timestamp: Date.now(), status: 'new', amount: getPrice(cartData), orderId: orderid.generate() });
     db.collection('users')
       .doc(email)
       .update({ orders: firebase.firestore.FieldValue.arrayUnion(finalObject) })
@@ -130,7 +149,7 @@ const CheckOut = ({ onCurrentChange }) => {
           ...state,
           status: 'finish',
           isFinished: true,
-          current: 0,
+          current: 0
         });
       });
   };

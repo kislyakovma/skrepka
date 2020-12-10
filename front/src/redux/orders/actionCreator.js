@@ -8,11 +8,11 @@ const db = firebase.firestore();
 const { filterOrderBegin, filterOrderSuccess, filterOrderErr } = actions;
 //Экшн для запроса в бд
 const orderFilter = (column, value) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(filterOrderBegin());
 
-      const data = initialState.filter(item => {
+      const data = initialState.filter((item) => {
         if (value !== '') {
           return item[column] === value;
         }
@@ -26,33 +26,33 @@ const orderFilter = (column, value) => {
   };
 };
 
-const orderAddData = email => {
-  return async dispatch => {
-    try{
-         db.collection('users')
-      .doc(email)
-      .get()
-      .then(doc => {
-        console.log('Я В БД');
-        if (doc.exists){
-          try{
-            if (doc.data().orders){
-              dispatch(filterOrderSuccess(doc.data().orders))
-            }else{
-              dispatch(filterOrderSuccess([]))
+const orderAddData = (email) => {
+  return async (dispatch) => {
+    try {
+      dispatch(filterOrderBegin());
+      console.log('Я В БД');
+      db.collection('users')
+        .doc(email)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            try {
+              if (doc.data().orders) {
+                dispatch(filterOrderSuccess(doc.data().orders));
+              } else {
+                dispatch(filterOrderSuccess([]));
+              }
+            } catch (err) {
+              dispatch(filterOrderErr(err));
             }
-          } catch(err){
-            dispatch(filterOrderErr(err))
+          } else {
+            dispatch(filterOrderErr(err));
           }
-        }else{
-          dispatch(filterOrderErr(err))
-        }
-      })
+        });
+    } catch (err) {
+      dispatch(filterOrderErr(err));
     }
-    catch(err) {
-      dispatch(filterOrderErr(err))
-    }
-  }
-}
+  };
+};
 
 export { orderFilter, orderAddData };

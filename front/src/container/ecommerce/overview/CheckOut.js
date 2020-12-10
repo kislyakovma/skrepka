@@ -12,6 +12,7 @@ import { BasicFormWrapper } from '../../styled';
 import { FigureCart, CheckoutWrapper, ProductTable, OrderSummary } from '../Style';
 import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart/actionCreator';
 import firebase from '../../../config/database/firebase';
+import { cartDeleteAll } from '../../../redux/cart/actionCreator';
 import { template } from 'leaflet/src/core/Util';
 
 const db = firebase.firestore();
@@ -20,7 +21,7 @@ const orderid = require('order-id')('@KHJBAKSJDAjnaskdw@3');
 
 const getPrice = (cartData) => {
   let subtotal = 0;
-  
+
   if (cartData !== null && cartData !== {}) {
     cartData.map((data) => {
       const { quantity, price } = data;
@@ -29,16 +30,15 @@ const getPrice = (cartData) => {
       } else {
         subtotal += price;
       }
-      
     });
     return subtotal;
   }
-}
+};
 
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl, user } = useSelector(state => {
+  const { cartData, rtl, user } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       rtl: state.ChangeLayoutMode.rtlData,
@@ -109,7 +109,7 @@ const CheckOut = ({ onCurrentChange }) => {
     dispatch(cartUpdateQuantity(id, data, cartData));
   };
 
-  const cartDeleted = id => {
+  const cartDeleted = (id) => {
     const confirm = window.confirm('Are you sure to delete this product?');
     if (confirm) dispatch(cartDelete(id, cartData));
   };
@@ -139,7 +139,12 @@ const CheckOut = ({ onCurrentChange }) => {
   };
 
   const newOrder = (email, order) => {
-    const finalObject = Object.assign(order, { timestamp: Date.now(), status: 'new', amount: getPrice(cartData), orderId: orderid.generate() });
+    const finalObject = Object.assign(order, {
+      timestamp: Date.now(),
+      status: 'new',
+      amount: getPrice(cartData),
+      orderId: orderid.generate(),
+    });
     db.collection('users')
       .doc(email)
       .update({ orders: firebase.firestore.FieldValue.arrayUnion(finalObject) })
@@ -149,7 +154,7 @@ const CheckOut = ({ onCurrentChange }) => {
           ...state,
           status: 'finish',
           isFinished: true,
-          current: 0
+          current: 0,
         });
       });
   };
@@ -160,6 +165,7 @@ const CheckOut = ({ onCurrentChange }) => {
     if (confirm) {
       newOrder(user.email, { company: state.requisites, info: state.values, cart: cartData });
     }
+    dispatch(cartDeleteAll(user.email));
   };
 
   const month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
@@ -169,7 +175,7 @@ const CheckOut = ({ onCurrentChange }) => {
   let subtotal = 0;
 
   if (cartData !== null) {
-    cartData.map(data => {
+    cartData.map((data) => {
       const { id, img, name, quantity, price, size, color } = data;
       subtotal += parseInt(quantity, 10) * parseInt(price, 10);
       return dataSource.push({
@@ -261,11 +267,11 @@ const CheckOut = ({ onCurrentChange }) => {
                           <Select
                             style={{ width: '100%' }}
                             placeholder="Выбрать шаблон быстрого заполнения"
-                            onSelect={value => {
+                            onSelect={(value) => {
                               setState({ ...state, template: JSON.parse(value), values: JSON.parse(value) });
                             }}
                           >
-                            {state.templates.map(item => {
+                            {state.templates.map((item) => {
                               return <Option value={JSON.stringify(item)}>{item.name}</Option>;
                             })}
                           </Select>
@@ -273,7 +279,7 @@ const CheckOut = ({ onCurrentChange }) => {
                         <Form
                           form={form}
                           name="address"
-                          onChange={values => {
+                          onChange={(values) => {
                             setState({ ...state, values });
                           }}
                         >
@@ -393,13 +399,13 @@ const CheckOut = ({ onCurrentChange }) => {
                             {/*    </Cards>*/}
                             {/*  </Radio>*/}
                             {/*</div>*/}
-                            {state.companies.map(item => {
+                            {state.companies.map((item) => {
                               return (
                                 <div className="shipping-selection__paypal">
                                   <Radio
                                     value={JSON.stringify(item.requisites)}
                                     style={{ width: '100%' }}
-                                    onChange={e => {
+                                    onChange={(e) => {
                                       console.log(e.target.value);
                                       setState({
                                         ...state,

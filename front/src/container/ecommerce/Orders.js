@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Row, Table} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Row, Table } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {TopToolBox} from './Style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main, TableWrapper} from '../styled';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {orderFilter, orderAddData} from '../../redux/orders/actionCreator';
+import { TopToolBox } from './Style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main, TableWrapper } from '../styled';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { orderFilter, orderAddData } from '../../redux/orders/actionCreator';
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -33,14 +33,14 @@ const Orders = () => {
    * @todo ternary issue
    */
   useEffect(() => {
-    dispatch(orderAddData(user.email))
+    dispatch(orderAddData(user.email));
     if (orders) {
       setState({
         item: orders,
         selectedRowKeys,
       });
     }
-  }, [orders, selectedRowKeys]);
+  }, []);
 
   const handleSearch = (searchText) => {
     const data = searchData.filter((value) => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
@@ -58,18 +58,16 @@ const Orders = () => {
   if (orders.length) {
     orders.map((value, key) => {
       var date = new Date(value.timestamp);
-      date = date.toLocaleString('ru-Ru', {timeZone: 'Europe/Moscow'})
+      date = date.toLocaleString('ru-Ru', { timeZone: 'Europe/Moscow' });
       const { status, orderId, info, cart, amount } = value;
       return dataSource.push({
         id: <span className="order-id">{orderId}</span>,
         customer: <span className="customer-name">{info.info.company}</span>,
         status: (
           <span
-            className={`status ${
-              status === 'new' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'
-            }`}
+            className={`status ${status === 'new' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'}`}
           >
-            { status === 'new' ? 'Новый' : status === 'Awaiting Shipment' ? 'warning' : 'error'}
+            {status === 'new' ? 'Новый' : status === 'Awaiting Shipment' ? 'warning' : 'error'}
           </span>
         ),
         amount: <span className="ordered-amount">{amount}₽</span>,

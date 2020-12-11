@@ -22,6 +22,7 @@ const Steps = ({
   children,
   height,
   isfinished,
+  formReady
 }) => {
   const [state, setState] = useState({
     currents: current,
@@ -96,7 +97,7 @@ const Steps = ({
                     )}
 
                     {state.currents < steps.length - 1 && (
-                      <Button className="btn-next" type="primary" onClick={() => next()}>
+                      <Button disabled = {!formReady} className="btn-next" type="primary" onClick={() => next()}>
                         Сохранить & Продолжить
                         <FeatherIcon icon="arrow-right" size={16} />
                       </Button>
@@ -128,6 +129,7 @@ Steps.defaultProps = {
 };
 
 Steps.propTypes = {
+  formReady: PropTypes.bool,
   size: PropTypes.string,
   current: PropTypes.number,
   direction: PropTypes.string,

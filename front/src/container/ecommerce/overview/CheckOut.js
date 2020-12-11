@@ -49,6 +49,7 @@ const CheckOut = ({ onCurrentChange }) => {
 
   const [state, setState] = useState({
     status: 'process',
+    formReady: false,
     isFinished: false,
     current: 1,
     template: {},
@@ -98,6 +99,21 @@ const CheckOut = ({ onCurrentChange }) => {
       });
     }
   }, [state.template]);
+  useEffect(() => {
+    if(state.values.name != undefined){
+      if (state.values.company != undefined){
+        if (state.values.phone != undefined){
+          if (state.values.adress != undefined){
+            if (state.values.city != undefined){
+              if (state.values.zip != undefined){
+                setState({...state, formReady: true})
+              }
+            }
+          }
+        }
+      }
+    }
+  }, [state.values])
 
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
@@ -250,6 +266,7 @@ const CheckOut = ({ onCurrentChange }) => {
   return (
     <CheckoutWrapper>
       <Steps
+        formReady = {state.formReady}
         isswitch
         current={0}
         status={status}
@@ -279,15 +296,18 @@ const CheckOut = ({ onCurrentChange }) => {
                         <Form
                           form={form}
                           name="address"
-                          onChange={(values) => {
-                            setState({ ...state, values });
-                          }}
+                          onValuesChange={(value, values) => {  
+                                                   
+                            setState({ ...state, values});}
+                          }
                         >
-                          <Form.Item name="name" label="Контактное лицо">
-                            <Input placeholder="Фамилия Имя" />
+                          <Form.Item name="name" label="Контактное лицо" required>
+                            <Input placeholder="Фамилия Имя" 
+                             />
                           </Form.Item>
                           <Form.Item name="company" label={<span>Название организации</span>}>
-                            <Input placeholder="Название организации" />
+                            <Input placeholder="Название организации"
+                             />
                           </Form.Item>
                           <Form.Item name="phone" label="Номер телефона">
                             <Input placeholder="+7(999)999-99-99" />

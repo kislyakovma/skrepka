@@ -10,6 +10,7 @@ import { PageHeader } from '../../../components/page-headers/page-headers';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import { Button } from '../../../components/buttons/buttons';
 import { BasicFormWrapper, Main } from '../../styled';
+import { companyPush } from '../../../redux/company/actionCreator';
 import { fbDataSingle, fbDataUpdate, fbFileUploder } from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
 import { tr } from 'react-date-range/dist/locale';
@@ -18,7 +19,7 @@ const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { crud, isLoading, user, company } = useSelector((state) => {
+  const { crud, isLoading, user, company } = useSelector(state => {
     return {
       crud: state.singleCrud.data,
       isLoading: state.crud.loading,
@@ -39,12 +40,16 @@ const Edit = ({ match }) => {
     }
   }, [dispatch, match.params.id]);
 
-  const handleSubmit = (values) => {};
-  useEffect(() => {
+  const handleSubmit = values => {
     console.log(state.selected);
-  }, [state.selected]);
+    console.log(state.id);
+    state.selected.forEach(item => {
+      console.log(item);
+      dispatch(companyPush(item, state.id));
+    });
+  };
 
-  const getCompany = (query) => {
+  const getCompany = query => {
     const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
     const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
     const options = {
@@ -59,10 +64,10 @@ const Edit = ({ match }) => {
     };
 
     fetch(url, options)
-      .then((response) => response.json())
-      .then((result) => setState({ ...state, searchSuggest: result.suggestions }))
+      .then(response => response.json())
+      .then(result => setState({ ...state, searchSuggest: result.suggestions }))
 
-      .catch((error) => console.log('error', error));
+      .catch(error => console.log('error', error));
   };
 
   const onChange = (date, dateString) => {
@@ -88,7 +93,7 @@ const Edit = ({ match }) => {
       }
     },
   };
-  const options = state.searchSuggest.map((item) => <Option value={JSON.stringify(item)}>{item.value}</Option>);
+  const options = state.searchSuggest.map(item => <Option value={JSON.stringify(item)}>{item.value}</Option>);
 
   return (
     <>
@@ -133,17 +138,17 @@ const Edit = ({ match }) => {
                                 style={{ width: '100%' }}
                                 mode={'multiple'}
                                 notFoundContent={<p>Введите название компании</p>}
-                                onSearch={(e) => {
+                                onSearch={e => {
                                   getCompany(e);
                                 }}
-                                onSelect={(e) => {
+                                onSelect={e => {
                                   console.log(e);
                                   setState({ ...state, selected: state.selected.concat(JSON.parse(e)) });
                                 }}
-                                onDeselect={(e) => {
+                                onDeselect={e => {
                                   setState({
                                     ...state,
-                                    selected: state.selected.filter((item) => JSON.stringify(item) !== e),
+                                    selected: state.selected.filter(item => JSON.stringify(item) !== e),
                                   });
                                 }}
                               >

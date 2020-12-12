@@ -5,15 +5,15 @@ const { pullCompany, pushCompany, companyBegin } = actions;
 
 const db = firebase.firestore();
 
-const companyPull = (email) => {
-  return async (dispatch) => {
+const companyPull = email => {
+  return async dispatch => {
     dispatch(companyBegin());
     db.collection('users')
       .doc(email)
       .get()
-      .then((doc) => {
+      .then(doc => {
         if (doc.data().companies) {
-          dispatch(pullCompany(doc.data().templates));
+          dispatch(pullCompany(doc.data().companies));
         } else {
           dispatch(pullCompany([]));
         }
@@ -22,8 +22,8 @@ const companyPull = (email) => {
 };
 
 const companyPush = (data, email) => {
-  return async (dispatch) => {
-    dispatch(companyPull());
+  return async dispatch => {
+    dispatch(companyBegin());
     try {
       db.collection('users')
         .doc(email)

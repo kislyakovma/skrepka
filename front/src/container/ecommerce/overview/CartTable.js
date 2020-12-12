@@ -12,6 +12,7 @@ const CartTable = () => {
   const { cartData, isLoading, user } = useSelector((state) => {
     return {
       cartData: state.cart.data,
+      //пример
       isLoading: state.cart.loading,
       rtl: state.ChangeLayoutMode.rtlData,
       user: state.auth.user,

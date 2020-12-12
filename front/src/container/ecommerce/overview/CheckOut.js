@@ -297,7 +297,7 @@ const CheckOut = ({ onCurrentChange }) => {
                                     setState({
                                       ...state,
                                       template: JSON.parse(value),
-                                      values: JSON.parse(value),
+                                      values: JSON.parse(value).info,
                                       formReady: true,
                                     });
                                   }}

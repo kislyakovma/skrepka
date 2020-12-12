@@ -1,14 +1,13 @@
 import actions from './actions';
-const initialState = [];
 import firebase from '../../config/database/firebase';
-import { rememberCart } from '../cart/actionCreator';
 
-const { pullTemplate, pushTemplate } = actions;
+const { pullTemplate, pushTemplate, templatesBegin } = actions;
 
 const db = firebase.firestore();
 
 const pullTemplates = (email) => {
   return async (dispatch) => {
+    dispatch(templatesBegin());
     db.collection('users')
       .doc(email)
       .get()
@@ -25,6 +24,7 @@ const pullTemplates = (email) => {
 const pushTemplates = (data, email) => {
   console.log(data);
   return async (dispatch) => {
+    dispatch(templatesBegin());
     try {
       db.collection('users')
         .doc(email)

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Input, Select, Radio, Table } from 'antd';
+import { Row, Col, Form, Input, Select, Radio, Table, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,12 +39,13 @@ const getPrice = (cartData) => {
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl, user, templates } = useSelector((state) => {
+  const { cartData, rtl, user, templates, isLoading } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       rtl: state.ChangeLayoutMode.rtlData,
       user: state.auth.user,
       templates: state.templates.data,
+      isLoading: state.templates.loading,
     };
   });
   const [form] = Form.useForm();
@@ -279,7 +280,11 @@ const CheckOut = ({ onCurrentChange }) => {
         steps={[
           {
             title: 'Данные о покупателе',
-            content: (
+            content: isLoading ? (
+              <div className="sd-spin">
+                <Spin />
+              </div>
+            ) : (
               <BasicFormWrapper className="basic-form-inner">
                 <div className="atbd-form-checkout">
                   <Row justify="center">

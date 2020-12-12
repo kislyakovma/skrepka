@@ -18,6 +18,7 @@ import { productReducer, SingleProductReducer } from './product/reducers';
 import { chatReducer, groupChatReducer, SingleChatGroupReducer, SingleChatReducer } from './chat/reducers';
 import { projectReducer, SingleProjectReducer } from './project/reducers';
 import templatesReducer from './templates/reducers';
+import companyReducer from './company/reducer';
 import cartData from './cart/reducers';
 import Todo from './todo/reducers';
 import Note from './note/reducers';
@@ -55,6 +56,7 @@ const rootReducers = combineReducers({
   singleCrud: fsSingleCrudReducer,
   cart: cartData,
   templates: templatesReducer,
+  company: companyReducer,
   Todo,
   Note,
   Contact,

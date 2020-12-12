@@ -18,12 +18,12 @@ const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { crud, isLoading, url, isFileLoading } = useSelector(state => {
+  const { crud, isLoading, user, company } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
       isLoading: state.crud.loading,
-      url: state.crud.url,
-      isFileLoading: state.crud.fileLoading,
+      user: state.auth.user,
+      company: state.company.data,
     };
   });
   const [state, setState] = useState({
@@ -39,14 +39,12 @@ const Edit = ({ match }) => {
     }
   }, [dispatch, match.params.id]);
 
-  const handleSubmit = values => {
-    console.log(state.selected);
-  };
+  const handleSubmit = (values) => {};
   useEffect(() => {
     console.log(state.selected);
   }, [state.selected]);
 
-  const getCompany = query => {
+  const getCompany = (query) => {
     const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
     const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
     const options = {
@@ -61,10 +59,10 @@ const Edit = ({ match }) => {
     };
 
     fetch(url, options)
-      .then(response => response.json())
-      .then(result => setState({ ...state, searchSuggest: result.suggestions }))
+      .then((response) => response.json())
+      .then((result) => setState({ ...state, searchSuggest: result.suggestions }))
 
-      .catch(error => console.log('error', error));
+      .catch((error) => console.log('error', error));
   };
 
   const onChange = (date, dateString) => {
@@ -90,7 +88,7 @@ const Edit = ({ match }) => {
       }
     },
   };
-  const options = state.searchSuggest.map(item => <Option value={JSON.stringify(item)}>{item.value}</Option>);
+  const options = state.searchSuggest.map((item) => <Option value={JSON.stringify(item)}>{item.value}</Option>);
 
   return (
     <>
@@ -130,20 +128,22 @@ const Edit = ({ match }) => {
                             <Form.Item name="company" label="Компании">
                               <Select
                                 // showSearch={true}
+                                defaultValue={company}
                                 autoClearSearchValue
                                 style={{ width: '100%' }}
                                 mode={'multiple'}
                                 notFoundContent={<p>Введите название компании</p>}
-                                onSearch={e => {
+                                onSearch={(e) => {
                                   getCompany(e);
                                 }}
-                                onSelect={e => {
+                                onSelect={(e) => {
+                                  console.log(e);
                                   setState({ ...state, selected: state.selected.concat(JSON.parse(e)) });
                                 }}
-                                onDeselect={e => {
+                                onDeselect={(e) => {
                                   setState({
                                     ...state,
-                                    selected: state.selected.filter(item => JSON.stringify(item) !== e),
+                                    selected: state.selected.filter((item) => JSON.stringify(item) !== e),
                                   });
                                 }}
                               >

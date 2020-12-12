@@ -5,20 +5,20 @@ const initialState = {
   loading: false,
 };
 
-const { PUSH_TEMPLATE, PULL_TEMPLATE, TEMPLATES_BEGIN } = actions;
+const { COMPANY_BEGIN, PULL_COMPANY_, PUSH_COMPANY } = actions;
 
-const templatesReducer = (state = initialState, action) => {
+const companyReducer = (state = initialState, action) => {
   const { type, data } = action;
   switch (type) {
-    case TEMPLATES_BEGIN:
+    case COMPANY_BEGIN:
       return { ...initialState, loading: true };
-    case PUSH_TEMPLATE:
+    case PUSH_COMPANY:
       return {
         ...initialState,
         data: state.data.concat(data),
         loading: false,
       };
-    case PULL_TEMPLATE:
+    case PULL_COMPANY_:
       return {
         ...initialState,
         data,
@@ -29,4 +29,4 @@ const templatesReducer = (state = initialState, action) => {
   }
 };
 
-export default templatesReducer;
+export default companyReducer;

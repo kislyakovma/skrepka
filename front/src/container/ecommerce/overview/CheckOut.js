@@ -14,6 +14,7 @@ import { cartGetData, cartUpdateQuantity, cartDelete } from '../../../redux/cart
 import firebase from '../../../config/database/firebase';
 import { cartDeleteAll } from '../../../redux/cart/actionCreator';
 import { template } from 'leaflet/src/core/Util';
+import { pullTemplates } from '../../../redux/templates/actionCreator';
 
 const db = firebase.firestore();
 
@@ -38,11 +39,12 @@ const getPrice = (cartData) => {
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl, user } = useSelector((state) => {
+  const { cartData, rtl, user, templates } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       rtl: state.ChangeLayoutMode.rtlData,
       user: state.auth.user,
+      templates: state.templates.data,
     };
   });
   const [form] = Form.useForm();
@@ -55,19 +57,6 @@ const CheckOut = ({ onCurrentChange }) => {
     template: {},
     values: {},
     requisites: {},
-    templates: [
-      {
-        name: 'НБКИ - АСЛАНЯН',
-        info: {
-          phone: '+7(999)999-99-99',
-          name: 'Асланян Марианна',
-          company: 'НБКИ',
-          address: 'Большая Никитская, 24/1 ст5',
-          city: 'Москва',
-          zip: '125009',
-        },
-      },
-    ], //РАСХАРДКОДИТЬ
     companies: [
       {
         name: 'АО НБКИ',
@@ -85,7 +74,9 @@ const CheckOut = ({ onCurrentChange }) => {
   });
 
   const { status, isFinished, current } = state;
-
+  useEffect(() => {
+    dispatch(pullTemplates(user.email));
+  }, []);
   useEffect(() => {
     console.log(state.template.name);
     if (state.template.info) {
@@ -93,7 +84,7 @@ const CheckOut = ({ onCurrentChange }) => {
         name: state.template.info.name,
         company: state.template.info.company,
         phone: state.template.info.phone,
-        street: state.template.info.address,
+        street: state.template.info.street,
         city: state.template.info.city,
         zip: state.template.info.zip,
       });
@@ -101,21 +92,33 @@ const CheckOut = ({ onCurrentChange }) => {
   }, [state.template]);
   useEffect(() => {
     console.log(state.values);
-    if(state.values.name != undefined){
-      if (state.values.company != undefined){
-        if (state.values.phone != undefined){
-          if (state.values.street != undefined){
-            if (state.values.city != undefined){
-              if (state.values.zip != undefined){
-                setState({...state, formReady: true})
+    if (state.values.name != undefined) {
+      if (state.values.company != undefined) {
+        if (state.values.phone != undefined) {
+          if (state.values.street != undefined) {
+            if (state.values.city != undefined) {
+              if (state.values.zip != undefined) {
+                setState({ ...state, formReady: true });
                 console.log('TAM');
+              } else {
+                setState({ ...state, formReady: false });
               }
+            } else {
+              setState({ ...state, formReady: false });
             }
+          } else {
+            setState({ ...state, formReady: false });
           }
+        } else {
+          setState({ ...state, formReady: false });
         }
+      } else {
+        setState({ ...state, formReady: false });
       }
+    } else {
+      setState({ ...state, formReady: false });
     }
-  }, [state.values])
+  }, [state.values]);
 
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
@@ -268,8 +271,8 @@ const CheckOut = ({ onCurrentChange }) => {
   return (
     <CheckoutWrapper>
       <Steps
-        template = {{name: state.values.name + ' - ' + state.values.company, info: state.values}}
-        formReady = {state.formReady}
+        template={{ name: state.values.name + ' - ' + state.values.company, info: state.values }}
+        formReady={state.formReady}
         isswitch
         current={0}
         status={status}
@@ -283,34 +286,50 @@ const CheckOut = ({ onCurrentChange }) => {
                     <Col sm={22} xs={24}>
                       <div className="shipping-form">
                         <Heading as="h4">Пожалуйста, заполните данные </Heading>
-                        <Form.Item name="template" initialValue="" label="Шаблон">
-                          <Select
-                            style={{ width: '100%' }}
-                            placeholder="Выбрать шаблон быстрого заполнения"
-                            onSelect={(value) => {
-                              setState({ ...state, template: JSON.parse(value), values: JSON.parse(value) });
-                            }}
-                          >
-                            {state.templates.map((item) => {
-                              return <Option value={JSON.stringify(item)}>{item.name}</Option>;
-                            })}
-                          </Select>
-                        </Form.Item>
+                        {templates ? (
+                          templates.length > 0 ? (
+                            <>
+                              <Form.Item name="template" initialValue="" label="Шаблон">
+                                <Select
+                                  style={{ width: '100%' }}
+                                  placeholder="Выбрать шаблон быстрого заполнения"
+                                  onSelect={(value) => {
+                                    setState({
+                                      ...state,
+                                      template: JSON.parse(value),
+                                      values: JSON.parse(value),
+                                      formReady: true,
+                                    });
+                                  }}
+                                >
+                                  {templates.map((item) => {
+                                    return <Option value={JSON.stringify(item)}>{item.name}</Option>;
+                                  })}
+                                </Select>
+                              </Form.Item>
+                            </>
+                          ) : (
+                            <></>
+                          )
+                        ) : (
+                          <></>
+                        )}
+
                         <Form
                           form={form}
                           name="address"
-                          onValuesChange={(value, values) => {  
-                                                   
-                            setState({ ...state, values});}
-                          }
+                          onValuesChange={(value, values) => {
+                            let newJSON = JSON.stringify(values, function (key, value) {
+                              return value === '' ? undefined : value;
+                            });
+                            setState({ ...state, values: JSON.parse(newJSON) });
+                          }}
                         >
                           <Form.Item name="name" label="Контактное лицо" required>
-                            <Input placeholder="Фамилия Имя" 
-                             />
+                            <Input placeholder="Фамилия Имя" />
                           </Form.Item>
                           <Form.Item name="company" label={<span>Название организации</span>}>
-                            <Input placeholder="Название организации"
-                             />
+                            <Input placeholder="Название организации" />
                           </Form.Item>
                           <Form.Item name="phone" label="Номер телефона">
                             <Input placeholder="+7(999)999-99-99" />

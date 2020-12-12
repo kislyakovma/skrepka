@@ -1,13 +1,13 @@
 import actions from './actions';
 
 const initialState = {
-  data: []
+  data: [],
 };
 
 const { PUSH_TEMPLATE, PULL_TEMPLATE } = actions;
 
-const ordersReducer = (state = initialState, action) => {
-  const { type, data} = action;
+const templatesReducer = (state = initialState, action) => {
+  const { type, data } = action;
   switch (type) {
     case PUSH_TEMPLATE:
       return {
@@ -17,11 +17,11 @@ const ordersReducer = (state = initialState, action) => {
     case PULL_TEMPLATE:
       return {
         ...initialState,
-        data
+        data,
       };
     default:
       return state;
   }
 };
 
-export default ordersReducer;
+export default templatesReducer;

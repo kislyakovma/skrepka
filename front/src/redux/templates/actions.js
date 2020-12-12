@@ -1,25 +1,18 @@
 const actions = {
-    FILTER_ORDER_BEGIN: 'FILTER_ORDER_BEGIN',
-    FILTER_ORDER_SUCCESS: 'FILTER_ORDER_SUCCESS',
-    FILTER_ORDER_ERR: 'FILTER_ORDER_ERR',
+    PUSH_TEMPLATE: 'PUSH_TEMPLATE',
+    PULL_TEMPLATE: 'PULL_TEMPLATE',
   
-    filterOrderBegin: () => {
+    pushTemplate: data => {
       return {
-        type: actions.FILTER_ORDER_BEGIN,
+        type: actions.PUSH_TEMPLATE,
+        data
       };
     },
   
-    filterOrderSuccess: data => {
+    pullTemplate: data => {
       return {
-        type: actions.FILTER_ORDER_SUCCESS,
-        data,
-      };
-    },
-  
-    filterOrderErr: err => {
-      return {
-        type: actions.FILTER_ORDER_ERR,
-        err,
+        type: actions.PULL_TEMPLATE,
+        data
       };
     },
   };

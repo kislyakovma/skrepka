@@ -1,33 +1,23 @@
 import actions from './actions';
-import staticData from '../../demoData/orders.json';
 
 const initialState = {
-  data: [],
-  loading: false,
-  error: null,
+  data: []
 };
 
-const { FILTER_ORDER_BEGIN, FILTER_ORDER_SUCCESS, FILTER_ORDER_ERR } = actions;
+const { PUSH_TEMPLATE, PULL_TEMPLATE } = actions;
 
 const ordersReducer = (state = initialState, action) => {
-  const { type, data, err } = action;
+  const { type, data} = action;
   switch (type) {
-    case FILTER_ORDER_BEGIN:
+    case PUSH_TEMPLATE:
       return {
         ...initialState,
-        loading: true,
+        data: state.data.concat(data),
       };
-    case FILTER_ORDER_SUCCESS:
+    case PULL_TEMPLATE:
       return {
         ...initialState,
-        data,
-        loading: false,
-      };
-    case FILTER_ORDER_ERR:
-      return {
-        ...initialState,
-        error: err,
-        loading: false,
+        data
       };
     default:
       return state;

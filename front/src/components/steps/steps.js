@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Row, Col, Button, message } from 'antd';
+import { Row, Col, Button, message, notification } from 'antd';
 import PropTypes from 'prop-types';
 import FeatherIcon from 'feather-icons-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { StepsStyle, ActionWrapper } from './style';
+import { pushTemplates } from '../../redux/templates/actionCreator';
+
 
 const { Step } = StepsStyle;
+
 
 const Steps = ({
   size,
@@ -22,17 +26,45 @@ const Steps = ({
   children,
   height,
   isfinished,
-  formReady
+  formReady,
+  template
 }) => {
   const [state, setState] = useState({
     currents: current,
   });
 
-  const next = () => {
+  const user = useSelector(state => state.auth.user)
+
+  const dispatch = useDispatch();
+
+  const next = (template) => {
+    if(template){
+      notify(template)
+    }
     const currents = state.currents + 1;
     setState({ currents });
     onNext(currents);
   };
+
+  const notify = (template) => {
+      const key = `open${Date.now()}`;
+      const btn = (
+        <Button type="primary" size="small" onClick={() => {
+          notification.close(key)
+          dispatch(pushTemplates(template, user.email))
+          }}>
+          Сохранить
+        </Button>
+      );
+      notification.open({
+        message: 'Сохранение шаблона',
+        description:
+          'Желаете ли вы сохранить шаблон для быстрого заполнения?',
+        btn,
+        key,
+        onClose: close,
+      });
+  }
 
   const prev = () => {
     const currents = state.currents - 1;
@@ -97,7 +129,7 @@ const Steps = ({
                     )}
 
                     {state.currents < steps.length - 1 && (
-                      <Button disabled = {!formReady} className="btn-next" type="primary" onClick={() => next()}>
+                      <Button disabled = {!formReady} className="btn-next" type="primary" onClick={() => next(template)}>
                         Сохранить & Продолжить
                         <FeatherIcon icon="arrow-right" size={16} />
                       </Button>
@@ -129,6 +161,7 @@ Steps.defaultProps = {
 };
 
 Steps.propTypes = {
+  template: PropTypes.object,
   formReady: PropTypes.bool,
   size: PropTypes.string,
   current: PropTypes.number,

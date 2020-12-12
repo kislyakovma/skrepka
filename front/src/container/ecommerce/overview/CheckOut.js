@@ -100,13 +100,15 @@ const CheckOut = ({ onCurrentChange }) => {
     }
   }, [state.template]);
   useEffect(() => {
+    console.log(state.values);
     if(state.values.name != undefined){
       if (state.values.company != undefined){
         if (state.values.phone != undefined){
-          if (state.values.adress != undefined){
+          if (state.values.street != undefined){
             if (state.values.city != undefined){
               if (state.values.zip != undefined){
                 setState({...state, formReady: true})
+                console.log('TAM');
               }
             }
           }
@@ -266,6 +268,7 @@ const CheckOut = ({ onCurrentChange }) => {
   return (
     <CheckoutWrapper>
       <Steps
+        template = {{name: state.values.name + ' - ' + state.values.company, info: state.values}}
         formReady = {state.formReady}
         isswitch
         current={0}

@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
 };
 
-const { COMPANY_BEGIN, PULL_COMPANY_, PUSH_COMPANY } = actions;
+const { COMPANY_BEGIN, PULL_COMPANY, PUSH_COMPANY } = actions;
 
 const companyReducer = (state = initialState, action) => {
   const { type, data } = action;
@@ -18,7 +18,7 @@ const companyReducer = (state = initialState, action) => {
         data: state.data.concat(data),
         loading: false,
       };
-    case PULL_COMPANY_:
+    case PULL_COMPANY:
       return {
         ...initialState,
         data,

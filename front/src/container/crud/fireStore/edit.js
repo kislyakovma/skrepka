@@ -14,17 +14,18 @@ import { companyPush } from '../../../redux/company/actionCreator';
 import { fbDataSingle, fbDataUpdate, fbFileUploder } from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
 import { tr } from 'react-date-range/dist/locale';
+import { companyPull } from '../../../redux/company/actionCreator';
 
 const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { crud, isLoading, user, company } = useSelector(state => {
+  const { crud, isLoading, companyList } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
       isLoading: state.crud.loading,
       user: state.auth.user,
-      company: state.company.data,
+      companyList: state.company.data,
     };
   });
   const [state, setState] = useState({
@@ -35,21 +36,32 @@ const Edit = ({ match }) => {
   });
   const [form] = Form.useForm();
   useEffect(() => {
+    dispatch(companyPull(state.id));
+  }, []);
+  useEffect(() => {
     if (fbDataSingle) {
       dispatch(fbDataSingle(match.params.id));
     }
   }, [dispatch, match.params.id]);
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     console.log(state.selected);
     console.log(state.id);
-    state.selected.forEach(item => {
+    state.selected.forEach((item) => {
       console.log(item);
       dispatch(companyPush(item, state.id));
     });
   };
 
-  const getCompany = query => {
+  const formatCompany = (list) => {
+    let result = [];
+    list.forEach((item) => {
+      result.push(item.value);
+    });
+    return result;
+  };
+
+  const getCompany = (query) => {
     const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
     const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
     const options = {
@@ -64,10 +76,10 @@ const Edit = ({ match }) => {
     };
 
     fetch(url, options)
-      .then(response => response.json())
-      .then(result => setState({ ...state, searchSuggest: result.suggestions }))
+      .then((response) => response.json())
+      .then((result) => setState({ ...state, searchSuggest: result.suggestions }))
 
-      .catch(error => console.log('error', error));
+      .catch((error) => console.log('error', error));
   };
 
   const onChange = (date, dateString) => {
@@ -93,7 +105,40 @@ const Edit = ({ match }) => {
       }
     },
   };
-  const options = state.searchSuggest.map(item => <Option value={JSON.stringify(item)}>{item.value}</Option>);
+  const deepEqual = (object1, object2) => {
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (const key of keys1) {
+      const val1 = object1[key];
+      const val2 = object2[key];
+      const areObjects = isObject(val1) && isObject(val2);
+      if ((areObjects && !deepEqual(val1, val2)) || (!areObjects && val1 !== val2)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const isObject = (object) => {
+    return object != null && typeof object === 'object';
+  };
+  const duplicate = (item) => {
+    let flag = false;
+    companyList.forEach((company) => {
+      if (deepEqual(item, company)) {
+        flag = true;
+      }
+    });
+    return flag;
+  };
+  const options = state.searchSuggest.map((item) => {
+    if (!duplicate(item)) {
+      return <Option value={JSON.stringify(item)}>{item.value}</Option>;
+    }
+  });
 
   return (
     <>
@@ -129,26 +174,26 @@ const Edit = ({ match }) => {
                             form={form}
                             name="edit"
                             onFinish={handleSubmit}
+                            initialValues={{ companies: formatCompany(companyList) }}
                           >
-                            <Form.Item name="company" label="Компании">
+                            <Form.Item name="companies" label="Компании">
                               <Select
                                 // showSearch={true}
-                                defaultValue={company}
+
                                 autoClearSearchValue
                                 style={{ width: '100%' }}
                                 mode={'multiple'}
                                 notFoundContent={<p>Введите название компании</p>}
-                                onSearch={e => {
+                                onSearch={(e) => {
                                   getCompany(e);
                                 }}
-                                onSelect={e => {
-                                  console.log(e);
+                                onSelect={(e) => {
                                   setState({ ...state, selected: state.selected.concat(JSON.parse(e)) });
                                 }}
-                                onDeselect={e => {
+                                onDeselect={(e) => {
                                   setState({
                                     ...state,
-                                    selected: state.selected.filter(item => JSON.stringify(item) !== e),
+                                    selected: state.selected.filter((item) => JSON.stringify(item) !== e),
                                   });
                                 }}
                               >

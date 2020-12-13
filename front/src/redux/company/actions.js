@@ -11,6 +11,7 @@ const actions = {
   },
 
   pullCompany: (data) => {
+    console.log(data);
     return {
       type: actions.PULL_COMPANY,
       data,

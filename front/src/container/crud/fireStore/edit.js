@@ -44,47 +44,42 @@ const Edit = ({ match }) => {
     }
   }, [dispatch, match.params.id]);
 
-  useEffect(()=> {console.log(options);},[state.searchSuggest])
-
-  const handleSubmit = (values) => {
-    console.log(state.selected);
-    console.log(state.id);
-    console.log(state.searchSuggest);
-    if (state.searchSuggest.length > 0){
-    state.selected.forEach((item) => {  
-      console.log(item);
-      dispatch(companyPush(addCompany(item.value), state.id));
-    });
-  }
-  };
-
   const addCompany = (inn) => {
-    state.searchSuggest.map(item => {
-      console.log(item+ "YA HUY!!!");
+    let result = {};
+    state.searchSuggest.map((item) => {
       if (item.data.inn === inn) {
-        return item
-      }else if(item.data.finance){
-        if (item.data.finance.inn === inn){
-        return item
+        result = item;
+      } else if (item.data.finance) {
+        if (item.data.finance.inn === inn) {
+          result = item;
         }
       }
-    })
-  }
+    });
+    if (Object.keys(result).length > 0) {
+      return result;
+    }
+  };
+
+  const handleSubmit = (values) => {
+    if (state.searchSuggest.length > 0) {
+      state.selected.forEach((item) => {
+        dispatch(companyPush(addCompany(item.value), state.id));
+      });
+    }
+  };
 
   const formatCompany = (list) => {
-    
     let result = [];
     list.forEach((item) => {
-      if (item.data.inn){
-      result.push({value: item.data.inn, label: item.value}); 
-    }else{
-      if(item.data.finance){
-      result.push({value: item.data.finance.inn, label: item.value}); 
+      if (item.data.inn) {
+        result.push({ value: item.data.inn, label: item.value });
+      } else {
+        if (item.data.finance) {
+          result.push({ value: item.data.finance.inn, label: item.value });
+        }
       }
-    }
     });
     return result;
-  
   };
 
   const getCompany = (query) => {
@@ -160,16 +155,10 @@ const Edit = ({ match }) => {
     });
     return flag;
   };
-  let options =
-  state.searchSuggest.map((item) => {
-    let innUniq = item.data.inn? item.data.inn: item.data.finance ? item.data.finance.inn: 'ЧМО!!!!';
-    console.log(' тип ITEM VALUE' + typeof(item.value) + ' ', typeof(innUniq));
-    
-     
-     console.log('INN' + innUniq);
-      return <Option key={innUniq}>{item.value}</Option>;
-      
-    
+  let options = state.searchSuggest.map((item) => {
+    let innUniq = item.data.inn ? item.data.inn : item.data.finance ? item.data.finance.inn : 'ЧМО!!!!';
+
+    return <Option key={innUniq}>{item.value}</Option>;
   });
 
   return (
@@ -213,16 +202,15 @@ const Edit = ({ match }) => {
                                 // showSearch={true}
                                 labelInValue
                                 // defaultValue = {formatCompany(companyList)}
-                                filterOption = {false}
+                                filterOption={false}
                                 style={{ width: '100%' }}
                                 mode={'multiple'}
                                 notFoundContent={<p>Введите название компании</p>}
                                 onSearch={(e) => {
-                                  console.log(e);
                                   getCompany(e);
                                 }}
                                 onSelect={(e) => {
-                                  setState({ ...state, selected: state.selected.concat((e)) });
+                                  setState({ ...state, selected: state.selected.concat(e) });
                                 }}
                                 onDeselect={(e) => {
                                   setState({

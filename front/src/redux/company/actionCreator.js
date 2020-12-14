@@ -25,6 +25,7 @@ const companyPull = (email) => {
 const companyPush = (data, email) => {
   return async (dispatch) => {
     dispatch(companyBegin());
+    console.log(data);
     try {
       db.collection('users')
         .doc(email)

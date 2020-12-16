@@ -2,6 +2,7 @@ const actions = {
   PUSH_COMPANY: 'PUSH_COMPANY',
   PULL_COMPANY: 'PULL_COMPANY',
   COMPANY_BEGIN: 'COMPANY_BEGIN',
+  DELETE_COMPANY: 'DELETE_COMPANY',
 
   pushCompany: (data) => {
     return {
@@ -18,11 +19,21 @@ const actions = {
     };
   },
 
+  deleteCompany: (data) => {
+    return {
+      type: actions.DELETE_COMPANY,
+      data
+    };
+  },
+
   companyBegin: () => {
     return {
       type: actions.COMPANY_BEGIN,
     };
   },
 };
+
+  
+
 
 export default actions;

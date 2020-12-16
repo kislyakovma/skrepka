@@ -10,7 +10,7 @@ import { PageHeader } from '../../../components/page-headers/page-headers';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import { Button } from '../../../components/buttons/buttons';
 import { BasicFormWrapper, Main } from '../../styled';
-import { companyPush } from '../../../redux/company/actionCreator';
+import { companyDelete, companyPush } from '../../../redux/company/actionCreator';
 import { fbDataSingle, fbDataUpdate, fbFileUploder } from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
 import { tr } from 'react-date-range/dist/locale';
@@ -20,7 +20,7 @@ const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { crud, isLoading, companyList } = useSelector((state) => {
+  const { crud, isLoading, companyList, user } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
       isLoading: state.crud.loading,
@@ -60,13 +60,41 @@ const Edit = ({ match }) => {
     }
   };
 
-  const handleSubmit = (values) => {
-    if (state.searchSuggest.length > 0) {
-      state.selected.forEach((item) => {
-        dispatch(companyPush(addCompany(item.value), state.id));
-      });
-    }
+  const handleSubmit = (values, flag) => {
+    getByLabel(state.selected)    
   };
+
+
+
+  const getByLabel = (list, flag) =>{
+    const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
+    const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
+    list.forEach((item) =>{
+      const options = {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: 'Token ' + token,
+        },
+        body: JSON.stringify({ query: item.label }),
+      };  
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        result.suggestions.forEach((e) =>{
+          if (e.unrestricted_value == item.label){
+            dispatch(companyPush(e, state.id))
+            return
+          }
+        })
+      })
+      .catch((error) => console.log('error', error));
+    })
+  }
 
   const formatCompany = (list) => {
     let result = [];
@@ -213,10 +241,13 @@ const Edit = ({ match }) => {
                                   setState({ ...state, selected: state.selected.concat(e) });
                                 }}
                                 onDeselect={(e) => {
-                                  setState({
-                                    ...state,
-                                    selected: state.selected.filter((item) => JSON.stringify(item) !== e),
-                                  });
+                                 companyList.forEach(item =>{
+                                   if(item.unrestricted_value == e.label){
+                                     console.log('1234');
+                                    companyList.splice(companyList.indexOf(item, 0), 1)
+                                    dispatch(companyDelete(companyList, state.id))
+                                   }
+                                 })
                                 }}
                               >
                                 {options}

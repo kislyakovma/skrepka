@@ -1,7 +1,7 @@
 import actions from './actions';
 import firebase from '../../config/database/firebase';
 
-const { pullCompany, pushCompany, companyBegin } = actions;
+const { pullCompany, pushCompany, companyBegin, deleteCompany } = actions;
 
 const db = firebase.firestore();
 
@@ -39,4 +39,21 @@ const companyPush = (data, email) => {
   };
 };
 
-export { companyPull, companyPush };
+const companyDelete = (data, email) => {
+  return async (dispatch) => {
+    dispatch(companyBegin());
+    console.log(data);
+    try {
+      db.collection('users')
+      .doc(email)
+      .update({ companies: data })
+      .then(() => {
+        dispatch(deleteCompany(data))
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export { companyPull, companyPush, companyDelete };

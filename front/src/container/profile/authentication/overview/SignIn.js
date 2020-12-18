@@ -14,6 +14,7 @@ const SignIn = () => {
   const isLoading = useSelector(state => state.auth.loading);
   const isFailedLogin = useSelector(state => state.auth.failedLogin);
   const isLoggedIn = useSelector(state => state.auth.login);
+  const user = useSelector(state => state.auth.user)
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -25,6 +26,12 @@ const SignIn = () => {
   const handleSubmit = data => {
     dispatch(login(data.username, data.password)).then(() => {
       state.failed = !isLoggedIn;
+      if(user.role === "admin"){
+      history.push("/admin")
+      }else {
+        history.push("/admin/ecommerce/products")
+      }
+      
     });
     state.submited = !state.submited;
   };

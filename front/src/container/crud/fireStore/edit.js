@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload } from 'antd';
+import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload, notification } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
@@ -61,7 +61,18 @@ const Edit = ({ match }) => {
   };
 
   const handleSubmit = (values, flag) => {
-    getByLabel(state.selected)    
+    console.log(companyList);
+    getByLabel(state.selected)   
+    if(state.selected.length > 0){ 
+    notification.open({
+      duration: 3,
+      message: 'Список компаний обновлен!',
+      className: 'custom-class',
+      style: {
+        fontFamily: 'Montserrat',
+      },
+    }); 
+  }
   };
 
 
@@ -91,6 +102,7 @@ const Edit = ({ match }) => {
             return
           }
         })
+        
       })
       .catch((error) => console.log('error', error));
     })

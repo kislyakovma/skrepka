@@ -41,12 +41,13 @@ const companyPush = (data, email) => {
 
 const companyDelete = (data, email) => {
   return async (dispatch) => {
-    dispatch(companyBegin());
+    console.log('HUY');
     console.log(data);
+    dispatch(companyBegin());
     try {
       db.collection('users')
       .doc(email)
-      .update({ companies: data })
+      .update({ companies: firebase.firestore.FieldValue.arrayRemove(data) })
       .then(() => {
         dispatch(deleteCompany(data))
       });

@@ -32,6 +32,7 @@ const Edit = ({ match }) => {
     join: null,
     searchSuggest: [],
     selected: [],
+    deselected: [],
     id: match.params.id,
   });
   const [form] = Form.useForm();
@@ -62,8 +63,8 @@ const Edit = ({ match }) => {
 
   const handleSubmit = (values, flag) => {
     console.log(companyList);
-    getByLabel(state.selected)   
-    if(state.selected.length > 0){ 
+    getByLabel(state.selected, state.deselected)   
+    if(state.selected.length > 0 || state.deselected.length > 0){ 
     notification.open({
       duration: 3,
       message: 'Список компаний обновлен!',
@@ -77,10 +78,11 @@ const Edit = ({ match }) => {
 
 
 
-  const getByLabel = (list, flag) =>{
+  const getByLabel = (select, deselect) =>{
     const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
     const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
-    list.forEach((item) =>{
+    if (select.length >0){
+    select.forEach((item) =>{
       const options = {
         method: 'POST',
         mode: 'cors',
@@ -107,9 +109,39 @@ const Edit = ({ match }) => {
       .catch((error) => console.log('error', error));
     })
   }
+  if(deselect.length > 0){
+    console.log(deselect);
+    deselect.forEach((item) =>{
+        const options = {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: 'Token ' + token,
+          },
+          body: JSON.stringify({ query: item.label }),
+        };  
+      fetch(url, options)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          result.suggestions.forEach((e) =>{
+            if (e.unrestricted_value == item.label){
+              dispatch(companyDelete(e, state.id))
+              return
+            }
+          })
+          
+        })
+        .catch((error) => console.log('error', error));
+    })
+  }
+  }
 
   const formatCompany = (list) => {
     let result = [];
+    if(list.length>0){
     list.forEach((item) => {
       if (item.data.inn) {
         result.push({ value: item.data.inn, label: item.value });
@@ -120,6 +152,7 @@ const Edit = ({ match }) => {
       }
     });
     return result;
+  }
   };
 
   const getCompany = (query) => {
@@ -253,13 +286,7 @@ const Edit = ({ match }) => {
                                   setState({ ...state, selected: state.selected.concat(e) });
                                 }}
                                 onDeselect={(e) => {
-                                 companyList.forEach(item =>{
-                                   if(item.unrestricted_value == e.label){
-                                     console.log('1234');
-                                    companyList.splice(companyList.indexOf(item, 0), 1)
-                                    dispatch(companyDelete(companyList, state.id))
-                                   }
-                                 })
+                                  setState({ ...state, deselected: state.deselected.concat(e) });
                                 }}
                               >
                                 {options}

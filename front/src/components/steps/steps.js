@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StepsStyle, ActionWrapper } from './style';
 import { pushTemplates } from '../../redux/templates/actionCreator';
 
-
 const { Step } = StepsStyle;
-
 
 const Steps = ({
   size,
@@ -27,19 +25,19 @@ const Steps = ({
   height,
   isfinished,
   formReady,
-  template
+  template,
 }) => {
   const [state, setState] = useState({
     currents: current,
   });
 
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
 
   const next = (template) => {
-    if(template){
-      notify(template)
+    if (template && state.currents === 0) {
+      notify(template);
     }
     const currents = state.currents + 1;
     setState({ currents });
@@ -47,24 +45,27 @@ const Steps = ({
   };
 
   const notify = (template) => {
-      const key = `open${Date.now()}`;
-      const btn = (
-        <Button type="primary" size="small" onClick={() => {
-          notification.close(key)
-          dispatch(pushTemplates(template, user.email))
-          }}>
-          Сохранить
-        </Button>
-      );
-      notification.open({
-        message: 'Сохранение шаблона',
-        description:
-          'Желаете ли вы сохранить шаблон для быстрого заполнения?',
-        btn,
-        key,
-        onClose: close,
-      });
-  }
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button
+        type="primary"
+        size="small"
+        onClick={() => {
+          notification.close(key);
+          dispatch(pushTemplates(template, user.email));
+        }}
+      >
+        Сохранить
+      </Button>
+    );
+    notification.open({
+      message: 'Сохранение шаблона',
+      description: 'Желаете ли вы сохранить шаблон для быстрого заполнения?',
+      btn,
+      key,
+      onClose: close,
+    });
+  };
 
   const prev = () => {
     const currents = state.currents - 1;
@@ -129,7 +130,14 @@ const Steps = ({
                     )}
 
                     {state.currents < steps.length - 1 && (
-                      <Button disabled = {!formReady} className="btn-next" type="primary" onClick={() => next(template)}>
+                      <Button
+                        disabled={!formReady}
+                        className="btn-next"
+                        type="primary"
+                        onClick={() => {
+                          next(template);
+                        }}
+                      >
                         Сохранить & Продолжить
                         <FeatherIcon icon="arrow-right" size={16} />
                       </Button>

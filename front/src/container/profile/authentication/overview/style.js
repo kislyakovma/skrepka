@@ -4,16 +4,28 @@ const Aside = Styled.aside`
   width: 100%;
   height: 100vh;
   position: relative;
-  background: linear-gradient(90deg, #3f51b5,#00bcd4);
-  background-blend-mode: darken;
-      animation: animate 20s linear infinite;
+  background: linear-gradient(90deg, red, cyan);
+  
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    mask-image: linear-gradient(to bottom, transparent, black);
+    background: linear-gradient(90deg, hotpink, rebeccapurple); 
+    z-index: 0;
+  }
 
   .main-logo{
+  &:before{
+  }
     
       
   img{
     width:15vw;
-    display: block;
+    display: block;z-index: 100000;
   }
 
     @media only screen and (max-width: 991px){

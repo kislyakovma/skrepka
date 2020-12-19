@@ -10,7 +10,7 @@ import { Popover } from '../../popup/popup';
 import Heading from '../../heading/heading';
 
 const NotificationBox = () => {
-  const { rtl } = useSelector(state => {
+  const { rtl } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
     };
@@ -57,7 +57,7 @@ const NotificationBox = () => {
   const content = (
     <AtbdTopDropdwon className="atbd-top-dropdwon">
       <Heading as="h5" className="atbd-top-dropdwon__title">
-        <span className="title-text">Notifications</span>
+        <span className="title-text">Уведомления</span>
         <Badge className="badge-success" count={0} />
       </Heading>
       <Scrollbars
@@ -67,7 +67,7 @@ const NotificationBox = () => {
         renderView={renderView}
         renderTrackVertical={renderTrackVertical}
       >
-        {/* <ul className="atbd-top-dropdwon__nav notification-list">
+        <ul className="atbd-top-dropdwon__nav notification-list">
           <li>
             <Link to="#">
               <div className="atbd-top-dropdwon__content notifications">
@@ -172,11 +172,8 @@ const NotificationBox = () => {
               </div>
             </Link>
           </li>
-        </ul> */}
+        </ul>
       </Scrollbars>
-      <Link className="btn-seeAll" to="#">
-        See all incoming activity
-      </Link>
     </AtbdTopDropdwon>
   );
 

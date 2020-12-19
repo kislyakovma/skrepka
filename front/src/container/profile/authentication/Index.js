@@ -1,8 +1,8 @@
 import React from 'react';
-import {Col, Row} from 'antd';
-import {Aside, Content} from './overview/style';
+import { Col, Row } from 'antd';
+import { Aside, Content } from './overview/style';
 
-const AuthLayout = WraperContent => {
+const AuthLayout = (WraperContent) => {
   return () => {
     return (
       <Row>
@@ -11,7 +11,7 @@ const AuthLayout = WraperContent => {
             <div className="auth-side-content main-logo">
               {/* <img src={require('../../../static/img/auth/topShape.png')} alt="" className="topShape" />
               <img src={require('../../../static/img/auth/bottomShape.png')} alt="" className="bottomShape" /> */}
-              <Content>
+              <Content style={{ zIndex: 100 }}>
                 <img src={require('../../../static/img/logo.svg')} alt="" fill={'#fff'} />
 
                 {/* <Heading as="h1">Сервис</Heading>

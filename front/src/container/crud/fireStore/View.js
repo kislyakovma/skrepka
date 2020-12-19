@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row, Spin, Table } from 'antd';
+import { Col, Empty, Row, Spin, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
@@ -135,17 +135,17 @@ const ViewPage = () => {
         <Row gutter={15}>
           <Col className="w-100" md={24}>
             <Cards headless>
-              {isLoading ? (
-                <div className="spin">
-                  <Spin />
-                </div>
-              ) : (
-                <div>
-                  <TableWrapper className="table-data-view table-responsive">
-                    <Table dataSource={dataSource} columns={columns} pagination={null} />
-                  </TableWrapper>
-                </div>
-              )}
+              <div>
+                <TableWrapper className="table-data-view table-responsive">
+                  <Table
+                    dataSource={dataSource}
+                    columns={columns}
+                    pagination={false}
+                    locale={{ emptyText: <Empty description={false} /> }}
+                    loading={isLoading}
+                  />
+                </TableWrapper>
+              </div>
             </Cards>
           </Col>
         </Row>

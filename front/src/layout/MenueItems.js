@@ -54,11 +54,6 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
 
       </Menu.Item>
           */}
-          <Menu.Item key="ecommerce">
-            <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
-              Магазин
-            </NavLink>
-          </Menu.Item>
         </SubMenu>
         <SubMenu key="firestore" icon={!topMenu && <FeatherIcon icon="database" />} title="Данные">
           <Menu.Item key="fbView">
@@ -72,18 +67,7 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
             </NavLink>
           </Menu.Item>
         </SubMenu>
-        <SubMenu key="project" icon={!topMenu && <FeatherIcon icon="target" />} title="Проекты">
-          <Menu.Item key="view">
-            <NavLink onClick={toggleCollapsed} to={`${path}/project/view`}>
-              Проекты
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="ProjectCreate">
-            <NavLink onClick={toggleCollapsed} to={`${path}/project/create`}>
-              Создать проект
-            </NavLink>
-          </Menu.Item>
-        </SubMenu>
+
         <SubMenu key="ecommerce" icon={!topMenu && <FeatherIcon icon="shopping-cart" />} title="Товары">
           <Menu.Item key="add-product">
             <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/add-product`}>
@@ -91,9 +75,9 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
             </NavLink>
           </Menu.Item>
 
-          <Menu.Item key="edit-product">
-            <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/edit-product`}>
-              Редактировать продукт
+          <Menu.Item key="ecommerce">
+            <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products`}>
+              Магазин
             </NavLink>
           </Menu.Item>
 

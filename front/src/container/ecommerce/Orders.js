@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Table } from 'antd';
+import { Col, Row, Table, Spin, Empty } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import { TopToolBox } from './Style';
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -11,11 +11,12 @@ import { orderFilter, orderAddData } from '../../redux/orders/actionCreator';
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const { searchData, orders, user } = useSelector((state) => {
+  const { searchData, orders, user, isLoading } = useSelector((state) => {
     return {
       user: state.auth.user,
       searchData: state.headerSearchData,
       orders: state.orders.data,
+      isLoading: state.orders.loading,
     };
   });
 
@@ -160,7 +161,9 @@ const Orders = () => {
                 <Table
                   dataSource={dataSource}
                   columns={columns}
-                  pagination={{ pageSize: 7, showSizeChanger: true, total: orders.length }}
+                  pagination={false}
+                  loading={isLoading}
+                  locale={{ emptyText: <Empty description={false} /> }}
                 />
               </TableWrapper>
             </Col>

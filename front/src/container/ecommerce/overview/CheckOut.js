@@ -15,6 +15,7 @@ import firebase from '../../../config/database/firebase';
 import { cartDeleteAll } from '../../../redux/cart/actionCreator';
 import { template } from 'leaflet/src/core/Util';
 import { pullTemplates } from '../../../redux/templates/actionCreator';
+import { companyPull } from '../../../redux/company/actionCreator';
 
 const db = firebase.firestore();
 
@@ -39,13 +40,14 @@ const getPrice = (cartData) => {
 const { Option } = Select;
 const CheckOut = ({ onCurrentChange }) => {
   const dispatch = useDispatch();
-  const { cartData, rtl, user, templates, isLoading } = useSelector((state) => {
+  const { cartData, rtl, user, templates, isLoading, companies } = useSelector((state) => {
     return {
       cartData: state.cart.data,
       rtl: state.ChangeLayoutMode.rtlData,
       user: state.auth.user,
       templates: state.templates.data,
       isLoading: state.templates.loading,
+      companies: state.company.data,
     };
   });
   const [form] = Form.useForm();
@@ -58,24 +60,11 @@ const CheckOut = ({ onCurrentChange }) => {
     template: {},
     values: {},
     requisites: {},
-    companies: [
-      {
-        name: 'АО НБКИ',
-        img: 'https://www.nbki.ru/local/templates/nbki_usfulinfo/public/images/logo.png',
-        requisites: {
-          bik: '044525225',
-          bank: 'ПАО СБЕРБАНК',
-          checkingAcc: '40702810538170107483',
-          inn: '7703548386',
-          ogrn: '1057746710713',
-          kpp: '770301001',
-        },
-      },
-    ],
   });
 
   const { status, isFinished, current } = state;
   useEffect(() => {
+    dispatch(companyPull(user.email));
     dispatch(pullTemplates(user.email));
   }, []);
   useEffect(() => {
@@ -446,26 +435,30 @@ const CheckOut = ({ onCurrentChange }) => {
                             {/*    </Cards>*/}
                             {/*  </Radio>*/}
                             {/*</div>*/}
-                            {state.companies.map((item) => {
-                              return (
-                                <div className="shipping-selection__paypal">
-                                  <Radio
-                                    value={JSON.stringify(item.requisites)}
-                                    style={{ width: '100%' }}
-                                    onChange={(e) => {
-                                      console.log(e.target.value);
-                                      setState({
-                                        ...state,
-                                        requisites: JSON.parse(e.target.value),
-                                        currentCompany: item.name,
-                                      });
-                                    }}
-                                  >
-                                    {item.name}
-                                  </Radio>
-                                </div>
-                              );
-                            })}
+                            {companies.length > 0 ? (
+                              companies.map((item) => {
+                                return (
+                                  <div className="shipping-selection__paypal">
+                                    <Radio
+                                      value={JSON.stringify(item)}
+                                      style={{ width: '100%' }}
+                                      onChange={(e) => {
+                                        console.log(e.target.value);
+                                        setState({
+                                          ...state,
+                                          requisites: JSON.parse(e.target.value),
+                                          currentCompany: item.value,
+                                        });
+                                      }}
+                                    >
+                                      {item.value}
+                                    </Radio>
+                                  </div>
+                                );
+                              })
+                            ) : (
+                              <></>
+                            )}
 
                             <div className="shipping-selection__cash">
                               <Radio value="cash" style={{ width: '100%' }}>
@@ -507,7 +500,7 @@ const CheckOut = ({ onCurrentChange }) => {
                                   <Heading as="h6">{state.template.info.name}</Heading>
                                   <Heading as="h6">Телефон: {state.template.info.phone}</Heading>
                                   <p>
-                                    {state.template.info.address} <br />
+                                    {state.template.info.street} <br />
                                     {state.template.info.city} <br />
                                     {state.template.info.zip}
                                   </p>
@@ -527,11 +520,11 @@ const CheckOut = ({ onCurrentChange }) => {
 
                           <div className="method-info">
                             <Heading as="h5">{state.currentCompany}</Heading>
-                            <p>Банк: {state.requisites.bank}</p>
-                            <p>БИК: {state.requisites.bik}</p>
+                            <p>Банк: {state.requisites ? state.requisites.bank : ''}</p>
+                            <p>БИК: {state.requisites ? state.requisites.bik : ''}</p>
                             <p>Р/С: {state.requisites.checkingAcc}</p>
-                            <p>КПП: {state.requisites.kpp}</p>
-                            <p>ИНН: {state.requisites.inn}</p>
+                            <p>КПП: {state.requisites.data ? state.requisites.data.kpp : ''}</p>
+                            <p>ИНН: {state.requisites.data ? state.requisites.data.inn : ''}</p>
                           </div>
                         </Cards>
                       </div>

@@ -1,15 +1,17 @@
-import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Radio, Row, Skeleton, Spin} from 'antd';
-import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Radio, Row, Skeleton, Spin } from 'antd';
+import { NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Main} from '../../styled';
-import {AutoComplete} from '../../../components/autoComplete/autoComplete';
-import {TopToolBox} from '../Style';
-import {initProduct, search, sorting} from '../../../redux/product/actionCreator';
-import {Button} from '../../../components/buttons/buttons';
-import {Cards} from '../../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Main } from '../../styled';
+import { AutoComplete } from '../../../components/autoComplete/autoComplete';
+import { TopToolBox } from '../Style';
+import { initProduct, search, sorting } from '../../../redux/product/actionCreator';
+import { Button } from '../../../components/buttons/buttons';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import CreateProject from '../../project/overview/CreateProject';
+import ProductRequest from './overview/ProductRequest';
 
 const Filters = lazy(() => import('./overview/Filters'));
 const Grid = lazy(() => import('./overview/Grid'));
@@ -30,7 +32,22 @@ const Product = () => {
     notData: [],
     active: 'active',
     sorted: 0,
+    visible: false,
   });
+
+  const showModal = () => {
+    setState({
+      ...state,
+      visible: true,
+    });
+  };
+
+  const onCancel = () => {
+    setState({
+      ...state,
+      visible: false,
+    });
+  };
 
   const { notData } = state;
 
@@ -58,14 +75,18 @@ const Product = () => {
       <PageHeader
         ghost
         title="Магазин"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Заявка на добавление продукта
-            </Button>
-          </div>,
-        ]}
+        buttons={
+          user.role === 'admin'
+            ? []
+            : [
+                <div key="1" className="page-header-actions">
+                  <Button size="small" key="4" type="primary" onClick={showModal}>
+                    <FeatherIcon icon="plus" size={14} />
+                    Заявка на добавление продукта
+                  </Button>
+                </div>,
+              ]
+        }
       />
       <Main>
         <Row gutter={30}>
@@ -137,6 +158,7 @@ const Product = () => {
             </Switch>
           </Col>
         </Row>
+        <ProductRequest onCancel={onCancel} visible={state.visible} />
       </Main>
     </>
   );

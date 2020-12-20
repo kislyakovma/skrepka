@@ -9,6 +9,7 @@ const { loginBegin, loginSuccess, loginErr, logoutBegin, logoutSuccess, logoutEr
 const login = (email, password, remember) => {
   return async (dispatch) => {
     dispatch(loginBegin());
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)

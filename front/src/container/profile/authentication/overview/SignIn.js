@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { Button, Form, Input, notification } from 'antd';
+import { Button, Form, Input, notification, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AuthWrapper } from './style';
@@ -25,14 +25,17 @@ const SignIn = () => {
 
   const handleSubmit = (data) => {
     dispatch(login(data.username, data.password, state.checked)).then(() => {
-      state.failed = !isLoggedIn;
-      if (user.role === 'admin') {
-        history.push('/admin');
-      } else {
-        history.push('/admin/ecommerce/products');
-      }
+      setTimeout(() => {
+        state.failed = !isLoggedIn;
+        if (user.role === 'admin') {
+          history.push('/admin');
+        } else {
+          history.push('/admin/ecommerce/products');
+        }
+
+        state.submited = !state.submited;
+      }, 3000);
     });
-    state.submited = !state.submited;
   };
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const SignIn = () => {
     setState({ ...state, checked });
   };
 
-  return (
+  return !isLoading ? (
     <AuthWrapper>
       <p className="auth-notice">
         Нет аккаунта? <NavLink to="/register">Регистрация</NavLink>
@@ -107,6 +110,10 @@ const SignIn = () => {
         </Form>
       </div>
     </AuthWrapper>
+  ) : (
+    <div className="spin">
+      <Spin />
+    </div>
   );
 };
 

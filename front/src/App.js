@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {hot} from 'react-hot-loader/root';
-import {Provider, useDispatch, useSelector} from 'react-redux';
-import {ThemeProvider} from 'styled-components';
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
-import {ReactReduxFirebaseProvider} from 'react-redux-firebase';
-import {ToastContainer} from 'react-toastify';
-import {ConfigProvider} from 'antd';
-import store, {rrfProps} from './redux/store';
+import { hot } from 'react-hot-loader/root';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { ToastContainer } from 'react-toastify';
+import { ConfigProvider } from 'antd';
+import store, { rrfProps } from './redux/store';
 import Admin from './routes/admin';
 import Auth from './routes/auth';
 import './static/css/style.css';
 import config from './config/config';
 import ProtectedRoute from './components/utilities/protectedRoute';
 import 'react-toastify/dist/ReactToastify.css';
-import {rememberCart} from './redux/cart/actionCreator';
+import { rememberCart } from './redux/cart/actionCreator';
 
 const { theme } = config;
 
@@ -34,10 +34,8 @@ const ProviderConfig = () => {
   useEffect(() => {
     if (user.email) {
       if (localStorage.getItem('cart')) {
-        console.log(JSON.parse(localStorage.getItem('cart')));
         dispatch(rememberCart(user.email, JSON.parse(localStorage.getItem('cart'))));
       } else {
-        console.log('AHUET');
         dispatch(rememberCart(user.email, []));
       }
     }

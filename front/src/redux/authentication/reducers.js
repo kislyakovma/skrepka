@@ -4,7 +4,7 @@ import actions from './actions';
 const { LOGIN_BEGIN, LOGIN_SUCCESS, LOGIN_ERR, LOGOUT_BEGIN, LOGOUT_SUCCESS, LOGOUT_ERR, SET_USER } = actions;
 
 const initState = {
-  login: localStorage.getItem('logedIn'),
+  login: localStorage.getItem('user') ? true : false,
   loading: false,
   error: null,
   failedLogin: true,

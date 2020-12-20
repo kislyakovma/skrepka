@@ -80,9 +80,6 @@ const ProductRequest = ({ visible, onCancel }) => {
             <Form.Item name="description" label="">
               <Input.TextArea rows={4} placeholder="Дополнительная информация" />
             </Form.Item>
-            <Form.Item name="pricacy" initialValue={['team']} label="Необходимое количество">
-              <CheckboxGroup options={options} />
-            </Form.Item>
           </Form>
         </BasicFormWrapper>
       </div>

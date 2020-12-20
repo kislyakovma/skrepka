@@ -11,10 +11,10 @@ import Heading from '../../../../components/heading/heading';
 const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.auth.loading);
-  const isFailedLogin = useSelector(state => state.auth.failedLogin);
-  const isLoggedIn = useSelector(state => state.auth.login);
-  const user = useSelector(state => state.auth.user)
+  const isLoading = useSelector((state) => state.auth.loading);
+  const isFailedLogin = useSelector((state) => state.auth.failedLogin);
+  const isLoggedIn = useSelector((state) => state.auth.login);
+  const user = useSelector((state) => state.auth.user);
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -23,15 +23,14 @@ const SignIn = () => {
     submited: false,
   });
 
-  const handleSubmit = data => {
-    dispatch(login(data.username, data.password)).then(() => {
+  const handleSubmit = (data) => {
+    dispatch(login(data.username, data.password, state.checked)).then(() => {
       state.failed = !isLoggedIn;
-      if(user.role === "admin"){
-      history.push("/admin")
-      }else {
-        history.push("/admin/ecommerce/products")
+      if (user.role === 'admin') {
+        history.push('/admin');
+      } else {
+        history.push('/admin/ecommerce/products');
       }
-      
     });
     state.submited = !state.submited;
   };
@@ -64,7 +63,7 @@ const SignIn = () => {
     }
   }, [state.submited]);
 
-  const onChange = checked => {
+  const onChange = (checked) => {
     setState({ ...state, checked });
   };
 

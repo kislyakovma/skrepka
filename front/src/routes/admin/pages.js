@@ -1,5 +1,5 @@
-import React, {lazy} from 'react';
-import {Route, Switch, useRouteMatch} from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 const NotFound = lazy(() => import('../../container/pages/404'));
 const Maintenance = lazy(() => import('../../container/pages/Maintenance'));
@@ -11,6 +11,7 @@ const Users = lazy(() => import('../../container/pages/Users'));
 const AddUser = lazy(() => import('../../container/pages/AddUsers'));
 const DataTable = lazy(() => import('../../container/pages/UserListDataTable'));
 const Team = lazy(() => import('../../container/pages/Team'));
+const ComingSoon = lazy(() => import('../../container/pages/ComingSoon'));
 
 const PagesRoute = () => {
   const { path } = useRouteMatch();
@@ -26,6 +27,7 @@ const PagesRoute = () => {
       <Route path={`${path}/add-user`} component={AddUser} />
       <Route path={`${path}/dataTable`} component={DataTable} />
       <Route path={`${path}/team`} component={Team} />
+      <Route path={`${path}/comingSoon`} component={ComingSoon} />
     </Switch>
   );
 };

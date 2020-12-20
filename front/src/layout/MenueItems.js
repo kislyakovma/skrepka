@@ -159,14 +159,14 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
             !topMenu && (
               <FeatherIcon
                 onClick={() => {
-                  history.push(`${path}/pricing`);
+                  history.push(`${path}/pages/comingSoon`);
                 }}
                 icon="at-sign"
               />
             )
           }
         >
-          <NavLink onClick={toggleCollapsed} to={`${path}/pricing`}>
+          <NavLink onClick={toggleCollapsed} to={`${path}/pages/comingSoon`}>
             Подписки
           </NavLink>
         </Menu.Item>

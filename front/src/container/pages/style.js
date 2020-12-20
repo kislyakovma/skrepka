@@ -1,5 +1,197 @@
 import Styled from 'styled-components';
 
+const ComingsoonStyleWrapper = Styled.div`
+  text-align: center;
+  background: #fff;
+  padding: 75px 0 30px;
+  margin-bottom: 30px;
+  @media only screen and (max-width: 1150px){
+    padding: 50px 0 6px;
+  }
+  @media only screen and (max-width: 991px){
+    padding: 20px 0 0px;
+  }
+  .strikingDash-logo{
+    margin-bottom: 55px;
+    @media only screen and (max-width: 1150px){
+      margin-bottom: 30px;
+    }
+    @media only screen and (max-width: 767px){
+      margin-bottom: 25px;
+    }
+    img{
+      max-width: 170px;
+    }
+  }
+  .coming-soon-content{
+    h1{
+      font-size: 58px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      color: ${({ theme }) => theme['dark-color']};
+      @media only screen and (max-width: 991px){
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+      @media only screen and (max-width: 767px){
+        font-size: 40px;
+        line-height: 1.45;
+      }
+      @media only screen and (max-width: 479px){
+        font-size: 30px;
+      }
+      @media only screen and (max-width: 375px){
+        font-size: 20px;
+      }
+    }
+    p{
+      font-size: 17px;
+      max-width: 580px;
+      margin: 0 auto 25px;
+      color: ${({ theme }) => theme['gray-color']};
+      @media only screen and (max-width: 991px){
+        margin-bottom: 15px;
+      }
+      @media only screen and (max-width: 767px){
+        font-size: 16px;
+      }
+      @media only screen and (max-width: 375px){
+        font-size: 15px;
+      }
+    }
+  }
+  .countdwon-data{
+    display: flex;
+    justify-content: center;
+    >span{
+      &:not(:last-child){
+        margin-right: 50px;
+        ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 50px;
+        @media only screen and (max-width: 575px){
+          margin-right: 20px;
+          ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 20px;
+        }
+      }
+    }
+  }
+  .strikingDash-countdown{
+    .countdown-time{
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: ${({ theme }) => theme['dark-color']};
+      @media only screen and (max-width: 991px){
+        font-size: 32px;
+      }
+      @media only screen and (max-width: 575px){
+        font-size: 26px;
+      }
+      @media only screen and (max-width: 375px){
+        font-size: 20px;
+      }
+    }
+    .countdown-title{
+      font-size: 16px;
+      font-weight: 400;
+      display: block;
+      color: ${({ theme }) => theme['gray-color']};
+      @media only screen and (max-width: 375px){
+        font-size: 15px;
+      }
+    }
+  }
+  .subscription-form{
+    margin-top: 40px;
+    @media only screen and (max-width: 991px){
+      margin-top: 25px;
+    }
+    @media only screen and (max-width: 1150px){
+      margin-top: 35px;
+    }
+    .subscription-form-inner{
+      display: flex;
+      justify-content: center;
+      @media only screen and (max-width: 375px){
+        flex-flow: column;
+        margin-bottom: 20px;
+      }
+      .ant-form-item-control-input{
+        margin-right: 20px;
+        ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 20px;
+        @media only screen and (max-width: 375px){
+          margin-right: 0;
+          ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+        }
+        .ant-input{
+          min-width: 320px;
+          padding: 12px 20px;
+          @media only screen and (max-width: 767px){
+            min-width: 100%;
+          }
+          &::placeholder{
+            color: ${({ theme }) => theme['extra-light-color']};
+          }
+        }
+      }
+      button{
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+    }
+  }
+  .coming-soon-social{
+    margin-top: 50px;
+    @media only screen and (max-width: 1150px){
+      margin-top: 25px;
+    }
+    @media only screen and (max-width: 767px){
+      margin-top: 30px;
+    }
+    ul{
+      margin-bottom: 30px;
+      li{
+        display: inline-block;
+        &:not(:last-child){
+          margin-right: 15px;
+          ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 15px;
+        }
+        a{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          i,
+          span,
+          svg{
+            color: #fff;
+          }
+          &.facebook{
+            background-color: #3B5998;
+          }
+          &.instagram{
+            background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+          }
+          &.globe{
+            background-color: #DD3E7C;
+          }
+          &.github{
+            background-color: #23282D;
+          }
+        }
+      }
+    }
+    p{
+      font-size: 14px;
+      color: ${({ theme }) => theme['light-color']};
+    }
+  }
+`;
+
 const PricingCard = Styled.div`
   background: #fff;
   border-radius: 10px;
@@ -1028,4 +1220,5 @@ export {
   MaintananceWrapper,
   ErrorWrapper,
   AddUser,
+  ComingsoonStyleWrapper,
 };

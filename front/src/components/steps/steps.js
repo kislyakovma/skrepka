@@ -26,6 +26,7 @@ const Steps = ({
   isfinished,
   formReady,
   template,
+  templates,
 }) => {
   const [state, setState] = useState({
     currents: current,
@@ -37,7 +38,29 @@ const Steps = ({
 
   const next = (template) => {
     if (template && state.currents === 0) {
-      notify(template);
+      console.log('huy');
+      var el = 0
+      var flag = false
+      while (el != templates.length) {
+        if (
+          template.name == templates[el].name &&
+          template.info.company == templates[el].info.company &&
+          template.info.zip == templates[el].info.zip &&
+          template.info.phone == templates[el].info.phone &&
+          template.info.street == templates[el].info.street
+        ) {
+          var flag = true 
+          break
+        }
+        el++
+      }
+      if (flag){
+        console.log('я работаб');
+        
+      }else{
+        console.log('я не рабортаю');
+        notify(templates)
+      }
     }
     const currents = state.currents + 1;
     setState({ currents });

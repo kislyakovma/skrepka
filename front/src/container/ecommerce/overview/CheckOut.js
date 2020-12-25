@@ -262,6 +262,7 @@ const CheckOut = ({ onCurrentChange }) => {
     <CheckoutWrapper>
       <Steps
         template={{ name: state.values.name + ' - ' + state.values.company, info: state.values }}
+        templates={templates}
         formReady={state.formReady}
         isswitch
         current={0}

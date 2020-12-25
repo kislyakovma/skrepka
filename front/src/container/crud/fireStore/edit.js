@@ -180,6 +180,7 @@ const Edit = ({ match }) => {
     setState({ join: dateString });
   };
 
+  
   const props = {
     name: 'file',
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -292,6 +293,12 @@ const Edit = ({ match }) => {
                                 {options}
                               </Select>
                             </Form.Item>
+                            <Form.Item name="Матвей" label='Название компании'>
+                             <Input placeholder = "Название банка"/>
+                             <Input placeholder = "БИК банка"/>
+                             <Input placeholder = "Расчетный счет"/>
+                             </Form.Item>
+                           
 
                             <div className="record-form-actions text-right">
                               <Button htmlType="submit" type="primary">

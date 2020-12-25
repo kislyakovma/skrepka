@@ -60,10 +60,11 @@ const Orders = () => {
     orders.map((value, key) => {
       var date = new Date(value.timestamp);
       date = date.toLocaleString('ru-Ru', { timeZone: 'Europe/Moscow' });
-      const { status, orderId, info, cart, amount } = value;
+      const { status, orderId, info, cart, amount, company } = value;
+      console.log(value.company);
       return dataSource.push({
         id: <span className="order-id">{orderId}</span>,
-        customer: <span className="customer-name">{info.info.company}</span>,
+        customer: <span className="customer-name">{company.value}</span>,
         status: (
           <span
             className={`status ${status === 'new' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'}`}
@@ -78,12 +79,6 @@ const Orders = () => {
             <>
               <Button className="btn-icon" type="primary" to="#" shape="circle">
                 <FeatherIcon icon="eye" size={16} />
-              </Button>
-              <Button className="btn-icon" type="info" to="#" shape="circle">
-                <FeatherIcon icon="edit" size={16} />
-              </Button>
-              <Button className="btn-icon" type="danger" to="#" shape="circle">
-                <FeatherIcon icon="trash-2" size={16} />
               </Button>
             </>
           </div>

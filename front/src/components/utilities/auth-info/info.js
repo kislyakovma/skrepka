@@ -15,15 +15,15 @@ import { logOut } from '../../../redux/authentication/actionCreator';
 import Heading from '../../heading/heading';
 
 const AuthInfo = () => {
-  const user = useSelector(state => state.auth.user);
-  const cartCount = useSelector(state => state.cart.data.length);
+  const user = useSelector((state) => state.auth.user);
+  const cartCount = useSelector((state) => state.cart.data.length);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     flag: 'english',
   });
   const { flag } = state;
 
-  const SignOut = e => {
+  const SignOut = (e) => {
     e.preventDefault();
     dispatch(logOut());
   };
@@ -40,7 +40,7 @@ const AuthInfo = () => {
         </figure>
         <ul className="user-dropdwon__links">
           <li>
-            <Link to="#">
+            <Link to="/admin/settings">
               <FeatherIcon icon="user" /> Профиль
             </Link>
           </li>
@@ -57,7 +57,7 @@ const AuthInfo = () => {
     </UserDropDwon>
   );
 
-  const onFlagChangeHandle = value => {
+  const onFlagChangeHandle = (value) => {
     setState({
       ...state,
       flag: value,

@@ -12,12 +12,14 @@ const AddUser = lazy(() => import('../../container/pages/AddUsers'));
 const DataTable = lazy(() => import('../../container/pages/UserListDataTable'));
 const Team = lazy(() => import('../../container/pages/Team'));
 const ComingSoon = lazy(() => import('../../container/pages/ComingSoon'));
+const Banners = lazy(() => import('../../container/pages/Banners'));
 
 const PagesRoute = () => {
   const { path } = useRouteMatch();
   return (
     <Switch>
       <Route path={`${path}/404`} component={NotFound} />
+      <Route path={`${path}/banners`} component={Banners} />
       <Route path={`${path}/maintenance`} component={Maintenance} />
       <Route path={`${path}/Pricing`} component={Pricing} />
       <Route path={`${path}/gallery`} component={Gallery} />

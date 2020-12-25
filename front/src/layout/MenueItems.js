@@ -154,6 +154,23 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
           </NavLink>
         </Menu.Item>
         <Menu.Item
+          key="services"
+          icon={
+            !topMenu && (
+              <FeatherIcon
+                onClick={() => {
+                  history.push(`${path}/pages/banners`);
+                }}
+                icon="grid"
+              />
+            )
+          }
+        >
+          <NavLink onClick={toggleCollapsed} to={`${path}/pages/banners`}>
+            Услуги
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item
           key="subscriptions"
           icon={
             !topMenu && (

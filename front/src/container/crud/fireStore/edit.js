@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload, notification } from 'antd';
+import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload, notification, AutoComplete} from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
@@ -20,6 +20,7 @@ const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
+
   const { crud, isLoading, companyList, user } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
@@ -29,6 +30,13 @@ const Edit = ({ match }) => {
     };
   });
   const [state, setState] = useState({
+    inn: '',
+    address:'',
+    companies: '',
+    kpp: '',
+    bik: '',
+    rs: '',
+    bank: '',
     join: null,
     searchSuggest: [],
     selected: [],
@@ -39,6 +47,14 @@ const Edit = ({ match }) => {
   useEffect(() => {
     dispatch(companyPull(state.id));
   }, []);
+  useEffect(() => {
+    form.setFieldsValue({
+      address: state.address,
+      companies: state.companies,
+      kpp: state.kpp,
+      inn: state.inn
+    })
+  }, [state.address]);
   useEffect(() => {
     if (fbDataSingle) {
       dispatch(fbDataSingle(match.params.id));
@@ -98,6 +114,7 @@ const Edit = ({ match }) => {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
+        console.log(item);
         result.suggestions.forEach((e) =>{
           if (e.unrestricted_value == item.label){
             dispatch(companyPush(e, state.id))
@@ -269,9 +286,9 @@ const Edit = ({ match }) => {
                             form={form}
                             name="edit"
                             onFinish={handleSubmit}
-                            initialValues={{ companies: formatCompany(companyList) }}
+                            
                           >
-                            <Form.Item name="companies" label="Компании">
+                            {/* <Form.Item name="companies" label="Компании">
                               <Select
                                 // showSearch={true}
                                 labelInValue
@@ -292,12 +309,64 @@ const Edit = ({ match }) => {
                               >
                                 {options}
                               </Select>
+                            </Form.Item> */}
+                            <Form.Item name="inn" label="ИНН">
+                              <AutoComplete
+                              options={state.searchSuggest}
+                              allowClear={true}
+                              filterOption={false}
+                              notFoundContent={<p>Введите ИНН</p>}
+                              placeholder='ИНН'
+                              onSearch={(e) =>{
+                                getCompany(e);
+                              }}
+                              onSelect={(e, option) =>{
+                                setState({ ...state, 
+                                  address: option.data.address.value, 
+                                  companies: e,
+                                  kpp: option.data.kpp,
+                                  inn: option.data.inn
+                                })
+                              }}
+                              />
                             </Form.Item>
-                            <Form.Item name="Матвей" label='Название компании'>
-                             <Input placeholder = "Название банка"/>
-                             <Input placeholder = "БИК банка"/>
-                             <Input placeholder = "Расчетный счет"/>
-                             </Form.Item>
+                            <Form.Item name="address" label="Адрес компании">
+                              <Input
+                              placeholder='Адрес компании'
+                              />
+                            </Form.Item>
+                            <Form.Item name="companies" label="Название компании">
+                            <Input
+                            placeholder='Название компании'
+                              defaultValue={state.companies}
+                              />
+                            </Form.Item>
+                            <Form.Item name="kpp" label="КПП">
+                            <Input
+                            placeholder='КПП'
+                              defaultValue={state.kpp}
+                              />
+                            </Form.Item>
+                            <Form.Item name="bik" label="Бик банка">
+                            <Input
+                            placeholder='Бик банка'
+                              defaultValue={state.bik}
+                              />
+                            </Form.Item>
+                            <Form.Item name="bank" label="Название Банка">
+                            <Input
+                            placeholder='Название Банка'
+                              defaultValue={state.bank}
+                              />
+                            </Form.Item>
+                            <Form.Item name="rs" label="Расчетный счет">
+                            <Input
+                            placeholder='Расчетный счет'
+                              defaultValue={state.rs}
+                              />
+                            </Form.Item>
+
+                            
                            
 
                             <div className="record-form-actions text-right">

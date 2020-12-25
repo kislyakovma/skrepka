@@ -63,7 +63,7 @@ const ViewPage = () => {
         status: <span className={`status ${status}`}>{status}</span>,
         action: (
           <div className="table-actions">
-            <Link className="edit" to={`/admin/firestore/edit/${email}`}>
+            <Link className="edit" to={`/admin/pages/add-user/info`}>
               <FeatherIcon icon="edit" size={14} />
             </Link>
             &nbsp;&nbsp;&nbsp;

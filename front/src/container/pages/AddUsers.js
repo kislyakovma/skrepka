@@ -15,7 +15,7 @@ const Social = lazy(() => import('./overview/Social'));
 const AddNew = ({ match }) => {
   return (
     <>
-      <PageHeader ghost title="Add User" />
+      <PageHeader ghost title="Редактировать Пользователя" />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -27,19 +27,13 @@ const AddNew = ({ match }) => {
                       <li>
                         <NavLink to={`${match.path}/info`}>
                           <FeatherIcon icon="user" size={14} />
-                          Personal Info
+                          Информация
                         </NavLink>
                       </li>
                       <li>
                         <NavLink to={`${match.path}/work`}>
                           <FeatherIcon icon="briefcase" size={14} />
-                          Work Info
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to={`${match.path}/social`}>
-                          <FeatherIcon icon="share-2" size={14} />
-                          Social
+                          Компании
                         </NavLink>
                       </li>
                     </ul>

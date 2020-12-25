@@ -23,7 +23,7 @@ const Info = () => {
           <BasicFormWrapper>
             <Form style={{ width: '100%' }} form={form} name="info" onFinish={handleSubmit}>
               <Heading className="form-title" as="h4">
-                Personal Information
+                Информация о пользователе
               </Heading>
 
               <figure className="photo-upload align-center-v">
@@ -35,42 +35,42 @@ const Info = () => {
                     </Link>
                   </Upload>
                   <div className="info">
-                    <Heading as="h4">Profile Photo</Heading>
+                    <Heading as="h4">Фото профиля</Heading>
                   </div>
                 </figcaption>
               </figure>
 
-              <Form.Item label="Name" name="name">
+              <Form.Item label="Имя" name="name">
                 <Input placeholder="Input Name" />
               </Form.Item>
 
               <Form.Item
-                label="Email Address"
+                label="email"
                 name="email"
                 rules={[{ message: 'Please input your email!', type: 'email' }]}
               >
                 <Input placeholder="name@example.com" />
               </Form.Item>
 
-              <Form.Item name="phone" label="Phone Number">
-                <Input placeholder="+440 2546 5236" />
+              <Form.Item name="phone" label="Номер телефона">
+                <Input placeholder="8 800 555 35 35 - проще позвонить" />
               </Form.Item>
 
-              <Form.Item name="country" initialValue="" label="Country">
+              <Form.Item name="country" initialValue="" label="страна">
                 <Select style={{ width: '100%' }}>
                   <Option value="">Please Select</Option>
-                  <Option value="bangladesh">Bangladesh</Option>
-                  <Option value="india">India</Option>
-                  <Option value="pakistan">Pakistan</Option>
+                  <Option value="bangladesh">РФ</Option>
+                  <Option value="india">Укры</Option>
+                  <Option value="pakistan">Картошка</Option>
                 </Select>
               </Form.Item>
 
-              <Form.Item initialValue="" name="city" label="City">
+              <Form.Item initialValue="" name="city" label="Город">
                 <Select style={{ width: '100%' }}>
                   <Option value="">Please Select</Option>
-                  <Option value="dhaka">Dhaka</Option>
-                  <Option value="khulna">Khulna</Option>
-                  <Option value="barisal">Barisal</Option>
+                  <Option value="dhaka">Москва</Option>
+                  <Option value="khulna">Киiв</Option>
+                  <Option value="barisal">Картошка</Option>
                 </Select>
               </Form.Item>
 

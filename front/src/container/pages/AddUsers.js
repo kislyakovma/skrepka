@@ -25,13 +25,13 @@ const AddNew = ({ match }) => {
                   <div className="card-nav">
                     <ul>
                       <li>
-                        <NavLink to={`${match.path}/info`}>
+                        <NavLink to={`${'/admin/pages/add-user/info/' + match.params.id}`}>
                           <FeatherIcon icon="user" size={14} />
                           Информация
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${match.path}/work`}>
+                        <NavLink to={`${'/admin/pages/add-user/work/' + match.params.id}`}>
                           <FeatherIcon icon="briefcase" size={14} />
                           Компании
                         </NavLink>
@@ -48,8 +48,8 @@ const AddNew = ({ match }) => {
                       </div>
                     }
                   >
-                    <Route exact path={`${match.path}/info`} component={Info} />
-                    <Route path={`${match.path}/work`} component={Work} />
+                    <Route  exact path={'/admin/pages/add-user/info/:id'} component={Info} />
+                    <Route  exact path={'/admin/pages/add-user/work/:id'} component={Work} />
                     <Route path={`${match.path}/social`} component={Social} />
                   </Suspense>
                 </Switch>

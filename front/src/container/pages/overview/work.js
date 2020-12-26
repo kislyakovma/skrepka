@@ -5,14 +5,17 @@ import { BasicFormWrapper, Main, TableWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import { companyPull } from '../../../redux/company/actionCreator';
+import {Link} from "react-router-dom";
+import FeatherIcon from "feather-icons-react";
 
-const Work = () => {
+const Work = ({match}) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
-  const { isLoading, user, companies } = useSelector(state => {
+  const { isLoading, user, companies, isTableLoading,  } = useSelector(state => {
     return {
       isLoading: state.crud.loading,
+      isTableLoading: state.company.loading,
       user: state.auth.user,
       companies: state.company.data,
     };
@@ -28,6 +31,7 @@ const Work = () => {
     rs: '',
     bank: '',
     visible: false,
+    userEmale: match.params.id
   });
 
   const handleSubmit = values => {
@@ -35,15 +39,15 @@ const Work = () => {
   };
 
   const showModal = () => {
-    setIsModalVisible(true);
+    setState({...state, visible: true})
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    setState({...state, visible: false});
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setState({...state, visible: false});
   };
 
   useEffect(() => {
@@ -56,7 +60,8 @@ const Work = () => {
   }, [state.address]);
 
   useEffect(() => {
-    // dispatch(companyPull());
+    dispatch(companyPull(state.userEmale));
+    console.log(match)
     console.log(companies);
   }, []);
 
@@ -84,8 +89,8 @@ const Work = () => {
   const columns = [
     {
       title: 'Компания',
-      dataIndex: 'company',
-      key: 'company',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: 'ИНН',
@@ -101,19 +106,47 @@ const Work = () => {
     },
   ];
 
+  const dataSource =[];
+
+  if(companies.length){
+    companies.map((company, key) => {
+      return dataSource.push({
+        key: key + 1,
+        name: company.value,
+        inn: company.inn,
+        action: (
+            <div className="table-actions">
+              <Link className="delete" onClick={() => handleDelete(id)} to="#">
+                <FeatherIcon icon="trash-2" size={14} />
+              </Link>
+            </div>
+        ),
+      });
+    });
+  }
+
   return (
-    <Main>
+    <>
       <Row gutter={15}>
         <Col className="w-100" md={24}>
           <Cards headless>
             <div>
               <TableWrapper className="table-data-view table-responsive">
+                <Button
+                    onClick={showModal}
+                    type="primary"
+                    style={{
+                      marginBottom: 16,
+                    }}
+                >
+                  Добавить
+                </Button>
                 <Table
-                  dataSource={[]}
+                  dataSource={dataSource}
                   columns={columns}
                   pagination={false}
                   locale={{ emptyText: <Empty description={false} /> }}
-                  loading={isLoading}
+                  loading={isTableLoading}
                 />
               </TableWrapper>
             </div>
@@ -121,8 +154,6 @@ const Work = () => {
         </Col>
       </Row>
       <Modal visible={state.visible}>
-        <Row justify="center">
-          <Col xl={10} md={16} xs={24}>
             <div className="user-work-form">
               <BasicFormWrapper>
                 <Form
@@ -173,18 +204,17 @@ const Work = () => {
                     <Input placeholder="Расчетный счет" defaultValue={state.rs} />
                   </Form.Item>
 
-                  <div className="record-form-actions text-right">
-                    <Button htmlType="submit" type="primary">
-                      {isLoading ? 'Загрузка...' : 'Обновить'}
+                  {/* <div className="record-form-actions text-right">
+                  <Button htmlType="submit" type="primary">
+                     {isLoading ? 'Загрузка...' : 'Обновить'}
                     </Button>
                   </div>
+                        */}
                 </Form>
               </BasicFormWrapper>
             </div>
-          </Col>
-        </Row>
       </Modal>
-    </Main>
+    </>
   );
 };
 

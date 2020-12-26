@@ -26,7 +26,8 @@ const PagesRoute = () => {
       <Route path={`${path}/faq`} component={Faq} />
       <Route path={`${path}/search`} component={Search} />
       <Route path={`${path}/users`} component={Users} />
-      <Route path={`${path}/add-user`} component={AddUser} />
+      <Route exact path={`${path}/add-user/info/:id`} component={AddUser} />
+      <Route exact path={`${path}/add-user/work/:id`} component={AddUser} />
       <Route path={`${path}/dataTable`} component={DataTable} />
       <Route path={`${path}/team`} component={Team} />
       <Route path={`${path}/comingSoon`} component={ComingSoon} />

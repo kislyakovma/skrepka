@@ -73,14 +73,14 @@ const actions = {
     };
   },
 
-  locationSuccess: data => {
+  locationSuccess: (data) => {
     return {
       type: actions.LOCATION_DATA_SUCCESS,
       data,
     };
   },
 
-  locationErr: err => {
+  locationErr: (err) => {
     return {
       type: actions.LOCATION_DATA_ERR,
       err,
@@ -93,14 +93,14 @@ const actions = {
     };
   },
 
-  topSaleSuccess: data => {
+  topSaleSuccess: (data) => {
     return {
       type: actions.TOP_SALE_SUCCESS,
       data,
     };
   },
 
-  topSaleErr: err => {
+  topSaleErr: (err) => {
     return {
       type: actions.TOP_SALE_ERR,
       err,
@@ -113,14 +113,14 @@ const actions = {
     };
   },
 
-  generatedSuccess: data => {
+  generatedSuccess: (data) => {
     return {
       type: actions.GENERATED_SUCCESS,
       data,
     };
   },
 
-  generatedErr: err => {
+  generatedErr: (err) => {
     return {
       type: actions.GENERATED_ERR,
       err,
@@ -133,14 +133,14 @@ const actions = {
     };
   },
 
-  regionSuccess: data => {
+  regionSuccess: (data) => {
     return {
       type: actions.REGION_SUCCESS,
       data,
     };
   },
 
-  regionErr: err => {
+  regionErr: (err) => {
     return {
       type: actions.REGION_ERR,
       err,
@@ -153,14 +153,14 @@ const actions = {
     };
   },
 
-  deviceSuccess: data => {
+  deviceSuccess: (data) => {
     return {
       type: actions.DEVICE_SUCCESS,
       data,
     };
   },
 
-  deviceErr: err => {
+  deviceErr: (err) => {
     return {
       type: actions.DEVICE_ERR,
       err,
@@ -173,14 +173,14 @@ const actions = {
     };
   },
 
-  landingPageSuccess: data => {
+  landingPageSuccess: (data) => {
     return {
       type: actions.LANDING_PAGE_SUCCESS,
       data,
     };
   },
 
-  landingPageErr: err => {
+  landingPageErr: (err) => {
     return {
       type: actions.LANDING_PAGE_ERR,
       err,
@@ -193,14 +193,14 @@ const actions = {
     };
   },
 
-  trafficChanelSuccess: data => {
+  trafficChanelSuccess: (data) => {
     return {
       type: actions.TRAFFIC_CHANEL_SUCCESS,
       data,
     };
   },
 
-  trafficChanelErr: err => {
+  trafficChanelErr: (err) => {
     return {
       type: actions.TRAFFIC_CHANEL_ERR,
       err,
@@ -213,14 +213,14 @@ const actions = {
     };
   },
 
-  updateLoadingSuccess: data => {
+  updateLoadingSuccess: (data) => {
     return {
       type: actions.UPDATE_LOADING_SUCCESS,
       data,
     };
   },
 
-  updateLoadingErr: err => {
+  updateLoadingErr: (err) => {
     return {
       type: actions.UPDATE_LOADING_ERR,
       err,
@@ -233,14 +233,14 @@ const actions = {
     };
   },
 
-  performanceSuccess: data => {
+  performanceSuccess: (data) => {
     return {
       type: actions.PERFORMANCE_SUCCESS,
       data,
     };
   },
 
-  performanceErr: err => {
+  performanceErr: (err) => {
     return {
       type: actions.PERFORMANCE_ERR,
       err,
@@ -253,14 +253,14 @@ const actions = {
     };
   },
 
-  incomeSuccess: data => {
+  incomeSuccess: (data) => {
     return {
       type: actions.INCOME_SUCCESS,
       data,
     };
   },
 
-  incomeErr: err => {
+  incomeErr: (err) => {
     return {
       type: actions.INCOME_ERR,
       err,
@@ -273,14 +273,14 @@ const actions = {
     };
   },
 
-  cashFlowSuccess: data => {
+  cashFlowSuccess: (data) => {
     return {
       type: actions.CASH_FLOW_SUCCESS,
       data,
     };
   },
 
-  cashFlowErr: err => {
+  cashFlowErr: (err) => {
     return {
       type: actions.CASH_FLOW_ERR,
       err,
@@ -293,14 +293,14 @@ const actions = {
     };
   },
 
-  instagramOverviewSuccess: data => {
+  instagramOverviewSuccess: (data) => {
     return {
       type: actions.INSTAGRAM_OVERVIEW_SUCCESS,
       data,
     };
   },
 
-  instagramOverviewErr: err => {
+  instagramOverviewErr: (err) => {
     return {
       type: actions.INSTAGRAM_OVERVIEW_ERR,
       err,
@@ -313,14 +313,14 @@ const actions = {
     };
   },
 
-  linkdinOverviewSuccess: data => {
+  linkdinOverviewSuccess: (data) => {
     return {
       type: actions.LINKDIN_OVERVIEW_SUCCESS,
       data,
     };
   },
 
-  linkdinOverviewErr: err => {
+  linkdinOverviewErr: (err) => {
     return {
       type: actions.LINKDIN_OVERVIEW_ERR,
       err,
@@ -333,14 +333,14 @@ const actions = {
     };
   },
 
-  twitterOverviewSuccess: data => {
+  twitterOverviewSuccess: (data) => {
     return {
       type: actions.TWITTER_OVERVIEW_SUCCESS,
       data,
     };
   },
 
-  twitterOverviewErr: err => {
+  twitterOverviewErr: (err) => {
     return {
       type: actions.TWITTER_OVERVIEW_ERR,
       err,
@@ -353,14 +353,14 @@ const actions = {
     };
   },
 
-  forcastOverviewSuccess: data => {
+  forcastOverviewSuccess: (data) => {
     return {
       type: actions.FORCAST_OVERVIEW_SUCCESS,
       data,
     };
   },
 
-  forcastOverviewErr: err => {
+  forcastOverviewErr: (err) => {
     return {
       type: actions.FORCAST_OVERVIEW_ERR,
       err,
@@ -373,14 +373,14 @@ const actions = {
     };
   },
 
-  socialTrafficSuccess: data => {
+  socialTrafficSuccess: (data) => {
     return {
       type: actions.SOCIAL_TRAFFIC_SUCCESS,
       data,
     };
   },
 
-  socialTrafficErr: err => {
+  socialTrafficErr: (err) => {
     return {
       type: actions.SOCIAL_TRAFFIC_ERR,
       err,
@@ -393,14 +393,14 @@ const actions = {
     };
   },
 
-  youtubeSubscribeSuccess: data => {
+  youtubeSubscribeSuccess: (data) => {
     return {
       type: actions.YOUTUBE_SUBSCRIBE_SUCCESS,
       data,
     };
   },
 
-  youtubeSubscribeErr: err => {
+  youtubeSubscribeErr: (err) => {
     return {
       type: actions.YOUTUBE_SUBSCRIBE_ERR,
       err,

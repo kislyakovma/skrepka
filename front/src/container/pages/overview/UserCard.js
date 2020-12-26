@@ -1,12 +1,12 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {Col, Row} from 'antd';
-import {UserCard} from '../style';
+import { Col, Row } from 'antd';
+import { UserCard } from '../style';
 import Heading from '../../../components/heading/heading';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Button} from '../../../components/buttons/buttons';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Button } from '../../../components/buttons/buttons';
 
 const UserCards = ({ user }) => {
   const { name, designation, img } = user;

@@ -17,14 +17,14 @@ const actions = {
     };
   },
 
-  starUpdateSuccess: data => {
+  starUpdateSuccess: (data) => {
     return {
       type: actions.NOTE_STAR_UPDATE_SUCCESS,
       data,
     };
   },
 
-  starUpdateErr: err => {
+  starUpdateErr: (err) => {
     return {
       type: actions.NOTE_STAR_UPDATE_ERR,
       err,
@@ -37,14 +37,14 @@ const actions = {
     };
   },
 
-  labelUpdateSuccess: data => {
+  labelUpdateSuccess: (data) => {
     return {
       type: actions.NOTE_LABEL_UPDATE_SUCCESS,
       data,
     };
   },
 
-  labelUpdateErr: err => {
+  labelUpdateErr: (err) => {
     return {
       type: actions.NOTE_LABEL_UPDATE_ERR,
       err,
@@ -57,14 +57,14 @@ const actions = {
     };
   },
 
-  noteReadSuccess: data => {
+  noteReadSuccess: (data) => {
     return {
       type: actions.NOTE_READ_SUCCESS,
       data,
     };
   },
 
-  noteReadErr: err => {
+  noteReadErr: (err) => {
     return {
       type: actions.NOTE_READ_ERR,
       err,

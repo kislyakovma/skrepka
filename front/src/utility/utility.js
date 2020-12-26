@@ -4,10 +4,7 @@
  * @param {number} size
  */
 const ellipsis = (text, size) => {
-  return `${text
-    .split(' ')
-    .slice(0, size)
-    .join(' ')}...`;
+  return `${text.split(' ').slice(0, size).join(' ')}...`;
 };
 
 export { ellipsis };

@@ -1,7 +1,7 @@
 import React from 'react';
-import {message, Upload} from 'antd';
+import { message, Upload } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 const CoverSection = () => {

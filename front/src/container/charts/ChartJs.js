@@ -1,17 +1,17 @@
 import React from 'react';
-import {Col, Row} from 'antd';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
+import { Col, Row } from 'antd';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
 import {
-    ChartjsAreaChart,
-    ChartjsBarChart,
-    ChartjsBarChartTransparent,
-    ChartjsDonutChart,
-    ChartjsHorizontalChart,
-    ChartjsLineChart,
-    ChartjsPieChart,
-    ChartjsStackedChart,
+  ChartjsAreaChart,
+  ChartjsBarChart,
+  ChartjsBarChartTransparent,
+  ChartjsDonutChart,
+  ChartjsHorizontalChart,
+  ChartjsLineChart,
+  ChartjsPieChart,
+  ChartjsStackedChart,
 } from '../../components/charts/chartjs';
 
 const ChartJs = () => {

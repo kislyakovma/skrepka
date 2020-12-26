@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {Table} from 'antd';
-import {RevenueTableWrapper} from '../../style';
-import {ChartjsLineChart} from '../../../../components/charts/chartjs';
-import {generatedFilterData, generatedGetData} from '../../../../redux/chartContent/actionCreator';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Table } from 'antd';
+import { RevenueTableWrapper } from '../../style';
+import { ChartjsLineChart } from '../../../../components/charts/chartjs';
+import { generatedFilterData, generatedGetData } from '../../../../redux/chartContent/actionCreator';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const RevenueGenerated = () => {
   const dispatch = useDispatch();
-  const { generatedState } = useSelector(state => {
+  const { generatedState } = useSelector((state) => {
     return {
       generatedState: state.chartContent.generatedData,
     };
@@ -24,7 +24,7 @@ const RevenueGenerated = () => {
     }
   }, [dispatch]);
 
-  const handleActiveChangeGenerated = value => {
+  const handleActiveChangeGenerated = (value) => {
     setState({
       ...state,
       generated: value,
@@ -63,7 +63,7 @@ const RevenueGenerated = () => {
 
   const revenueData = [];
   if (generatedState !== null)
-    generatedState.map(value => {
+    generatedState.map((value) => {
       const { key, name, visitors, page_View, revenue, trend } = value;
 
       return revenueData.push({

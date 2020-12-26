@@ -87,16 +87,8 @@ const Comments = () => {
         </p>
       ),
       datetime: (
-        <Tooltip
-          title={moment()
-            .subtract(1, 'days')
-            .format('YYYY-MM-DD HH:mm:ss')}
-        >
-          <span>
-            {moment()
-              .subtract(1, 'days')
-              .fromNow()}
-          </span>
+        <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+          <span>{moment().subtract(1, 'days').fromNow()}</span>
         </Tooltip>
       ),
     },
@@ -111,16 +103,8 @@ const Comments = () => {
         </p>
       ),
       datetime: (
-        <Tooltip
-          title={moment()
-            .subtract(2, 'days')
-            .format('YYYY-MM-DD HH:mm:ss')}
-        >
-          <span>
-            {moment()
-              .subtract(2, 'days')
-              .fromNow()}
-          </span>
+        <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+          <span>{moment().subtract(2, 'days').fromNow()}</span>
         </Tooltip>
       ),
     },
@@ -173,7 +157,7 @@ const Comments = () => {
                 header={`${data.length} replies`}
                 itemLayout="horizontal"
                 dataSource={data}
-                renderItem={item => (
+                renderItem={(item) => (
                   <li>
                     <Comment
                       actions={actions}

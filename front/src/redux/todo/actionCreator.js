@@ -4,7 +4,7 @@ import initialState from '../../demoData/todo.json';
 const { todoReadBegin, todoReadSuccess, todoReadErr, starUpdateBegin, starUpdateSuccess, starUpdateErr } = actions;
 
 const ToDoGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(todoReadBegin());
       dispatch(todoReadSuccess(initialState));
@@ -14,8 +14,8 @@ const ToDoGetData = () => {
   };
 };
 
-const ToDoAddData = data => {
-  return async dispatch => {
+const ToDoAddData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(todoReadBegin());
       dispatch(todoReadSuccess(data));
@@ -25,8 +25,8 @@ const ToDoAddData = data => {
   };
 };
 
-const ToDoDeleteData = data => {
-  return async dispatch => {
+const ToDoDeleteData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(todoReadBegin());
       dispatch(todoReadSuccess(data));
@@ -37,10 +37,10 @@ const ToDoDeleteData = data => {
 };
 
 const onStarUpdate = (data, id) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
-      data.map(item => {
+      data.map((item) => {
         if (item.key === id) {
           const fav = item;
           if (item.favorite) {

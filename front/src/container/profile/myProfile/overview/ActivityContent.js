@@ -1,9 +1,9 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {ActivityContents} from './style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {Dropdown} from '../../../../components/dropdown/dropdown';
+import { Link } from 'react-router-dom';
+import { ActivityContents } from './style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { Dropdown } from '../../../../components/dropdown/dropdown';
 
 const ActivityContent = () => {
   return (

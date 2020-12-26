@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Table} from 'antd';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Table } from 'antd';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {LadingPages} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { useDispatch, useSelector } from 'react-redux';
+import { LadingPages } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
-import {landingPageFilterData, landingPageGetData} from '../../../../redux/chartContent/actionCreator';
+import { landingPageFilterData, landingPageGetData } from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>
@@ -63,7 +63,7 @@ const landingColumns = [
 
 const TopLandingPages = () => {
   const dispatch = useDispatch();
-  const { landingState } = useSelector(state => {
+  const { landingState } = useSelector((state) => {
     return {
       landingState: state.chartContent.landingPageData,
       lpIsLoading: state.chartContent.lpLoading,
@@ -143,7 +143,7 @@ const TopLandingPages = () => {
     },
   ];
 
-  const handleActiveChangeLanding = value => {
+  const handleActiveChangeLanding = (value) => {
     setState({
       ...state,
       landing: value,

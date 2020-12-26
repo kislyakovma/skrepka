@@ -11,7 +11,7 @@ const tinkoffApi = (uri, method) => {
     headers: {
       Authorization: 'Bearer t.C2O3PPv35gWjHRKy6LJ0v4b1tQWhnoWFInoekjbdVvGDHbKECgd3y1ELjZtN9Aria0ekzMg3N75TIn-75GdBXg',
     },
-  }).then(response => {
+  }).then((response) => {
     console.log(response);
     return response;
   });

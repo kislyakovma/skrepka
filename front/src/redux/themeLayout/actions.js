@@ -17,14 +17,14 @@ const actions = {
     };
   },
 
-  changeLayoutSuccess: data => {
+  changeLayoutSuccess: (data) => {
     return {
       type: actions.CHANGE_LAYOUT_MODE_SUCCESS,
       data,
     };
   },
 
-  changeLayoutErr: err => {
+  changeLayoutErr: (err) => {
     return {
       type: actions.CHANGE_LAYOUT_MODE_ERR,
       err,
@@ -37,14 +37,14 @@ const actions = {
     };
   },
 
-  changeRtlSuccess: data => {
+  changeRtlSuccess: (data) => {
     return {
       type: actions.CHANGE_RTL_MODE_SUCCESS,
       data,
     };
   },
 
-  changeRtlErr: err => {
+  changeRtlErr: (err) => {
     return {
       type: actions.CHANGE_RTL_MODE_ERR,
       err,
@@ -57,14 +57,14 @@ const actions = {
     };
   },
 
-  changeMenuSuccess: data => {
+  changeMenuSuccess: (data) => {
     return {
       type: actions.CHANGE_MENU_MODE_SUCCESS,
       data,
     };
   },
 
-  changeMenuErr: err => {
+  changeMenuErr: (err) => {
     return {
       type: actions.CHANGE_MENU_MODE_ERR,
       err,

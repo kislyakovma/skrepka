@@ -1,5 +1,5 @@
-import React, {lazy} from 'react';
-import {Route, Switch, useRouteMatch} from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 const Button = lazy(() => import('../../container/ui-elements/Button'));
 const Alerts = lazy(() => import('../../container/ui-elements/Alerts'));

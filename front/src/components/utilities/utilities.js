@@ -1,8 +1,5 @@
 const textRefactor = (text, size) => {
-  return `${text
-    .split(' ')
-    .slice(0, size)
-    .join(' ')}...`;
+  return `${text.split(' ').slice(0, size).join(' ')}...`;
 };
 
 const chartLinearGradient = (canvas, height, color) => {
@@ -14,7 +11,7 @@ const chartLinearGradient = (canvas, height, color) => {
 };
 
 // Custom Tooltip
-const customTooltips = function(tooltip) {
+const customTooltips = function (tooltip) {
   // Tooltip Element
   let tooltipEl = document.querySelector('.chartjs-tooltip');
 
@@ -23,7 +20,7 @@ const customTooltips = function(tooltip) {
     tooltipEl.className = 'chartjs-tooltip';
     tooltipEl.innerHTML = '<table></table>';
 
-    document.querySelectorAll('.parentContainer').forEach(el => {
+    document.querySelectorAll('.parentContainer').forEach((el) => {
       if (el.contains(document.querySelector('.chartjs-tooltip'))) {
         document.querySelector('.chartjs-tooltip').remove();
       }
@@ -57,12 +54,12 @@ const customTooltips = function(tooltip) {
 
     let innerHtml = '<thead>';
 
-    titleLines.forEach(function(title) {
+    titleLines.forEach(function (title) {
       innerHtml += `<div class='tooltip-title'>${title}</div>`;
     });
     innerHtml += '</thead><tbody>';
 
-    bodyLines.forEach(function(body, i) {
+    bodyLines.forEach(function (body, i) {
       const colors = tooltip.labelColors[i];
       let style = `background:${colors.backgroundColor}`;
       style += `; border-color:${colors.borderColor}`;

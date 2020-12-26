@@ -1,4 +1,4 @@
-const getItem = key => {
+const getItem = (key) => {
   const data = typeof window !== 'undefined' ? localStorage.getItem(key) : '';
 
   try {
@@ -13,7 +13,7 @@ const setItem = (key, value) => {
   return localStorage.setItem(key, stringify);
 };
 
-const removeItem = key => {
+const removeItem = (key) => {
   localStorage.removeItem(key);
 };
 

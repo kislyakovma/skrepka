@@ -1,9 +1,9 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Tooltip} from 'antd';
-import {NavLink} from 'react-router-dom';
+import { Tooltip } from 'antd';
+import { NavLink } from 'react-router-dom';
 import propTypes from 'prop-types';
-import {MessageAction} from './style';
+import { MessageAction } from './style';
 
 const Topbar = ({ refreshState }) => {
   return (

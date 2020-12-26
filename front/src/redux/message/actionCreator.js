@@ -4,7 +4,7 @@ import initialState from '../../demoData/message-list.json';
 const { readMessageBegin, readMessageSuccess, readMessageErr } = actions;
 
 const readMessageList = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(readMessageBegin());
       dispatch(readMessageSuccess(initialState));

@@ -140,12 +140,12 @@ const TableWrapper = Styled.div`
                     border-bottom: 1px solid ${({ theme }) => theme['border-color-light']};
                     &:first-child{
                         ${({ theme }) => (!theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
-    theme['border-color-light']};
+  theme['border-color-light']};
                         border-radius: ${({ theme }) => (!theme.rtl ? '10px 0 0 10px' : '0 10px 10px 0')} !important;
                     }
                     &:last-child{
                         ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
-    theme['border-color-light']};
+  theme['border-color-light']};
                         border-radius: ${({ theme }) => (!theme.rtl ? '0 10px 10px 0' : '10px 0 0 10px')} !important;
                     }
                 }
@@ -1472,6 +1472,5 @@ export {
   ErrorWrapper,
   AddUser,
   ComingsoonStyleWrapper,
-    TableWrapper,
-
+  TableWrapper,
 };

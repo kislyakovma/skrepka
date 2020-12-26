@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload, notification, AutoComplete} from 'antd';
+import { Col, DatePicker, Form, Input, Radio, Row, Select, Spin, Upload, notification, AutoComplete } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
@@ -20,7 +20,6 @@ const { Option } = Select;
 const Edit = ({ match }) => {
   const dispatch = useDispatch();
 
-
   const { crud, isLoading, companyList, user } = useSelector((state) => {
     return {
       crud: state.singleCrud.data,
@@ -31,7 +30,7 @@ const Edit = ({ match }) => {
   });
   const [state, setState] = useState({
     inn: '',
-    address:'',
+    address: '',
     companies: '',
     kpp: '',
     bik: '',
@@ -52,8 +51,8 @@ const Edit = ({ match }) => {
       address: state.address,
       companies: state.companies,
       kpp: state.kpp,
-      inn: state.inn
-    })
+      inn: state.inn,
+    });
   }, [state.address]);
   useEffect(() => {
     if (fbDataSingle) {
@@ -79,56 +78,24 @@ const Edit = ({ match }) => {
 
   const handleSubmit = (values, flag) => {
     console.log(companyList);
-    getByLabel(state.selected, state.deselected)   
-    if(state.selected.length > 0 || state.deselected.length > 0){ 
-    notification.open({
-      duration: 3,
-      message: 'Список компаний обновлен!',
-      className: 'custom-class',
-      style: {
-        fontFamily: 'Montserrat',
-      },
-    }); 
-  }
+    getByLabel(state.selected, state.deselected);
+    if (state.selected.length > 0 || state.deselected.length > 0) {
+      notification.open({
+        duration: 3,
+        message: 'Список компаний обновлен!',
+        className: 'custom-class',
+        style: {
+          fontFamily: 'Montserrat',
+        },
+      });
+    }
   };
 
-
-
-  const getByLabel = (select, deselect) =>{
+  const getByLabel = (select, deselect) => {
     const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party';
     const token = '6fcdc1c4c6caa6c32fb55b731b2bae0816c9f188';
-    if (select.length >0){
-    select.forEach((item) =>{
-      const options = {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: 'Token ' + token,
-        },
-        body: JSON.stringify({ query: item.label }),
-      };  
-
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        console.log(item);
-        result.suggestions.forEach((e) =>{
-          if (e.unrestricted_value == item.label){
-            dispatch(companyPush(e, state.id))
-            return
-          }
-        })
-        
-      })
-      .catch((error) => console.log('error', error));
-    })
-  }
-  if(deselect.length > 0){
-    console.log(deselect);
-    deselect.forEach((item) =>{
+    if (select.length > 0) {
+      select.forEach((item) => {
         const options = {
           method: 'POST',
           mode: 'cors',
@@ -138,38 +105,66 @@ const Edit = ({ match }) => {
             Authorization: 'Token ' + token,
           },
           body: JSON.stringify({ query: item.label }),
-        };  
-      fetch(url, options)
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          result.suggestions.forEach((e) =>{
-            if (e.unrestricted_value == item.label){
-              dispatch(companyDelete(e, state.id))
-              return
-            }
+        };
+
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            console.log(item);
+            result.suggestions.forEach((e) => {
+              if (e.unrestricted_value == item.label) {
+                dispatch(companyPush(e, state.id));
+                return;
+              }
+            });
           })
-          
-        })
-        .catch((error) => console.log('error', error));
-    })
-  }
-  }
+          .catch((error) => console.log('error', error));
+      });
+    }
+    if (deselect.length > 0) {
+      console.log(deselect);
+      deselect.forEach((item) => {
+        const options = {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: 'Token ' + token,
+          },
+          body: JSON.stringify({ query: item.label }),
+        };
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            result.suggestions.forEach((e) => {
+              if (e.unrestricted_value == item.label) {
+                dispatch(companyDelete(e, state.id));
+                return;
+              }
+            });
+          })
+          .catch((error) => console.log('error', error));
+      });
+    }
+  };
 
   const formatCompany = (list) => {
     let result = [];
-    if(list.length>0){
-    list.forEach((item) => {
-      if (item.data.inn) {
-        result.push({ value: item.data.inn, label: item.value });
-      } else {
-        if (item.data.finance) {
-          result.push({ value: item.data.finance.inn, label: item.value });
+    if (list.length > 0) {
+      list.forEach((item) => {
+        if (item.data.inn) {
+          result.push({ value: item.data.inn, label: item.value });
+        } else {
+          if (item.data.finance) {
+            result.push({ value: item.data.finance.inn, label: item.value });
+          }
         }
-      }
-    });
-    return result;
-  }
+      });
+      return result;
+    }
   };
 
   const getCompany = (query) => {
@@ -197,7 +192,6 @@ const Edit = ({ match }) => {
     setState({ join: dateString });
   };
 
-  
   const props = {
     name: 'file',
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -286,7 +280,6 @@ const Edit = ({ match }) => {
                             form={form}
                             name="edit"
                             onFinish={handleSubmit}
-                            
                           >
                             {/* <Form.Item name="companies" label="Компании">
                               <Select
@@ -312,62 +305,43 @@ const Edit = ({ match }) => {
                             </Form.Item> */}
                             <Form.Item name="inn" label="ИНН">
                               <AutoComplete
-                              options={state.searchSuggest}
-                              allowClear={true}
-                              filterOption={false}
-                              notFoundContent={<p>Введите ИНН</p>}
-                              placeholder='ИНН'
-                              onSearch={(e) =>{
-                                getCompany(e);
-                              }}
-                              onSelect={(e, option) =>{
-                                setState({ ...state, 
-                                  address: option.data.address.value, 
-                                  companies: e,
-                                  kpp: option.data.kpp,
-                                  inn: option.data.inn
-                                })
-                              }}
+                                options={state.searchSuggest}
+                                allowClear={true}
+                                filterOption={false}
+                                notFoundContent={<p>Введите ИНН</p>}
+                                placeholder="ИНН"
+                                onSearch={(e) => {
+                                  getCompany(e);
+                                }}
+                                onSelect={(e, option) => {
+                                  setState({
+                                    ...state,
+                                    address: option.data.address.value,
+                                    companies: e,
+                                    kpp: option.data.kpp,
+                                    inn: option.data.inn,
+                                  });
+                                }}
                               />
                             </Form.Item>
                             <Form.Item name="address" label="Адрес компании">
-                              <Input
-                              placeholder='Адрес компании'
-                              />
+                              <Input placeholder="Адрес компании" />
                             </Form.Item>
                             <Form.Item name="companies" label="Название компании">
-                            <Input
-                            placeholder='Название компании'
-                              defaultValue={state.companies}
-                              />
+                              <Input placeholder="Название компании" defaultValue={state.companies} />
                             </Form.Item>
                             <Form.Item name="kpp" label="КПП">
-                            <Input
-                            placeholder='КПП'
-                              defaultValue={state.kpp}
-                              />
+                              <Input placeholder="КПП" defaultValue={state.kpp} />
                             </Form.Item>
                             <Form.Item name="bik" label="Бик банка">
-                            <Input
-                            placeholder='Бик банка'
-                              defaultValue={state.bik}
-                              />
+                              <Input placeholder="Бик банка" defaultValue={state.bik} />
                             </Form.Item>
                             <Form.Item name="bank" label="Название Банка">
-                            <Input
-                            placeholder='Название Банка'
-                              defaultValue={state.bank}
-                              />
+                              <Input placeholder="Название Банка" defaultValue={state.bank} />
                             </Form.Item>
                             <Form.Item name="rs" label="Расчетный счет">
-                            <Input
-                            placeholder='Расчетный счет'
-                              defaultValue={state.rs}
-                              />
+                              <Input placeholder="Расчетный счет" defaultValue={state.rs} />
                             </Form.Item>
-
-                            
-                           
 
                             <div className="record-form-actions text-right">
                               <Button htmlType="submit" type="primary">

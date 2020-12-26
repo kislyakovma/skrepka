@@ -3,7 +3,7 @@ import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
 import { ListStyle } from './style';
 
-const List = props => {
+const List = (props) => {
   const { text } = props;
 
   return (

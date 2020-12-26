@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {Col, Row} from 'antd';
+import React, { useState } from 'react';
+import { Col, Row } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Tag} from '../../components/tags/tags';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Tag } from '../../components/tags/tags';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const Tags = () => {
   const [state, setstate] = useState({
@@ -18,7 +18,7 @@ const Tags = () => {
     // console.log(e);
   };
 
-  const checked = checke => {
+  const checked = (checke) => {
     setstate({ ...state, checke });
   };
 

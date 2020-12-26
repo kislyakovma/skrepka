@@ -58,7 +58,7 @@ const Notifications = () => {
     });
   };
 
-  const openNotificationWithIcon = type => {
+  const openNotificationWithIcon = (type) => {
     notification[type]({
       message: 'Notification Title',
       description:
@@ -87,7 +87,7 @@ const Notifications = () => {
     });
   };
 
-  const openNotificationPlacement = placement => {
+  const openNotificationPlacement = (placement) => {
     notification.info({
       message: `Notification ${placement}`,
       description:

@@ -9,14 +9,14 @@ const actions = {
     };
   },
 
-  filterGallerySuccess: data => {
+  filterGallerySuccess: (data) => {
     return {
       type: actions.FILTER_GALLERY_SUCCESS,
       data,
     };
   },
 
-  filterGalleryErr: err => {
+  filterGalleryErr: (err) => {
     return {
       type: actions.FILTER_GALLERY_ERR,
       err,

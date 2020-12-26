@@ -1,11 +1,11 @@
 import React from 'react';
-import {Upload} from 'antd';
+import { Upload } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink, useRouteMatch} from 'react-router-dom';
+import { Link, NavLink, useRouteMatch } from 'react-router-dom';
 import propTypes from 'prop-types';
-import {ProfileAuthorBox} from './style';
+import { ProfileAuthorBox } from './style';
 import Heading from '../../../../components/heading/heading';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const AuthorBox = () => {
   const { path } = useRouteMatch();

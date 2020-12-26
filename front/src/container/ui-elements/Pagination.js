@@ -19,7 +19,7 @@ const Paginations = () => {
     setstate({ ...state, current, pageSize });
   };
 
-  const onChange = pageNumber => {
+  const onChange = (pageNumber) => {
     setstate({ ...state, pageNumber });
   };
 

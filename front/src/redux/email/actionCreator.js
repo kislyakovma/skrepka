@@ -10,11 +10,11 @@ const {
   starUpdateErr,
 } = actions;
 
-const filterSinglePage = paramsId => {
-  return async dispatch => {
+const filterSinglePage = (paramsId) => {
+  return async (dispatch) => {
     try {
       dispatch(singleEmailBegin());
-      const data = initialState.allMessage.filter(email => {
+      const data = initialState.allMessage.filter((email) => {
         return email.id === paramsId;
       });
       dispatch(singleEmailSuccess(data));
@@ -24,11 +24,11 @@ const filterSinglePage = paramsId => {
   };
 };
 
-const onStarUpdate = id => {
-  return async dispatch => {
+const onStarUpdate = (id) => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
-      initialState.allMessage.map(email => {
+      initialState.allMessage.map((email) => {
         if (email.id === id) {
           return email.stared ? (email.stared = false) : (email.stared = true);
         }
@@ -41,7 +41,7 @@ const onStarUpdate = id => {
 };
 
 const onSortingAscending = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
       const data = initialState.allMessage.sort((a, b) => {
@@ -55,7 +55,7 @@ const onSortingAscending = () => {
 };
 
 const onSortingDescending = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
       const data = initialState.allMessage.sort((a, b) => {

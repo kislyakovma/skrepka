@@ -11,13 +11,13 @@ import { noteDeleteData, onStarUpdate, onLabelUpdate } from '../../redux/note/ac
 
 const NoteCard = ({ data }) => {
   const dispatch = useDispatch();
-  const { noteData } = useSelector(state => {
+  const { noteData } = useSelector((state) => {
     return {
       noteData: state.Note.data,
     };
   });
   const { title, key, description, stared, label } = data;
-  const onLabelChange = labels => {
+  const onLabelChange = (labels) => {
     dispatch(onLabelUpdate(noteData, key, labels));
   };
   const content = (
@@ -49,7 +49,7 @@ const NoteCard = ({ data }) => {
     </>
   );
   const onHandleDelete = () => {
-    const value = noteData.filter(item => item.key !== key);
+    const value = noteData.filter((item) => item.key !== key);
     dispatch(noteDeleteData(value));
   };
   return (

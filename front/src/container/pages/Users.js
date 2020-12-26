@@ -1,18 +1,18 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Col, Pagination, Row, Skeleton} from 'antd';
+import React, { lazy, Suspense, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Col, Pagination, Row, Skeleton } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {UsercardWrapper} from './style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {CardToolbox, Main} from '../styled';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
+import { Link } from 'react-router-dom';
+import { UsercardWrapper } from './style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { CardToolbox, Main } from '../styled';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
 
 const User = lazy(() => import('./overview/UserCard'));
 const Users = () => {
-  const { searchData, users } = useSelector(state => {
+  const { searchData, users } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       users: state.users,
@@ -28,8 +28,8 @@ const Users = () => {
 
   const { notData } = state;
 
-  const handleSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
@@ -40,7 +40,7 @@ const Users = () => {
     setState({ ...state, current, pageSize });
   };
 
-  const onChange = page => {
+  const onChange = (page) => {
     setState({ ...state, page });
   };
 
@@ -74,7 +74,7 @@ const Users = () => {
       <Main>
         <UsercardWrapper>
           <Row gutter={25}>
-            {users.map(user => {
+            {users.map((user) => {
               const { id } = user;
 
               return (

@@ -1,23 +1,33 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
-import {Avatar, Comment, Input, message, Upload} from 'antd';
+import { Avatar, Comment, Input, message, Upload } from 'antd';
 import Picker from 'emoji-picker-react';
 import moment from 'moment';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import SimpleReactLightbox, {SRLWrapper} from 'simple-react-lightbox';
-import {AllPosts, BackShadowEmoji, Title} from './style';
-import {Cards} from '../../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../../components/buttons/buttons';
-import {commentUpdate, likeUpdate, postDelete} from '../../../../../redux/profile/actionCreator';
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { AllPosts, BackShadowEmoji, Title } from './style';
+import { Cards } from '../../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../../components/buttons/buttons';
+import { commentUpdate, likeUpdate, postDelete } from '../../../../../redux/profile/actionCreator';
 
 const ExampleComment = ({ children, replay }) => (
   <Comment
-    actions={[<span className="com-like" key="comment-nested-reply-to">Like </span>,<span className="com-reply" key="comment-nested-reply-to">Reply </span>,<span className="com-time" key="comment-nested-reply-to">{moment(parseInt(replay.time, 10)).fromNow()}</span>]}
+    actions={[
+      <span className="com-like" key="comment-nested-reply-to">
+        Like{' '}
+      </span>,
+      <span className="com-reply" key="comment-nested-reply-to">
+        Reply{' '}
+      </span>,
+      <span className="com-time" key="comment-nested-reply-to">
+        {moment(parseInt(replay.time, 10)).fromNow()}
+      </span>,
+    ]}
     author={<span>{replay.name}</span>}
     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />}
     content={<p>{replay.text}</p>}
@@ -33,7 +43,7 @@ ExampleComment.propTypes = {
 
 const Posts = ({ postId, from, time, img, like, comment, content, author }) => {
   const dispatch = useDispatch();
-  const { posts } = useSelector(state => {
+  const { posts } = useSelector((state) => {
     return {
       posts: state.Profile.posts,
     };
@@ -56,7 +66,7 @@ const Posts = ({ postId, from, time, img, like, comment, content, author }) => {
     setPickerShow(!pickerShow);
   };
 
-  const onTextChange = e => {
+  const onTextChange = (e) => {
     setTextValue(e.target.value);
   };
 
@@ -105,16 +115,16 @@ const Posts = ({ postId, from, time, img, like, comment, content, author }) => {
     },
   };
 
-  const onLikeUpdate = id => {
+  const onLikeUpdate = (id) => {
     return dispatch(likeUpdate(posts, id));
   };
 
-  const onCommentUpdate = id => {
+  const onCommentUpdate = (id) => {
     dispatch(commentUpdate(posts, id, textValue));
     setTextValue('');
   };
 
-  const onPostDelete = id => {
+  const onPostDelete = (id) => {
     dispatch(postDelete(posts, id));
   };
 

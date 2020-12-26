@@ -1,20 +1,20 @@
 import actions from './actions';
 import {
-    cashFlow,
-    device,
-    forcastOverview,
-    generated,
-    income,
-    instagramOverview,
-    linkdinOverview,
-    location,
-    performance,
-    region,
-    SocialTrafficMetrics,
-    topSale,
-    trafficChanel,
-    twitterOverview,
-    youtubeSubscribe,
+  cashFlow,
+  device,
+  forcastOverview,
+  generated,
+  income,
+  instagramOverview,
+  linkdinOverview,
+  location,
+  performance,
+  region,
+  SocialTrafficMetrics,
+  topSale,
+  trafficChanel,
+  twitterOverview,
+  youtubeSubscribe,
 } from '../../demoData/dashboardChartContent.json';
 
 const {
@@ -88,7 +88,7 @@ const {
 } = actions;
 
 const forcastOverviewGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { today } = forcastOverview;
     try {
       dispatch(forcastOverviewBegin());
@@ -99,8 +99,8 @@ const forcastOverviewGetData = () => {
   };
 };
 
-const forcastOverviewFilterData = value => {
-  return async dispatch => {
+const forcastOverviewFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(forcastOverviewBegin());
       setTimeout(() => {
@@ -113,7 +113,7 @@ const forcastOverviewFilterData = value => {
 };
 
 const youtubeSubscribeGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = youtubeSubscribe;
     try {
       dispatch(youtubeSubscribeBegin());
@@ -124,8 +124,8 @@ const youtubeSubscribeGetData = () => {
   };
 };
 
-const youtubeSubscribeFilterData = value => {
-  return async dispatch => {
+const youtubeSubscribeFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(youtubeSubscribeBegin());
       setTimeout(() => {
@@ -138,7 +138,7 @@ const youtubeSubscribeFilterData = value => {
 };
 
 const socialTrafficGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { today } = SocialTrafficMetrics;
     try {
       dispatch(socialTrafficBegin());
@@ -149,8 +149,8 @@ const socialTrafficGetData = () => {
   };
 };
 
-const socialTrafficFilterData = value => {
-  return async dispatch => {
+const socialTrafficFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(socialTrafficBegin());
       setTimeout(() => {
@@ -163,7 +163,7 @@ const socialTrafficFilterData = value => {
 };
 
 const twitterOverviewGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { month } = twitterOverview;
     try {
       dispatch(twitterOverviewBegin());
@@ -174,8 +174,8 @@ const twitterOverviewGetData = () => {
   };
 };
 
-const twitterOverviewFilterData = value => {
-  return async dispatch => {
+const twitterOverviewFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(twitterOverviewBegin());
       setTimeout(() => {
@@ -188,7 +188,7 @@ const twitterOverviewFilterData = value => {
 };
 
 const instagramOverviewGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { month } = instagramOverview;
     try {
       dispatch(instagramOverviewBegin());
@@ -199,8 +199,8 @@ const instagramOverviewGetData = () => {
   };
 };
 
-const instagramOverviewFilterData = value => {
-  return async dispatch => {
+const instagramOverviewFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(instagramOverviewBegin());
       setTimeout(() => {
@@ -213,7 +213,7 @@ const instagramOverviewFilterData = value => {
 };
 
 const linkdinOverviewGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { month } = linkdinOverview;
     try {
       dispatch(linkdinOverviewBegin());
@@ -224,8 +224,8 @@ const linkdinOverviewGetData = () => {
   };
 };
 
-const linkdinOverviewFilterData = value => {
-  return async dispatch => {
+const linkdinOverviewFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(linkdinOverviewBegin());
       setTimeout(() => {
@@ -238,7 +238,7 @@ const linkdinOverviewFilterData = value => {
 };
 
 const cashFlowGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = cashFlow;
     try {
       dispatch(cashFlowBegin());
@@ -249,8 +249,8 @@ const cashFlowGetData = () => {
   };
 };
 
-const cashFlowFilterData = value => {
-  return async dispatch => {
+const cashFlowFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(cashFlowBegin());
       setTimeout(() => {
@@ -263,7 +263,7 @@ const cashFlowFilterData = value => {
 };
 
 const incomeGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = income;
     try {
       dispatch(incomeBegin());
@@ -274,8 +274,8 @@ const incomeGetData = () => {
   };
 };
 
-const incomeFilterData = value => {
-  return async dispatch => {
+const incomeFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(incomeBegin());
       setTimeout(() => {
@@ -288,7 +288,7 @@ const incomeFilterData = value => {
 };
 
 const performanceGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = performance;
     try {
       dispatch(performanceBegin());
@@ -299,8 +299,8 @@ const performanceGetData = () => {
   };
 };
 
-const performanceFilterData = value => {
-  return async dispatch => {
+const performanceFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(performanceBegin());
       setTimeout(() => {
@@ -313,7 +313,7 @@ const performanceFilterData = value => {
 };
 
 const trafficChanelGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = trafficChanel;
     try {
       dispatch(trafficChanelBegin());
@@ -324,8 +324,8 @@ const trafficChanelGetData = () => {
   };
 };
 
-const trafficChanelFilterData = value => {
-  return async dispatch => {
+const trafficChanelFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(trafficChanelBegin());
       setTimeout(() => {
@@ -338,7 +338,7 @@ const trafficChanelFilterData = value => {
 };
 
 const deviceGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = device;
     try {
       dispatch(deviceBegin());
@@ -349,8 +349,8 @@ const deviceGetData = () => {
   };
 };
 
-const deviceFilterData = value => {
-  return async dispatch => {
+const deviceFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(deviceBegin());
       setTimeout(() => {
@@ -363,7 +363,7 @@ const deviceFilterData = value => {
 };
 
 const setIsLoading = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(updateLoadingBegin());
       setTimeout(() => {
@@ -376,7 +376,7 @@ const setIsLoading = () => {
 };
 
 const landingPageGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = trafficChanel;
     try {
       dispatch(landingPageBegin());
@@ -387,8 +387,8 @@ const landingPageGetData = () => {
   };
 };
 
-const landingPageFilterData = value => {
-  return async dispatch => {
+const landingPageFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(landingPageBegin());
       setTimeout(() => {
@@ -401,7 +401,7 @@ const landingPageFilterData = value => {
 };
 
 const regionGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = region;
     try {
       dispatch(regionBegin());
@@ -412,8 +412,8 @@ const regionGetData = () => {
   };
 };
 
-const regionFilterData = value => {
-  return async dispatch => {
+const regionFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(regionBegin());
       setTimeout(() => {
@@ -426,7 +426,7 @@ const regionFilterData = value => {
 };
 
 const generatedGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = generated;
     try {
       dispatch(generatedBegin());
@@ -437,8 +437,8 @@ const generatedGetData = () => {
   };
 };
 
-const generatedFilterData = value => {
-  return async dispatch => {
+const generatedFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(generatedBegin());
       setTimeout(() => {
@@ -451,7 +451,7 @@ const generatedFilterData = value => {
 };
 
 const topSaleGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { year } = topSale;
     try {
       dispatch(topSaleBegin());
@@ -462,8 +462,8 @@ const topSaleGetData = () => {
   };
 };
 
-const topSaleFilterData = value => {
-  return async dispatch => {
+const topSaleFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(topSaleBegin());
       setTimeout(() => {
@@ -476,7 +476,7 @@ const topSaleFilterData = value => {
 };
 
 const locationGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const { today } = location;
     try {
       dispatch(locationBegin());
@@ -487,8 +487,8 @@ const locationGetData = () => {
   };
 };
 
-const locationFilterData = value => {
-  return async dispatch => {
+const locationFilterData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(locationBegin());
       setTimeout(() => {

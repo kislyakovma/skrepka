@@ -1,15 +1,15 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Col, Row} from 'antd';
-import {Cell, Pie, PieChart, Sector, Tooltip} from 'recharts';
+import React, { useLayoutEffect, useState } from 'react';
+import { Col, Row } from 'antd';
+import { Cell, Pie, PieChart, Sector, Tooltip } from 'recharts';
 import PropTypes from 'prop-types';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Main} from '../../styled';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Main } from '../../styled';
 import rechartdata from '../../../demoData/recharts.json';
 
 const { data01, data02 } = rechartdata;
 
-const renderActiveShape = props => {
+const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
   const sin = Math.sin(-RADIAN * midAngle);

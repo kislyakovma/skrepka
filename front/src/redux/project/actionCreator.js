@@ -15,11 +15,11 @@ const {
   sortingProjectErr,
 } = actions;
 
-const filterSinglePage = paramsId => {
-  return async dispatch => {
+const filterSinglePage = (paramsId) => {
+  return async (dispatch) => {
     try {
       dispatch(singleProjectBegin());
-      const data = initialState.filter(project => {
+      const data = initialState.filter((project) => {
         return project.id === parseInt(paramsId, 10);
       });
       dispatch(singleProjectSuccess(data));
@@ -29,11 +29,11 @@ const filterSinglePage = paramsId => {
   };
 };
 
-const filterProjectByStatus = status => {
-  return async dispatch => {
+const filterProjectByStatus = (status) => {
+  return async (dispatch) => {
     try {
       dispatch(filterProjectBegin());
-      const data = initialState.filter(project => {
+      const data = initialState.filter((project) => {
         if (status !== 'all') {
           return project.status === status;
         }
@@ -46,8 +46,8 @@ const filterProjectByStatus = status => {
   };
 };
 
-const sortingProjectByCategory = sortBy => {
-  return async dispatch => {
+const sortingProjectByCategory = (sortBy) => {
+  return async (dispatch) => {
     try {
       dispatch(sortingProjectBegin());
       const data = initialState.sort((a, b) => {

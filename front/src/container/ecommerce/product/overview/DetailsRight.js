@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
 import Heading from '../../../../components/heading/heading';
-import {updateWishList} from '../../../../redux/product/actionCreator';
-import {Button} from '../../../../components/buttons/buttons';
-import {cartAdd} from '../../../../redux/cart/actionCreator';
+import { updateWishList } from '../../../../redux/product/actionCreator';
+import { Button } from '../../../../components/buttons/buttons';
+import { cartAdd } from '../../../../redux/cart/actionCreator';
 
 const DetailsRight = ({ product }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const DetailsRight = ({ product }) => {
   const { name, rate, price, oldPrice, description, category, brand, popular, img } = product;
   const { quantity } = state;
 
-  const incrementQuantity = e => {
+  const incrementQuantity = (e) => {
     e.preventDefault();
     if (quantity !== 5)
       setState({
@@ -25,7 +25,7 @@ const DetailsRight = ({ product }) => {
       });
   };
 
-  const decrementQuantity = e => {
+  const decrementQuantity = (e) => {
     e.preventDefault();
     if (quantity !== 1)
       setState({

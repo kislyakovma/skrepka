@@ -26,8 +26,8 @@ const renderItem = (title, count) => {
   };
 };
 
-const AutoComplete = props => {
-  const { rtl } = useSelector(state => {
+const AutoComplete = (props) => {
+  const { rtl } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
     };
@@ -36,7 +36,7 @@ const AutoComplete = props => {
 
   const content =
     dataSource?.length > 0 &&
-    dataSource.map(group => {
+    dataSource.map((group) => {
       const { title, count } = group;
       return {
         label: title,
@@ -44,7 +44,7 @@ const AutoComplete = props => {
       };
     });
 
-  const onSearching = searchText => {
+  const onSearching = (searchText) => {
     onSearch(searchText);
   };
 

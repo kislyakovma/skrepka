@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {Col, Row, Table} from 'antd';
+import React, { useEffect } from 'react';
+import { Col, Row, Table } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {NavLink} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {ProductOverviewTable} from './style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { ProductOverviewTable } from './style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {CardBarChart2, EChartCard, PerformanceChartWrapper} from '../../../dashboard/style';
-import {ChartjsAreaChart, ChartjsBarChartTransparent} from '../../../../components/charts/chartjs';
-import {performanceGetData} from '../../../../redux/chartContent/actionCreator';
-import {chartLinearGradient, customTooltips} from '../../../../components/utilities/utilities';
+import { CardBarChart2, EChartCard, PerformanceChartWrapper } from '../../../dashboard/style';
+import { ChartjsAreaChart, ChartjsBarChartTransparent } from '../../../../components/charts/chartjs';
+import { performanceGetData } from '../../../../redux/chartContent/actionCreator';
+import { chartLinearGradient, customTooltips } from '../../../../components/utilities/utilities';
 
 const chartOptions = {
   legend: {
@@ -72,7 +72,7 @@ const moreContent = (
 
 const Overview = () => {
   const dispatch = useDispatch();
-  const { performanceState } = useSelector(state => {
+  const { performanceState } = useSelector((state) => {
     return {
       performanceState: state.chartContent.performanceData,
     };

@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
-import {Form, Input} from 'antd';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { Form, Input } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import {EmailNav} from './style';
-import {Button} from '../../../components/buttons/buttons';
+import { Link } from 'react-router-dom';
+import { EmailNav } from './style';
+import { Button } from '../../../components/buttons/buttons';
 import Title from '../../../components/heading/heading';
 
 const EmailNavbar = ({ path, toggleCollapsed }) => {
@@ -16,7 +16,7 @@ const EmailNavbar = ({ path, toggleCollapsed }) => {
   });
   const { labels, newLabel, addNewDisplay } = state;
 
-  const addNewLabels = e => {
+  const addNewLabels = (e) => {
     e.preventDefault();
 
     setState({
@@ -25,7 +25,7 @@ const EmailNavbar = ({ path, toggleCollapsed }) => {
     });
   };
 
-  const cancelAddNewLabels = e => {
+  const cancelAddNewLabels = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setState({
@@ -34,7 +34,7 @@ const EmailNavbar = ({ path, toggleCollapsed }) => {
     });
   };
 
-  const handelChange = e => {
+  const handelChange = (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (newLabel !== '') {
@@ -48,7 +48,7 @@ const EmailNavbar = ({ path, toggleCollapsed }) => {
     }
   };
 
-  const onLabelChange = e => {
+  const onLabelChange = (e) => {
     setState({
       ...state,
       newLabel: e.target.value,
@@ -113,7 +113,7 @@ const EmailNavbar = ({ path, toggleCollapsed }) => {
         <div className="nav-labels">
           <p>Labels</p>
           <ul>
-            {labels.map(label => {
+            {labels.map((label) => {
               return (
                 <li key={label}>
                   <Link to="#">

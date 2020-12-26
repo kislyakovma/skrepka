@@ -34,7 +34,7 @@ const getBase64 = (img, callback) => {
   reader.readAsDataURL(img);
 };
 
-const beforeUpload = file => {
+const beforeUpload = (file) => {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!');
@@ -81,14 +81,14 @@ const Uploads = () => {
     ],
   });
 
-  const onHandleChange = info => {
+  const onHandleChange = (info) => {
     if (info.file.status === 'uploading') {
       setState({ ...state, loading: true });
       return;
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
+      getBase64(info.file.originFileObj, (imageUrl) =>
         setState({
           imageUrl,
           loading: false,
@@ -97,10 +97,10 @@ const Uploads = () => {
     }
   };
 
-  const handleChange = info => {
+  const handleChange = (info) => {
     let fileList = [...info.fileList];
     fileList = fileList.slice(-2);
-    fileList = fileList.map(file => {
+    fileList = fileList.map((file) => {
       if (file.response) {
         // eslint-disable-next-line no-param-reassign
         file.url = file.response.url;

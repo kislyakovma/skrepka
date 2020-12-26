@@ -1,6 +1,6 @@
-import React, {lazy} from 'react';
-import {Route, Switch} from 'react-router-dom';
-import {useRouteMatch} from 'react-router-dom/cjs/react-router-dom.min';
+import React, { lazy } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Dashboard = lazy(() => import('../../container/dashboard'));
 const DashboardBase = lazy(() => import('../../container/dashboard/DashboardBase'));

@@ -1,10 +1,10 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 import FontAwesome from 'react-fontawesome';
-import {Link} from 'react-router-dom';
-import {UserBioBox} from './style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../components/buttons/buttons';
+import { Link } from 'react-router-dom';
+import { UserBioBox } from './style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../components/buttons/buttons';
 
 const UserBio = () => {
   return (

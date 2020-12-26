@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, InputNumber, Row, Select} from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {BasicFormWrapper, Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Cascader} from '../../components/cascader/cascader';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { BasicFormWrapper, Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Cascader } from '../../components/cascader/cascader';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -19,11 +19,11 @@ const Forms = () => {
     values: {},
     cascaderItem: [],
   });
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setstate({ ...state, values });
   };
 
-  const onChangeCascader = value => {
+  const onChangeCascader = (value) => {
     setstate({ ...state, cascaderItem: value });
   };
 

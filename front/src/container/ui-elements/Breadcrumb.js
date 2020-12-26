@@ -32,7 +32,7 @@ const menu = (
   </Menu>
 );
 
-const Home = withRouter(props => {
+const Home = withRouter((props) => {
   const { location } = props;
   const breadcrumbNameMap = {
     '/apps': 'Application List',
@@ -42,7 +42,7 @@ const Home = withRouter(props => {
     '/apps/2/detail': 'Detail',
   };
 
-  const pathSnippets = location.pathname.split('/').filter(i => i);
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
     return (

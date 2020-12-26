@@ -39,8 +39,8 @@ const Steps = ({
   const next = (template) => {
     if (template && state.currents === 0) {
       console.log('huy');
-      var el = 0
-      var flag = false
+      var el = 0;
+      var flag = false;
       while (el != templates.length) {
         if (
           template.name == templates[el].name &&
@@ -49,17 +49,16 @@ const Steps = ({
           template.info.phone == templates[el].info.phone &&
           template.info.street == templates[el].info.street
         ) {
-          var flag = true 
-          break
+          var flag = true;
+          break;
         }
-        el++
+        el++;
       }
-      if (flag){
+      if (flag) {
         console.log('я работаб');
-        
-      }else{
+      } else {
         console.log('я не рабортаю');
-        notify(templates)
+        notify(templates);
       }
     }
     const currents = state.currents + 1;

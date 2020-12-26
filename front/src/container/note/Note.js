@@ -1,18 +1,18 @@
-import React, {lazy, Suspense, useLayoutEffect, useState} from 'react';
-import {Col, Form, Input, Row, Select, Spin} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { lazy, Suspense, useLayoutEffect, useState } from 'react';
+import { Col, Form, Input, Row, Select, Spin } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
-import {Bullet, NoteNav, NoteWrapper} from './style';
-import {BasicFormWrapper, Main} from '../styled';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Modal} from '../../components/modals/antd-modals';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
-import {noteAddData} from '../../redux/note/actionCreator';
+import { Link, NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Bullet, NoteNav, NoteWrapper } from './style';
+import { BasicFormWrapper, Main } from '../styled';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Modal } from '../../components/modals/antd-modals';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import { noteAddData } from '../../redux/note/actionCreator';
 
 const All = lazy(() => import('./overview/all'));
 const Favorite = lazy(() => import('./overview/favorite'));
@@ -23,7 +23,7 @@ const Important = lazy(() => import('./overview/important'));
 
 const { Option } = Select;
 const Note = () => {
-  const { noteData } = useSelector(state => {
+  const { noteData } = useSelector((state) => {
     return {
       noteData: state.Note.data,
     };
@@ -65,10 +65,10 @@ const Note = () => {
     });
   };
 
-  const handleOk = values => {
+  const handleOk = (values) => {
     onCancel();
     const arrayData = [];
-    noteData.map(data => {
+    noteData.map((data) => {
       return arrayData.push(data.key);
     });
     const max = Math.max(...arrayData);

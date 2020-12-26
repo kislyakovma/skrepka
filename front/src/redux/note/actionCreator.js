@@ -14,7 +14,7 @@ const {
 } = actions;
 
 const noteGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(noteReadBegin());
       dispatch(noteReadSuccess(initialState));
@@ -24,8 +24,8 @@ const noteGetData = () => {
   };
 };
 
-const noteAddData = data => {
-  return async dispatch => {
+const noteAddData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(noteReadBegin());
       dispatch(noteReadSuccess(data));
@@ -35,8 +35,8 @@ const noteAddData = data => {
   };
 };
 
-const noteDeleteData = data => {
-  return async dispatch => {
+const noteDeleteData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(noteReadBegin());
       dispatch(noteReadSuccess(data));
@@ -47,10 +47,10 @@ const noteDeleteData = data => {
 };
 
 const onStarUpdate = (data, id) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
-      data.map(item => {
+      data.map((item) => {
         if (item.key === id) {
           const fav = item;
           if (item.stared) {
@@ -68,10 +68,10 @@ const onStarUpdate = (data, id) => {
 };
 
 const onLabelUpdate = (data, id, value) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(labelUpdateBegin());
-      data.map(item => {
+      data.map((item) => {
         if (item.key === id) {
           const fav = item;
           fav.label = value;
@@ -84,11 +84,11 @@ const onLabelUpdate = (data, id, value) => {
   };
 };
 
-const onLabelFilter = label => {
-  return async dispatch => {
+const onLabelFilter = (label) => {
+  return async (dispatch) => {
     try {
       dispatch(labelUpdateBegin());
-      const data = initialState.filter(item => {
+      const data = initialState.filter((item) => {
         return label === 'all' ? initialState : label === 'favorite' ? item.stared : item.label === label;
       });
 

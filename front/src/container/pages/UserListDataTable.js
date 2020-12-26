@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Col, Row, Table} from 'antd';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Col, Row, Table } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {UserTableStyleWrapper} from './style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {CardToolbox, Main, TableWrapper} from '../styled';
+import { Link } from 'react-router-dom';
+import { UserTableStyleWrapper } from './style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { CardToolbox, Main, TableWrapper } from '../styled';
 import Heading from '../../components/heading/heading';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
 
 const UserListDataTable = () => {
-  const { searchData, users } = useSelector(state => {
+  const { searchData, users } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       users: state.users,
@@ -27,8 +27,8 @@ const UserListDataTable = () => {
 
   const { notData } = state;
 
-  const handleSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
@@ -37,7 +37,7 @@ const UserListDataTable = () => {
 
   const usersTableData = [];
 
-  users.map(user => {
+  users.map((user) => {
     const { id, name, designation, img, status } = user;
 
     return usersTableData.push({
@@ -121,7 +121,7 @@ const UserListDataTable = () => {
     onChange: (selectedRowKeys, selectedRows) => {
       setState({ selectedRowKeys, selectedRows });
     },
-    getCheckboxProps: record => ({
+    getCheckboxProps: (record) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),

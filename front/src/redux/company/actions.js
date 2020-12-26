@@ -22,7 +22,7 @@ const actions = {
   deleteCompany: (data) => {
     return {
       type: actions.DELETE_COMPANY,
-      data
+      data,
     };
   },
 
@@ -32,8 +32,5 @@ const actions = {
     };
   },
 };
-
-  
-
 
 export default actions;

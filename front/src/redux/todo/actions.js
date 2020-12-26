@@ -13,14 +13,14 @@ const actions = {
     };
   },
 
-  starUpdateSuccess: data => {
+  starUpdateSuccess: (data) => {
     return {
       type: actions.TODO_STAR_UPDATE_SUCCESS,
       data,
     };
   },
 
-  starUpdateErr: err => {
+  starUpdateErr: (err) => {
     return {
       type: actions.TODO_STAR_UPDATE_ERR,
       err,
@@ -33,14 +33,14 @@ const actions = {
     };
   },
 
-  todoReadSuccess: data => {
+  todoReadSuccess: (data) => {
     return {
       type: actions.TODO_READ_SUCCESS,
       data,
     };
   },
 
-  todoReadErr: err => {
+  todoReadErr: (err) => {
     return {
       type: actions.TODO_READ_ERR,
       err,

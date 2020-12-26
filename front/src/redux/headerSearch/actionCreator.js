@@ -6,7 +6,7 @@ const db = firebase.firestore();
 const getData = async () => {
   const arr = [];
   const snapshot = await db.collection('products').get();
-  snapshot.docs.map(doc => {
+  snapshot.docs.map((doc) => {
     arr.push(doc.data());
   });
   return arr;
@@ -14,12 +14,12 @@ const getData = async () => {
 
 const { searchHeaderBegin, searchHeaderSuccess, searchHeaderErr } = actions;
 
-const headerSearchAction = searchData => {
-  return async dispatch => {
+const headerSearchAction = (searchData) => {
+  return async (dispatch) => {
     try {
-      getData(products => {
+      getData((products) => {
         dispatch(searchHeaderBegin());
-        const data = products.filter(item => {
+        const data = products.filter((item) => {
           return item.name.startsWith(searchData);
         });
         dispatch(searchHeaderSuccess(data));

@@ -1,14 +1,14 @@
-import React, {lazy, Suspense} from 'react';
-import {Col, Row, Skeleton} from 'antd';
-import {useSelector} from 'react-redux';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import React, { lazy, Suspense } from 'react';
+import { Col, Row, Skeleton } from 'antd';
+import { useSelector } from 'react-redux';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const RightAside = lazy(() => import('../overview/RightAside'));
 const CreatePost = lazy(() => import('./timeline/CreatePost'));
 const AllPosts = lazy(() => import('./timeline/Posts'));
 
 const Timeline = () => {
-  const { posts } = useSelector(state => {
+  const { posts } = useSelector((state) => {
     return {
       posts: state.Profile.posts,
     };
@@ -27,7 +27,7 @@ const Timeline = () => {
         </Suspense>
         {posts
           .sort((a, b) => b.time - a.time)
-          .map(post => {
+          .map((post) => {
             return (
               <Suspense
                 key={post.postId}

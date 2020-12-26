@@ -1,20 +1,20 @@
-import React, {lazy, Suspense, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Row, Skeleton} from 'antd';
-import {Link} from 'react-router-dom';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Row, Skeleton } from 'antd';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Main} from '../../styled';
-import {filterSinglePage, initProduct} from '../../../redux/product/actionCreator';
-import {ProductDetailsWrapper} from '../Style';
-import {Cards} from '../../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Main } from '../../styled';
+import { filterSinglePage, initProduct } from '../../../redux/product/actionCreator';
+import { ProductDetailsWrapper } from '../Style';
+import { Cards } from '../../../components/cards/frame/cards-frame';
 
 const DetailsRight = lazy(() => import('./overview/DetailsRight'));
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { products, product } = useSelector(state => {
+  const { products, product } = useSelector((state) => {
     return {
       product: state.product.data,
       products: state.products.data,
@@ -48,7 +48,7 @@ const ProductDetails = ({ match }) => {
                       <Row gutter={5}>
                         {products.length
                           ? products
-                              .filter(value => {
+                              .filter((value) => {
                                 return value.category === category;
                               })
                               .map((value, index) => {

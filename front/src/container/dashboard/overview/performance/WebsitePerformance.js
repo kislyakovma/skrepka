@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Spin} from 'antd';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Spin } from 'antd';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {PerformanceChartWrapper, Pstates} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { useDispatch, useSelector } from 'react-redux';
+import { PerformanceChartWrapper, Pstates } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {ChartjsAreaChart} from '../../../../components/charts/chartjs';
-import {chartLinearGradient, customTooltips} from '../../../../components/utilities/utilities';
-import {performanceFilterData, performanceGetData, setIsLoading} from '../../../../redux/chartContent/actionCreator';
+import { ChartjsAreaChart } from '../../../../components/charts/chartjs';
+import { chartLinearGradient, customTooltips } from '../../../../components/utilities/utilities';
+import { performanceFilterData, performanceGetData, setIsLoading } from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>
@@ -37,7 +37,7 @@ const moreContent = (
 
 const WebsitePerformance = () => {
   const dispatch = useDispatch();
-  const { performanceState, preIsLoading } = useSelector(state => {
+  const { performanceState, preIsLoading } = useSelector((state) => {
     return {
       performanceState: state.chartContent.performanceData,
       preIsLoading: state.chartContent.perLoading,
@@ -57,7 +57,7 @@ const WebsitePerformance = () => {
     }
   }, [dispatch]);
 
-  const handleActiveChangePerformance = value => {
+  const handleActiveChangePerformance = (value) => {
     setState({
       ...state,
       performance: value,
@@ -65,7 +65,7 @@ const WebsitePerformance = () => {
     dispatch(performanceFilterData(value));
   };
 
-  const onPerformanceTab = value => {
+  const onPerformanceTab = (value) => {
     setState({
       ...state,
       performanceTab: value,

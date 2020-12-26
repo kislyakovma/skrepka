@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {Col, Divider, Row} from 'antd';
+import React, { useState } from 'react';
+import { Col, Divider, Row } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {CreditCardOutlined, SmileOutlined, SolutionOutlined, UserOutlined} from '@ant-design/icons';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Popover} from '../../components/popup/popup';
-import {Step, Steps} from '../../components/steps/steps';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { CreditCardOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Popover } from '../../components/popup/popup';
+import { Step, Steps } from '../../components/steps/steps';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const customDot = (dot, { status, index }) => (
   <Popover
@@ -34,15 +34,15 @@ const Stepess = () => {
 
   const { current } = state;
 
-  const onChange = currentValue => {
+  const onChange = (currentValue) => {
     setState({ currentValue });
   };
 
-  const next = currentValue => {
+  const next = (currentValue) => {
     setState({ ...state, next: currentValue });
   };
 
-  const prev = currentValue => {
+  const prev = (currentValue) => {
     setState({ ...state, prev: currentValue });
   };
 

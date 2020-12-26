@@ -1,4 +1,4 @@
-import scheduled from './scheduled/scheduled';
+import scheduled from "./scheduled/scheduled";
 
 function main() {
   scheduled();

@@ -1,25 +1,25 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, {useEffect, useState} from 'react';
-import {message, Upload} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { message, Upload } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 import Picker from 'emoji-picker-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {Scrollbars} from 'react-custom-scrollbars';
-import {MoreOutlined, SmileOutlined} from '@ant-design/icons';
-import {BackShadowEmoji, Footer, MessageList, SingleChatWrapper} from '../style';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { MoreOutlined, SmileOutlined } from '@ant-design/icons';
+import { BackShadowEmoji, Footer, MessageList, SingleChatWrapper } from '../style';
 import Heading from '../../../components/heading/heading';
-import {Button} from '../../../components/buttons/buttons';
-import {updateGroupChat} from '../../../redux/chat/actionCreator';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Dropdown} from '../../../components/dropdown/dropdown';
+import { Button } from '../../../components/buttons/buttons';
+import { updateGroupChat } from '../../../redux/chat/actionCreator';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Dropdown } from '../../../components/dropdown/dropdown';
 
 const SingleGroupChat = ({ match }) => {
   const dispatch = useDispatch();
-  const { rtl, chat } = useSelector(state => {
+  const { rtl, chat } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
       chat: state.chatSingle.data,
@@ -57,14 +57,14 @@ const SingleGroupChat = ({ match }) => {
     };
   }, [match, chat, inputValue]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({
       ...state,
       inputValue: e.target.value,
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const pushcontent = {
@@ -436,8 +436,9 @@ const SingleGroupChat = ({ match }) => {
         <Footer>
           <form onSubmit={handleSubmit}>
             <div
-              className={`chatbox-reply-form d-flex ${state.fileList.length && 'hasImage'} ${state.fileList2.length &&
-                'hasFile'}`}
+              className={`chatbox-reply-form d-flex ${state.fileList.length && 'hasImage'} ${
+                state.fileList2.length && 'hasFile'
+              }`}
             >
               <span className="smile-icon">
                 {pickerShow && <Picker onEmojiClick={onEmojiClick} />}

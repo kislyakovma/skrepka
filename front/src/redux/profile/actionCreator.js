@@ -10,11 +10,11 @@ const {
   postDataErr,
 } = actions;
 
-const profileFriendsChangeStatus = key => {
-  return async dispatch => {
+const profileFriendsChangeStatus = (key) => {
+  return async (dispatch) => {
     try {
       dispatch(profileFriendsBegin());
-      initialState.map(friend => {
+      initialState.map((friend) => {
         if (friend.key === key) {
           return friend.status ? (friend.status = false) : (friend.status = true);
         }
@@ -26,8 +26,8 @@ const profileFriendsChangeStatus = key => {
   };
 };
 
-const submitPost = data => {
-  return async dispatch => {
+const submitPost = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(postDataBegin());
       dispatch(postDataSuccess(data));
@@ -38,10 +38,10 @@ const submitPost = data => {
 };
 
 const likeUpdate = (data, key) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(postDataBegin());
-      data.map(post => {
+      data.map((post) => {
         if (post.postId === key) {
           return (post.like += 1);
         }
@@ -54,10 +54,10 @@ const likeUpdate = (data, key) => {
 };
 
 const commentUpdate = (data, key, comment) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(postDataBegin());
-      data.map(post => {
+      data.map((post) => {
         if (post.postId === key) {
           return (post.comment = [
             ...post.comment,
@@ -77,10 +77,10 @@ const commentUpdate = (data, key, comment) => {
 };
 
 const postDelete = (data, key) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(postDataBegin());
-      const posts = data.filter(post => {
+      const posts = data.filter((post) => {
         return post.postId !== key;
       });
       return dispatch(postDataSuccess(posts));

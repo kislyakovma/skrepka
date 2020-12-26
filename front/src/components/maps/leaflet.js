@@ -20,7 +20,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-const LeafletMapBasic = props => {
+const LeafletMapBasic = (props) => {
   const { latitude, longitude, width, height, zoom } = props;
 
   const position = [latitude, longitude];
@@ -50,7 +50,7 @@ LeafletMapBasic.propTypes = {
   zoom: PropTypes.number,
 };
 
-const LeafletMapMultipleIcon = props => {
+const LeafletMapMultipleIcon = (props) => {
   const { latitude, longitude, width, height, zoom, data } = props;
 
   const position = [latitude, longitude];
@@ -61,7 +61,7 @@ const LeafletMapMultipleIcon = props => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {data.map(item => {
+        {data.map((item) => {
           return (
             <Marker key={item.id} position={item.position}>
               <Popup>
@@ -86,7 +86,7 @@ LeafletMapMultipleIcon.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-const LeafletMapCustomIcon = props => {
+const LeafletMapCustomIcon = (props) => {
   const { latitude, longitude, width, height, zoom, faIcon } = props;
   const fontAwesomeIcon = L.divIcon({
     html: `<i style="color: #2880CA" class="${faIcon}"></i>`,
@@ -121,7 +121,7 @@ LeafletMapCustomIcon.propTypes = {
   faIcon: PropTypes.string,
 };
 
-const LeafletMarkerCluster = props => {
+const LeafletMarkerCluster = (props) => {
   const { latitude, longitude, width, height, zoom, data } = props;
 
   const position = [latitude, longitude];
@@ -133,7 +133,7 @@ const LeafletMarkerCluster = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         <MarkerClusterGroup>
-          {data.map(item => {
+          {data.map((item) => {
             return (
               <Marker key={item.id} position={item.position}>
                 <Popup>

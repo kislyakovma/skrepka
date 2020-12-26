@@ -1,14 +1,14 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Col, Row} from 'antd';
+import React, { useLayoutEffect, useState } from 'react';
+import { Col, Row } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Legend, RadialBar, RadialBarChart} from 'recharts';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Main} from '../../styled';
-import {Button} from '../../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../../components/buttons/calendar-button/calendar-button';
+import { Legend, RadialBar, RadialBarChart } from 'recharts';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Main } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
 
 const style = {
   top: 0,

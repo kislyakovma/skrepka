@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Row, Table} from 'antd';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Col, Row, Table } from 'antd';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {Scrollbars} from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {VectorMap} from 'react-jvectormap';
-import {RegionList, RegionMap} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {regionFilterData, regionGetData} from '../../../../redux/chartContent/actionCreator';
+import { useDispatch, useSelector } from 'react-redux';
+import { VectorMap } from 'react-jvectormap';
+import { RegionList, RegionMap } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { regionFilterData, regionGetData } from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>
@@ -50,7 +50,7 @@ const regionColumns = [
 
 const SessionsbyRegion = () => {
   const dispatch = useDispatch();
-  const { regionState } = useSelector(state => {
+  const { regionState } = useSelector((state) => {
     return {
       regionState: state.chartContent.regionData,
       lpIsLoading: state.chartContent.lpLoading,
@@ -78,7 +78,7 @@ const SessionsbyRegion = () => {
       });
     });
 
-  const handleActiveChangeRegion = value => {
+  const handleActiveChangeRegion = (value) => {
     setState({
       ...state,
       region: value,

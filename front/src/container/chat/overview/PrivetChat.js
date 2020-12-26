@@ -1,18 +1,18 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {Badge} from 'antd';
-import {BlockSpan} from '../style';
-import {textRefactor} from '../../../components/utilities/utilities';
-import {filterSinglePage} from '../../../redux/chat/actionCreator';
+import { Badge } from 'antd';
+import { BlockSpan } from '../style';
+import { textRefactor } from '../../../components/utilities/utilities';
+import { filterSinglePage } from '../../../redux/chat/actionCreator';
 
 const PrivateChat = ({ match }) => {
   const dispatch = useDispatch();
-  const chatData = useSelector(state => state.chat.data);
+  const chatData = useSelector((state) => state.chat.data);
 
-  const dataFiltering = email => {
+  const dataFiltering = (email) => {
     dispatch(filterSinglePage(email));
   };
 

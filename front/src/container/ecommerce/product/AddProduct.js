@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, InputNumber, message, Radio, Row, Select, Upload} from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, InputNumber, message, Radio, Row, Select, Upload } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {BasicFormWrapper, Main} from '../../styled';
-import {Button} from '../../../components/buttons/buttons';
-import {AddProductForm} from '../Style';
-import {useDispatch} from 'react-redux';
-import {fbDataSubmit} from '../../../redux/firestore/actionCreator';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { BasicFormWrapper, Main } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { AddProductForm } from '../Style';
+import { useDispatch } from 'react-redux';
+import { fbDataSubmit } from '../../../redux/firestore/actionCreator';
 
 const { Option } = Select;
 const { Dragger } = Upload;
@@ -41,11 +41,11 @@ const AddProduct = () => {
     defaultFileList: fileList,
     showUploadList: {
       showRemoveIcon: true,
-      removeIcon: <FeatherIcon icon="trash-2" onClick={e => console.log(e, 'custom removeIcon event')} />,
+      removeIcon: <FeatherIcon icon="trash-2" onClick={(e) => console.log(e, 'custom removeIcon event')} />,
     },
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     dispatch(
       fbDataSubmit('products', {
         ...values,

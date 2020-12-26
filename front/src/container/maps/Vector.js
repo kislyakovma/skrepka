@@ -1,9 +1,9 @@
 import React from 'react';
-import {Col, Row} from 'antd';
-import {VectorMap} from 'react-jvectormap';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
+import { Col, Row } from 'antd';
+import { VectorMap } from 'react-jvectormap';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
 // import config from '../../config/config';
 
 // const { theme } = config;

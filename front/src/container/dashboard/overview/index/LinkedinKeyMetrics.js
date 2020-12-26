@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Row, Spin} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, Row, Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {ChartjsLineChart} from '../../../../components/charts/chartjs';
-import {linkdinOverviewFilterData, linkdinOverviewGetData} from '../../../../redux/chartContent/actionCreator';
-import {customTooltips} from '../../../../components/utilities/utilities';
-import {ChartContainer, LineChartWrapper} from '../../style';
+import { ChartjsLineChart } from '../../../../components/charts/chartjs';
+import { linkdinOverviewFilterData, linkdinOverviewGetData } from '../../../../redux/chartContent/actionCreator';
+import { customTooltips } from '../../../../components/utilities/utilities';
+import { ChartContainer, LineChartWrapper } from '../../style';
 
 const LinkedinKeyMetrics = () => {
   const dispatch = useDispatch();
-  const { linkdinOverviewState, liIsLoading } = useSelector(state => {
+  const { linkdinOverviewState, liIsLoading } = useSelector((state) => {
     return {
       linkdinOverviewState: state.chartContent.linkdinOverviewData,
       liIsLoading: state.chartContent.liLoading,
@@ -104,7 +104,7 @@ const LinkedinKeyMetrics = () => {
     },
   };
 
-  const handleActiveChangeLinkdin = value => {
+  const handleActiveChangeLinkdin = (value) => {
     setState({
       ...state,
       linkdinOverviewTabActive: value,

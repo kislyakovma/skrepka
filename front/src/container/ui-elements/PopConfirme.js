@@ -12,7 +12,7 @@ import { ExportButtonPageHeader } from '../../components/buttons/export-button/e
 import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const Confirme = () => {
-  const rtl = useSelector(state => state.ChangeLayoutMode.rtlData);
+  const rtl = useSelector((state) => state.ChangeLayoutMode.rtlData);
   const confirm = () => {
     message.success('Click on Yes');
   };

@@ -1,22 +1,22 @@
-import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink, Route, Switch} from 'react-router-dom';
-import {Col, Row, Spin, Tooltip} from 'antd';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
+import { Col, Row, Spin, Tooltip } from 'antd';
 import moment from 'moment';
 import propTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import {MailDetailsWrapper, MailRightAction, MessageAction, MessageDetails, MessageReply, ReplyList} from './style';
-import {Dropdown} from '../../../components/dropdown/dropdown';
+import { MailDetailsWrapper, MailRightAction, MessageAction, MessageDetails, MessageReply, ReplyList } from './style';
+import { Dropdown } from '../../../components/dropdown/dropdown';
 import Heading from '../../../components/heading/heading';
-import {filterSinglePage, onStarUpdate} from '../../../redux/email/actionCreator';
-import {Cards} from '../../../components/cards/frame/cards-frame';
+import { filterSinglePage, onStarUpdate } from '../../../redux/email/actionCreator';
+import { Cards } from '../../../components/cards/frame/cards-frame';
 
 const MailComposer = lazy(() => import('./MailComposer'));
 
-const Single = props => {
+const Single = (props) => {
   const { match, history } = props;
-  const email = useSelector(state => state.emailSingle.data[0]);
+  const email = useSelector((state) => state.emailSingle.data[0]);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     replyMessage: 0,
@@ -29,12 +29,12 @@ const Single = props => {
     }
   }, [match.params.id, dispatch]);
 
-  const replyMail = async replyMessage => {
+  const replyMail = async (replyMessage) => {
     // hit replyMail api
     setState({ ...state, replyMessage });
   };
 
-  const onStaredChange = id => {
+  const onStaredChange = (id) => {
     dispatch(onStarUpdate(id));
   };
 
@@ -307,7 +307,7 @@ const Single = props => {
                     <div style={{ width: '100%' }} className="reply-box">
                       <Route
                         path={`${match.url}/replay`}
-                        render={value => (
+                        render={(value) => (
                           <>
                             <img
                               style={{ width: 50, height: 50 }}

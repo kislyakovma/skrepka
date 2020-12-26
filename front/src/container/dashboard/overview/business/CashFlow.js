@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {Spin} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {CardBarChart} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { CardBarChart } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {ChartjsBarChartTransparent} from '../../../../components/charts/chartjs';
+import { ChartjsBarChartTransparent } from '../../../../components/charts/chartjs';
 
-import {cashFlowFilterData, cashFlowGetData} from '../../../../redux/chartContent/actionCreator';
+import { cashFlowFilterData, cashFlowGetData } from '../../../../redux/chartContent/actionCreator';
 
 const CashFlow = () => {
   const dispatch = useDispatch();
-  const { cashFlowState, cfIsLoading } = useSelector(state => {
+  const { cashFlowState, cfIsLoading } = useSelector((state) => {
     return {
       cashFlowState: state.chartContent.cashFlowData,
       cfIsLoading: state.chartContent.cfLoading,
@@ -53,7 +53,7 @@ const CashFlow = () => {
     </>
   );
 
-  const handleActiveChangeCash = value => {
+  const handleActiveChangeCash = (value) => {
     setState({
       ...state,
       cashFlowActive: value,

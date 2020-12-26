@@ -1,29 +1,29 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, Row, Table} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { Col, Form, Input, Row, Table } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {sortableContainer, sortableElement, sortableHandle} from 'react-sortable-hoc';
+import { Link } from 'react-router-dom';
+import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import PropTypes from 'prop-types';
-import {Span, TodoStyleWrapper} from './style';
-import {BasicFormWrapper, Main, TableWrapper} from '../styled';
-import {Modal} from '../../components/modals/antd-modals';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {PageHeader} from '../../components/page-headers/page-headers';
+import { Span, TodoStyleWrapper } from './style';
+import { BasicFormWrapper, Main, TableWrapper } from '../styled';
+import { Modal } from '../../components/modals/antd-modals';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../components/page-headers/page-headers';
 
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
-import {onStarUpdate, ToDoAddData, ToDoDeleteData} from '../../redux/todo/actionCreator';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import { onStarUpdate, ToDoAddData, ToDoDeleteData } from '../../redux/todo/actionCreator';
 
 const DragHandle = sortableHandle(() => (
   <FeatherIcon size={16} style={{ cursor: 'pointer', color: '#999' }} icon="move" />
 ));
 
 const ToDo = () => {
-  const todoData = useSelector(state => state.Todo.data);
+  const todoData = useSelector((state) => state.Todo.data);
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -44,8 +44,8 @@ const ToDo = () => {
     },
   ];
 
-  const onHandleDelete = key => {
-    const data = todoData.filter(item => item.key !== key);
+  const onHandleDelete = (key) => {
+    const data = todoData.filter((item) => item.key !== key);
     dispatch(ToDoDeleteData(data));
   };
 
@@ -81,24 +81,24 @@ const ToDo = () => {
   }
   const [form] = Form.useForm();
 
-  const onSelectChange = selectedRowKey => {
+  const onSelectChange = (selectedRowKey) => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
 
   const rowSelection = {
     onChange: onSelectChange,
-    getCheckboxProps: record => ({
+    getCheckboxProps: (record) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),
   };
 
-  const SortableItem = sortableElement(props => <tr {...props} />);
-  const SortableContainer = sortableContainer(props => <tbody {...props} />);
+  const SortableItem = sortableElement((props) => <tr {...props} />);
+  const SortableContainer = sortableContainer((props) => <tbody {...props} />);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     if (oldIndex !== newIndex) {
-      const newData = arrayMove([].concat(todoData), oldIndex, newIndex).filter(el => !!el);
+      const newData = arrayMove([].concat(todoData), oldIndex, newIndex).filter((el) => !!el);
       return dispatch(ToDoAddData(newData));
     }
     return true;
@@ -106,7 +106,7 @@ const ToDo = () => {
 
   const DraggableBodyRow = ({ className, style, ...restProps }) => {
     // function findIndex base on Table rowKey props and should always be a right array index
-    const index = dataSource.findIndex(x => x.index === restProps['data-row-key']);
+    const index = dataSource.findIndex((x) => x.index === restProps['data-row-key']);
     return <SortableItem index={index} {...restProps} />;
   };
 
@@ -115,11 +115,11 @@ const ToDo = () => {
     style: PropTypes.object,
   };
 
-  const DraggableContainer = props => (
+  const DraggableContainer = (props) => (
     <SortableContainer useDragHandle helperClass="row-dragging" onSortEnd={onSortEnd} {...props} />
   );
 
-  const onInputChange = e => {
+  const onInputChange = (e) => {
     setState({
       ...state,
       inputData: e.target.value,
@@ -128,7 +128,7 @@ const ToDo = () => {
 
   const onSubmitHandler = () => {
     const arrayData = [];
-    todoData.map(data => {
+    todoData.map((data) => {
       return arrayData.push(data.key);
     });
     const max = Math.max(...arrayData);

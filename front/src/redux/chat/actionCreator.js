@@ -19,11 +19,11 @@ const {
   updatePrivetChatErr,
 } = actions;
 
-const filterSinglePage = paramsId => {
-  return async dispatch => {
+const filterSinglePage = (paramsId) => {
+  return async (dispatch) => {
     try {
       dispatch(singleChatBegin());
-      const data = initialState[0].privetChat.filter(user => {
+      const data = initialState[0].privetChat.filter((user) => {
         return user.email === paramsId;
       });
       dispatch(singleChatSuccess(data));
@@ -34,10 +34,10 @@ const filterSinglePage = paramsId => {
 };
 
 const updatePrivetChat = (paramsId, pushItem) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(updatePrivetChatBegin());
-      const data = initialState[0].privetChat.map(item => {
+      const data = initialState[0].privetChat.map((item) => {
         const user = item;
         if (user.email === paramsId) {
           user.time = pushItem.time;
@@ -52,11 +52,11 @@ const updatePrivetChat = (paramsId, pushItem) => {
   };
 };
 
-const filterSinglepageGroup = paramsId => {
-  return async dispatch => {
+const filterSinglepageGroup = (paramsId) => {
+  return async (dispatch) => {
     try {
       dispatch(singleGroupChatBegin());
-      const data = initialState[0].groupChat.filter(user => {
+      const data = initialState[0].groupChat.filter((user) => {
         return user.id === paramsId;
       });
       dispatch(singleGroupChatSuccess(data));
@@ -67,10 +67,10 @@ const filterSinglepageGroup = paramsId => {
 };
 
 const updateGroupChat = (paramsId, pushItem) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(updateGroupChatBegin());
-      const data = initialState[0].groupChat.map(item => {
+      const data = initialState[0].groupChat.map((item) => {
         const user = item;
         if (user.id === paramsId) {
           user.time = pushItem.time;

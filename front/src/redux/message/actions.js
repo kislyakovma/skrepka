@@ -9,14 +9,14 @@ const actions = {
     };
   },
 
-  readMessageSuccess: data => {
+  readMessageSuccess: (data) => {
     return {
       type: actions.READ_MESSAGE_SUCCESS,
       data,
     };
   },
 
-  readMessageErr: err => {
+  readMessageErr: (err) => {
     return {
       type: actions.READ_MESSAGE_ERR,
       err,

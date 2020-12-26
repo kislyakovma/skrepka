@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, Row} from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, Row } from 'antd';
 import FontAwesome from 'react-fontawesome';
-import {SocialProfileForm} from './style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../components/buttons/buttons';
+import { SocialProfileForm } from './style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../components/buttons/buttons';
 import Heading from '../../../../components/heading/heading';
-import {BasicFormWrapper} from '../../../styled';
+import { BasicFormWrapper } from '../../../styled';
 
 const SocialProfile = () => {
   const [form] = Form.useForm();
@@ -13,11 +13,11 @@ const SocialProfile = () => {
     values: null,
   });
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, values });
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     e.preventDefault();
     form.resetFields();
   };

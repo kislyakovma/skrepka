@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Pagination, Row, Spin} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, Pagination, Row, Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {NavLink} from 'react-router-dom/cjs/react-router-dom.min';
-import {useDispatch, useSelector} from 'react-redux';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
 import Heading from '../../../../components/heading/heading';
-import {Button} from '../../../../components/buttons/buttons';
-import {PaginationWrapper, ProductCard} from '../../Style';
-import {cartAdd} from '../../../../redux/cart/actionCreator';
+import { Button } from '../../../../components/buttons/buttons';
+import { PaginationWrapper, ProductCard } from '../../Style';
+import { cartAdd } from '../../../../redux/cart/actionCreator';
 
 const List = () => {
   const dispatch = useDispatch();
-  const { productsAll, isLoader, cartData, user } = useSelector(state => {
+  const { productsAll, isLoader, cartData, user } = useSelector((state) => {
     return {
       productsAll: state.products.data,
       isLoader: state.products.loading,
       cartData: state.cart.data,
-      user: state.auth.user
+      user: state.auth.user,
     };
   });
   const sizeOfList = (list, size) => {
@@ -97,40 +97,45 @@ const List = () => {
                           </p>
 
                           <div className="product-single-action">
-                            {user.role === 'admin' ?  <Button
-                              className="btn-cart"
-                              size="small"
-                              type="white"
-                              outlined
-                              onClick={() => {
-                                dispatch(
-                                  cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }),
-                                );
-                              }}
-                            >
-                              <FeatherIcon icon="clipboard" size={14} />Редактировать
-                            </Button>
-                             :  <>
-                               <Button
-                              className="btn-cart"
-                              size="small"
-                              type="white"
-                              outlined  
-                              onClick={() => {
-                                dispatch(
-                                  cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified },
-                                    cartData, user.email),
-                                
-                                );
-                              }}
-                            >
-                              <FeatherIcon icon="shopping-bag" size={14} />В корзину
-                            </Button>
-                            <Button size="small" type="primary">
-                              О товаре
-                            </Button>
-                            </>
-                            }
+                            {user.role === 'admin' ? (
+                              <Button
+                                className="btn-cart"
+                                size="small"
+                                type="white"
+                                outlined
+                                onClick={() => {
+                                  dispatch(
+                                    cartAdd({ id, name, rate, price, oldPrice, popular, description, img, modified }),
+                                  );
+                                }}
+                              >
+                                <FeatherIcon icon="clipboard" size={14} />
+                                Редактировать
+                              </Button>
+                            ) : (
+                              <>
+                                <Button
+                                  className="btn-cart"
+                                  size="small"
+                                  type="white"
+                                  outlined
+                                  onClick={() => {
+                                    dispatch(
+                                      cartAdd(
+                                        { id, name, rate, price, oldPrice, popular, description, img, modified },
+                                        cartData,
+                                        user.email,
+                                      ),
+                                    );
+                                  }}
+                                >
+                                  <FeatherIcon icon="shopping-bag" size={14} />В корзину
+                                </Button>
+                                <Button size="small" type="primary">
+                                  О товаре
+                                </Button>
+                              </>
+                            )}
                           </div>
                         </div>
                       </Col>

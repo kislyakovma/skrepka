@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {Col, Radio, Row, Select} from 'antd';
+import React, { useState } from 'react';
+import { Col, Radio, Row, Select } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {SelectRadioStyle, SelectWrapperStyle} from './ui-elements-styled';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { SelectRadioStyle, SelectWrapperStyle } from './ui-elements-styled';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const { Option, OptGroup } = Select;
 const provinceData = ['Zhejiang', 'Jiangsu'];
@@ -25,7 +25,7 @@ const Selects = () => {
     secondCity: cityData[provinceData[0]][0],
   });
 
-  const handleChange = selectedItems => {
+  const handleChange = (selectedItems) => {
     setState({ ...state, selectedItems });
   };
 
@@ -34,23 +34,23 @@ const Selects = () => {
     children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
   }
 
-  const handleSizeChange = e => {
+  const handleSizeChange = (e) => {
     setState({ ...state, size: e.target.value });
   };
   const { size, cities } = state;
 
   const { selectedItems } = state;
   const OPTIONS = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
-  const filteredOptions = OPTIONS.filter(o => !selectedItems.includes(o));
+  const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
 
-  const handleProvinceChange = value => {
+  const handleProvinceChange = (value) => {
     setState({
       cities: cityData[value],
       secondCity: cityData[value][0],
     });
   };
 
-  const onSecondCityChange = value => {
+  const onSecondCityChange = (value) => {
     setState({
       secondCity: value,
     });
@@ -185,7 +185,7 @@ const Selects = () => {
                 onChange={handleChange}
                 style={{ width: '100%' }}
               >
-                {filteredOptions.map(item => (
+                {filteredOptions.map((item) => (
                   <Select.Option key={item} value={item}>
                     {item}
                   </Select.Option>
@@ -197,12 +197,12 @@ const Selects = () => {
             <Cards title="Select Coordinate">
               <SelectWrapperStyle>
                 <Select defaultValue={provinceData[0]} style={{ width: 120 }} onChange={handleProvinceChange}>
-                  {provinceData.map(province => (
+                  {provinceData.map((province) => (
                     <Option key={province}>{province}</Option>
                   ))}
                 </Select>
                 <Select style={{ width: 120 }} value={state.secondCity} onChange={onSecondCityChange}>
-                  {cities.map(city => (
+                  {cities.map((city) => (
                     <Option key={city}>{city}</Option>
                   ))}
                 </Select>

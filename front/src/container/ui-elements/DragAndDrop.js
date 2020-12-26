@@ -17,7 +17,7 @@ import { CalendarButtonPageHeader } from '../../components/buttons/calendar-butt
 const DragHandle = sortableHandle(() => <FeatherIcon style={{ cursor: 'pointer', color: '#999' }} icon="move" />);
 
 const UserListDataTable = () => {
-  const { users } = useSelector(state => {
+  const { users } = useSelector((state) => {
     return {
       users: state.users,
     };
@@ -95,19 +95,19 @@ const UserListDataTable = () => {
 
   const { dataSource } = state;
 
-  const SortableItem = sortableElement(props => <tr {...props} />);
-  const SortableContainer = sortableContainer(props => <tbody {...props} />);
+  const SortableItem = sortableElement((props) => <tr {...props} />);
+  const SortableContainer = sortableContainer((props) => <tbody {...props} />);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     if (oldIndex !== newIndex) {
-      const newData = arrayMove([].concat(dataSource), oldIndex, newIndex).filter(el => !!el);
+      const newData = arrayMove([].concat(dataSource), oldIndex, newIndex).filter((el) => !!el);
       setState({ ...state, dataSource: newData });
     }
   };
 
   const DraggableBodyRow = ({ className, style, ...restProps }) => {
     // function findIndex base on Table rowKey props and should always be a right array index
-    const index = dataSource.findIndex(x => x.index === restProps['data-row-key']);
+    const index = dataSource.findIndex((x) => x.index === restProps['data-row-key']);
     return <SortableItem index={index} {...restProps} />;
   };
 
@@ -116,7 +116,7 @@ const UserListDataTable = () => {
     style: PropTypes.object,
   };
 
-  const DraggableContainer = props => (
+  const DraggableContainer = (props) => (
     <SortableContainer useDragHandle helperClass="row-dragging" onSortEnd={onSortEnd} {...props} />
   );
 

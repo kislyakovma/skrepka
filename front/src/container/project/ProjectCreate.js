@@ -1,23 +1,23 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Row, Select, Spin} from 'antd';
-import {Link, NavLink, Route, Switch} from 'react-router-dom';
+import React, { lazy, Suspense, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Row, Select, Spin } from 'antd';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
 import CreateProject from './overview/CreateProject';
-import {ProjectHeader, ProjectSorting} from './style';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {filterProjectByStatus, sortingProjectByCategory} from '../../redux/project/actionCreator';
-import {Main} from '../styled';
-import {PageHeader} from '../../components/page-headers/page-headers';
+import { ProjectHeader, ProjectSorting } from './style';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
+import { Main } from '../styled';
+import { PageHeader } from '../../components/page-headers/page-headers';
 
 const Grid = lazy(() => import('./overview/Grid'));
 const List = lazy(() => import('./overview/List'));
 
 const Project = ({ match }) => {
   const dispatch = useDispatch();
-  const searchData = useSelector(state => state.headerSearchData);
+  const searchData = useSelector((state) => state.headerSearchData);
   const { path } = match;
   const [state, setState] = useState({
     notData: searchData,
@@ -26,19 +26,19 @@ const Project = ({ match }) => {
   });
 
   const { notData, visible } = state;
-  const handleSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
     });
   };
 
-  const onSorting = selectedItems => {
+  const onSorting = (selectedItems) => {
     dispatch(sortingProjectByCategory(selectedItems));
   };
 
-  const onChangeCategory = value => {
+  const onChangeCategory = (value) => {
     setState({
       ...state,
       categoryActive: value,

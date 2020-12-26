@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {GalleryCard} from '../style';
+import { GalleryCard } from '../style';
 import Heading from '../../../components/heading/heading';
 
 const GalleryCards = ({ item }) => {

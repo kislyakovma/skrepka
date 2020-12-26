@@ -1,14 +1,14 @@
-import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {Col, Pagination, Row, Skeleton} from 'antd';
-import {useSelector} from 'react-redux';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { Col, Pagination, Row, Skeleton } from 'antd';
+import { useSelector } from 'react-redux';
 import Heading from '../../../components/heading/heading';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {ProjectPagination} from '../style';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { ProjectPagination } from '../style';
 
 const GridCard = lazy(() => import('./GridCard'));
 
 const Grid = () => {
-  const project = useSelector(state => state.projects.data);
+  const project = useSelector((state) => state.projects.data);
   const [state, setState] = useState({
     projects: project,
     current: 0,
@@ -36,7 +36,7 @@ const Grid = () => {
   return (
     <Row gutter={25}>
       {projects.length ? (
-        projects.map(value => {
+        projects.map((value) => {
           return (
             <Col key={value.id} xl={8} md={12} xs={24}>
               <Suspense

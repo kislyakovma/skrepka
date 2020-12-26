@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom/cjs/react-router-dom.min';
-import {Rate} from 'antd';
-import {useDispatch} from 'react-redux';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Rate } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {Sidebar, SidebarSingle} from '../../Style';
+import { Sidebar, SidebarSingle } from '../../Style';
 import {
-    filterByBrand,
-    filterByCategory,
-    filterByPriceRange,
-    filterByRating,
+  filterByBrand,
+  filterByCategory,
+  filterByPriceRange,
+  filterByRating,
 } from '../../../../redux/product/actionCreator';
 
 const Filters = () => {
@@ -21,7 +21,7 @@ const Filters = () => {
   const dispatch = useDispatch();
 
   const { min, max } = state;
-  const onChange = value => {
+  const onChange = (value) => {
     setState({
       ...state,
       min: value[0],
@@ -29,10 +29,10 @@ const Filters = () => {
     });
     dispatch(filterByPriceRange(value));
   };
-  const onChangeRating = checkValue => {
+  const onChangeRating = (checkValue) => {
     dispatch(filterByRating([checkValue]));
   };
-  const onChangeBrand = checkValue => {
+  const onChangeBrand = (checkValue) => {
     dispatch(filterByBrand([checkValue]));
   };
   const options = [
@@ -132,7 +132,7 @@ const Filters = () => {
     },
   ];
 
-  const onChangeCategory = value => {
+  const onChangeCategory = (value) => {
     dispatch(filterByCategory(value));
   };
 

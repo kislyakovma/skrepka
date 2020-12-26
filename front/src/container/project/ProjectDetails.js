@@ -1,24 +1,24 @@
-import React, {lazy, Suspense, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Progress, Row, Spin} from 'antd';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Progress, Row, Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink, Route, Switch} from 'react-router-dom';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import propTypes from 'prop-types';
-import {ProjectDetailsWrapper, TaskLists} from './style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
+import { ProjectDetailsWrapper, TaskLists } from './style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
 import Heading from '../../components/heading/heading';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Button} from '../../components/buttons/buttons';
-import {Dropdown} from '../../components/dropdown/dropdown';
-import {filterSinglePage} from '../../redux/project/actionCreator';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Button } from '../../components/buttons/buttons';
+import { Dropdown } from '../../components/dropdown/dropdown';
+import { filterSinglePage } from '../../redux/project/actionCreator';
 
 const TaskList = lazy(() => import('./overview/TaskList'));
 const Activities = lazy(() => import('./overview/Activities'));
 
 const ProjectDetails = ({ match }) => {
   const dispatch = useDispatch();
-  const project = useSelector(state => state.project.data);
+  const project = useSelector((state) => state.project.data);
 
   useEffect(() => {
     if (!dispatch) {

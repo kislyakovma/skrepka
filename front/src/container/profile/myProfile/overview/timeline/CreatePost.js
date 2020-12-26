@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Input, Upload} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
-import {BackShadow, CreatePost} from './style';
-import {Cards} from '../../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../../components/buttons/buttons';
-import {submitPost} from '../../../../../redux/profile/actionCreator';
+import { Input, Upload } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { BackShadow, CreatePost } from './style';
+import { Cards } from '../../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../../components/buttons/buttons';
+import { submitPost } from '../../../../../redux/profile/actionCreator';
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { posts } = useSelector(state => {
+  const { posts } = useSelector((state) => {
     return {
       posts: state.Profile.posts,
     };
@@ -22,7 +22,7 @@ const Post = () => {
 
   const onCreate = () => {
     const arrayData = [];
-    posts.map(data => {
+    posts.map((data) => {
       return arrayData.push(data.postId);
     });
     const max = Math.max(...arrayData);
@@ -51,7 +51,7 @@ const Post = () => {
     }, 500);
   };
 
-  const onTextChange = e => {
+  const onTextChange = (e) => {
     return setTextValue(e.target.value);
   };
 

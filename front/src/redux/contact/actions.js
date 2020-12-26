@@ -13,14 +13,14 @@ const actions = {
     };
   },
 
-  starUpdateSuccess: data => {
+  starUpdateSuccess: (data) => {
     return {
       type: actions.CONTACT_STAR_UPDATE_SUCCESS,
       data,
     };
   },
 
-  starUpdateErr: err => {
+  starUpdateErr: (err) => {
     return {
       type: actions.CONTACT_STAR_UPDATE_ERR,
       err,
@@ -32,14 +32,14 @@ const actions = {
     };
   },
 
-  readSuccess: data => {
+  readSuccess: (data) => {
     return {
       type: actions.CONTACT_READ_SUCCESS,
       data,
     };
   },
 
-  readErr: err => {
+  readErr: (err) => {
     return {
       type: actions.CONTACT_READ_ERR,
       err,

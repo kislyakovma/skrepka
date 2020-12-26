@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Button, Col, Form, Input, Row} from 'antd';
+import React, { useState } from 'react';
+import { Button, Col, Form, Input, Row } from 'antd';
 import FontAwesome from 'react-fontawesome';
-import {Link} from 'react-router-dom';
-import {BasicFormWrapper} from '../../styled';
+import { Link } from 'react-router-dom';
+import { BasicFormWrapper } from '../../styled';
 import Heading from '../../../components/heading/heading';
 
 const SocialProfile = () => {
@@ -10,7 +10,7 @@ const SocialProfile = () => {
   const [state, setState] = useState({
     values: '',
   });
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, values });
   };
 

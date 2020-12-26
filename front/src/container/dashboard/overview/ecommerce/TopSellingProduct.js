@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Table} from 'antd';
-import {topSaleFilterData, topSaleGetData} from '../../../../redux/chartContent/actionCreator';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Table } from 'antd';
+import { topSaleFilterData, topSaleGetData } from '../../../../redux/chartContent/actionCreator';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const TopSellingProduct = () => {
   const dispatch = useDispatch();
-  const { topSaleState } = useSelector(state => {
+  const { topSaleState } = useSelector((state) => {
     return {
       topSaleState: state.chartContent.topSaleData,
     };
@@ -21,7 +21,7 @@ const TopSellingProduct = () => {
     }
   }, [dispatch]);
 
-  const handleActiveChangeProducts = value => {
+  const handleActiveChangeProducts = (value) => {
     setState({
       ...state,
       products: value,
@@ -31,7 +31,7 @@ const TopSellingProduct = () => {
 
   const sellingData = [];
   if (topSaleState !== null) {
-    topSaleState.map(value => {
+    topSaleState.map((value) => {
       const { key, name, price, sold, revenue } = value;
       return sellingData.push({
         key,

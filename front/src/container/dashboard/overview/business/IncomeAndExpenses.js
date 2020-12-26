@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Col, Row, Spin} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, Row, Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {ExList, IncomeExpenseWrapper} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { ExList, IncomeExpenseWrapper } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {ChartjsBarChartTransparent} from '../../../../components/charts/chartjs';
-import {incomeFilterData, incomeGetData} from '../../../../redux/chartContent/actionCreator';
+import { ChartjsBarChartTransparent } from '../../../../components/charts/chartjs';
+import { incomeFilterData, incomeGetData } from '../../../../redux/chartContent/actionCreator';
 
 const IncomeAndExpenses = () => {
   const dispatch = useDispatch();
-  const { incomeState, isIcLoading } = useSelector(state => {
+  const { incomeState, isIcLoading } = useSelector((state) => {
     return {
       incomeState: state.chartContent.incomeData,
       isIcLoading: state.chartContent.icLoading,
@@ -52,7 +52,7 @@ const IncomeAndExpenses = () => {
     </>
   );
 
-  const handleActiveChangeIncome = value => {
+  const handleActiveChangeIncome = (value) => {
     setState({
       ...state,
       incomeFlowActive: value,

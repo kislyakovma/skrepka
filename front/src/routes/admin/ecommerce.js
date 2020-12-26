@@ -1,6 +1,6 @@
-import React, {lazy} from 'react';
-import {Switch} from 'react-router-dom/cjs/react-router-dom.min';
-import {Route, useRouteMatch} from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { Route, useRouteMatch } from 'react-router-dom';
 
 const Product = lazy(() => import('../../container/ecommerce/product/Products'));
 const ProductAdd = lazy(() => import('../../container/ecommerce/product/AddProduct'));

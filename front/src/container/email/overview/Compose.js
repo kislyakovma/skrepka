@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import RichTextEditor from 'react-rte';
-import {Input} from 'antd';
+import { Input } from 'antd';
 import propTypes from 'prop-types';
-import {MailBox} from './style';
+import { MailBox } from './style';
 import MailComposer from './MailComposer';
 
 const Compose = ({ close }) => {
@@ -13,7 +13,7 @@ const Compose = ({ close }) => {
     size: 'small',
   });
 
-  const onChange = value => {
+  const onChange = (value) => {
     setState({ ...state, value });
   };
 

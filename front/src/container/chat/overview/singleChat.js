@@ -1,26 +1,26 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, {Fragment, useEffect, useState} from 'react';
-import {message, Upload} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, NavLink} from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import { message, Upload } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {MoreOutlined, SmileOutlined} from '@ant-design/icons';
+import { MoreOutlined, SmileOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-import {Scrollbars} from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Picker from 'emoji-picker-react';
-import {BackShadowEmoji, Footer, MessageList, SingleChatWrapper} from '../style';
+import { BackShadowEmoji, Footer, MessageList, SingleChatWrapper } from '../style';
 import Heading from '../../../components/heading/heading';
-import {Button} from '../../../components/buttons/buttons';
-import {updatePrivetChat} from '../../../redux/chat/actionCreator';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Dropdown} from '../../../components/dropdown/dropdown';
+import { Button } from '../../../components/buttons/buttons';
+import { updatePrivetChat } from '../../../redux/chat/actionCreator';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Dropdown } from '../../../components/dropdown/dropdown';
 
 const SingleChat = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { rtl, chat } = useSelector(state => {
+  const { rtl, chat } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
       chat: state.chatSingle.data,
@@ -68,14 +68,14 @@ const SingleChat = ({ match }) => {
     setPickerShow(!pickerShow);
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({
       ...state,
       inputValue: e.target.value,
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const pushcontent = {
@@ -424,8 +424,9 @@ const SingleChat = ({ match }) => {
         <Footer>
           <form onSubmit={handleSubmit}>
             <div
-              className={`chatbox-reply-form d-flex ${state.fileList.length && 'hasImage'} ${state.fileList2.length &&
-                'hasFile'}`}
+              className={`chatbox-reply-form d-flex ${state.fileList.length && 'hasImage'} ${
+                state.fileList2.length && 'hasFile'
+              }`}
             >
               <div className="chatbox-reply-input">
                 <span className="smile-icon">

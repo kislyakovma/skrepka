@@ -27,11 +27,11 @@ const Sliders = () => {
     },
   };
 
-  const onChange = value => {
+  const onChange = (value) => {
     setstate({ ...state, onChangeValue: value });
   };
 
-  const onAfterChange = value => {
+  const onAfterChange = (value) => {
     setstate({ ...state, afterChangeValue: value });
   };
 
@@ -44,7 +44,7 @@ const Sliders = () => {
   return (
     <>
       <PageHeader
-        ghost 
+        ghost
         title="Sliders"
         buttons={[
           <div key="1" className="page-header-actions">

@@ -1,12 +1,12 @@
-import React, {lazy, Suspense} from 'react';
-import {Col, Row, Spin} from 'antd';
-import {NavLink, Route, Switch} from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { Col, Row, Spin } from 'antd';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import propTypes from 'prop-types';
-import {AddUser} from './style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
+import { AddUser } from './style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
 
 const Info = lazy(() => import('./overview/info'));
 const Work = lazy(() => import('./overview/work'));
@@ -48,8 +48,8 @@ const AddNew = ({ match }) => {
                       </div>
                     }
                   >
-                    <Route  exact path={'/admin/pages/add-user/info/:id'} component={Info} />
-                    <Route  exact path={'/admin/pages/add-user/work/:id'} component={Work} />
+                    <Route exact path={'/admin/pages/add-user/info/:id'} component={Info} />
+                    <Route exact path={'/admin/pages/add-user/work/:id'} component={Work} />
                     <Route path={`${match.path}/social`} component={Social} />
                   </Suspense>
                 </Switch>

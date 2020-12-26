@@ -13,7 +13,7 @@ import { CalendarButtonPageHeader } from '../../components/buttons/calendar-butt
 const ButtonGroup = Button.Group;
 
 const ProgressBar = () => {
-  const rtl = useSelector(state => state.ChangeLayoutMode.rtlData);
+  const rtl = useSelector((state) => state.ChangeLayoutMode.rtlData);
   const [state, setState] = useState({
     percent: 0,
   });
@@ -151,7 +151,7 @@ const ProgressBar = () => {
               <Progress
                 type="circle"
                 percent={75}
-                format={percent => `${percent} Days`}
+                format={(percent) => `${percent} Days`}
                 style={{ [!rtl ? 'marginRight' : 'marginLeft']: '15px' }}
               />
               <Progress type="circle" percent={100} format={() => 'Done'} />

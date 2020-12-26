@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Col, Form, Input, Row, Table} from 'antd';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Form, Input, Row, Table } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {Action, ContactPageheaderStyle} from './style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {BasicFormWrapper, CardToolbox, Main, TableWrapper} from '../styled';
+import { Link } from 'react-router-dom';
+import { Action, ContactPageheaderStyle } from './style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { BasicFormWrapper, CardToolbox, Main, TableWrapper } from '../styled';
 import Heading from '../../components/heading/heading';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {AddUser, UserTableStyleWrapper} from '../pages/style';
-import {contactAddData, contactDeleteData, contactSearchData, onStarUpdate} from '../../redux/contact/actionCreator';
-import {Dropdown} from '../../components/dropdown/dropdown';
-import {Modal} from '../../components/modals/antd-modals';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { AddUser, UserTableStyleWrapper } from '../pages/style';
+import { contactAddData, contactDeleteData, contactSearchData, onStarUpdate } from '../../redux/contact/actionCreator';
+import { Dropdown } from '../../components/dropdown/dropdown';
+import { Modal } from '../../components/modals/antd-modals';
 
 const UserListDataTable = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector(state => {
+  const { users } = useSelector((state) => {
     return {
       users: state.Contact.data,
     };
@@ -36,12 +36,12 @@ const UserListDataTable = () => {
 
   const { update } = state;
 
-  const handleSearch = searchText => {
+  const handleSearch = (searchText) => {
     dispatch(contactSearchData(searchText));
   };
 
-  const onHandleDelete = id => {
-    const value = users.filter(item => item.id !== id);
+  const onHandleDelete = (id) => {
+    const value = users.filter((item) => item.id !== id);
     dispatch(contactDeleteData(value));
   };
 
@@ -52,7 +52,7 @@ const UserListDataTable = () => {
     });
   };
 
-  const showEditModal = data => {
+  const showEditModal = (data) => {
     setState({
       ...state,
       editVisible: true,
@@ -68,10 +68,10 @@ const UserListDataTable = () => {
     });
   };
 
-  const handleOk = values => {
+  const handleOk = (values) => {
     onCancel();
     const arrayData = [];
-    users.map(data => {
+    users.map((data) => {
       return arrayData.push(data.id);
     });
     const max = Math.max(...arrayData);
@@ -91,11 +91,11 @@ const UserListDataTable = () => {
     form.resetFields();
   };
 
-  const handleEditOk = values => {
+  const handleEditOk = (values) => {
     onCancel();
     const updateUsers = users;
 
-    updateUsers.map(user => {
+    updateUsers.map((user) => {
       if (user.id === update.id) {
         const updateUser = user;
         updateUser.id = update.id;
@@ -124,7 +124,7 @@ const UserListDataTable = () => {
     .sort((a, b) => {
       return b.time - a.time;
     })
-    .map(user => {
+    .map((user) => {
       const { id, name, designation, img, stared, email, phone, company } = user;
 
       return usersTableData.push({
@@ -217,7 +217,7 @@ const UserListDataTable = () => {
     onChange: (selectedRowKeys, selectedRows) => {
       setState({ ...state, selectedRowKeys, selectedRows });
     },
-    getCheckboxProps: record => ({
+    getCheckboxProps: (record) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),

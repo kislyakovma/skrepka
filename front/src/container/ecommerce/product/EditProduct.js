@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, InputNumber, message, Radio, Row, Select, Upload} from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, InputNumber, message, Radio, Row, Select, Upload } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {BasicFormWrapper, Main} from '../../styled';
-import {Button} from '../../../components/buttons/buttons';
-import {AddProductForm} from '../Style';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { BasicFormWrapper, Main } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { AddProductForm } from '../Style';
 import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;
@@ -48,20 +48,17 @@ const EditProduct = () => {
     defaultFileList: fileList,
     showUploadList: {
       showRemoveIcon: true,
-      removeIcon: <FeatherIcon icon="trash-2" onClick={e => console.log(e, 'custom removeIcon event')} />,
+      removeIcon: <FeatherIcon icon="trash-2" onClick={(e) => console.log(e, 'custom removeIcon event')} />,
     },
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, submitValues: values });
   };
 
   return (
     <>
-      <PageHeader
-        ghost
-        title="Редактировать товар"
-      />
+      <PageHeader ghost title="Редактировать товар" />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>

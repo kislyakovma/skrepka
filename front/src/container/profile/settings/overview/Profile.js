@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, Row, Select} from 'antd';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../components/buttons/buttons';
-import {BasicFormWrapper, TagInput} from '../../../styled';
+import React, { useState } from 'react';
+import { Col, Form, Input, Row, Select } from 'antd';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../components/buttons/buttons';
+import { BasicFormWrapper, TagInput } from '../../../styled';
 import Heading from '../../../../components/heading/heading';
-import {Tag} from '../../../../components/tags/tags';
+import { Tag } from '../../../../components/tags/tags';
 
 const { Option } = Select;
 const Profile = () => {
@@ -15,16 +15,16 @@ const Profile = () => {
     values: null,
   });
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, values: { ...values, tags: state.tags } });
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     e.preventDefault();
     form.resetFields();
   };
 
-  const checked = checke => {
+  const checked = (checke) => {
     setState({ tags: checke });
   };
 

@@ -6,7 +6,7 @@ import { Button } from '../buttons/buttons';
 
 const RadioGroup = Radio.Group;
 
-const Drawer = props => {
+const Drawer = (props) => {
   const { width, title, placement, children, customPlacement, render, childDrawer, childTitle, btnText } = props;
   const [state, setState] = useState({
     visible: false,
@@ -28,7 +28,7 @@ const Drawer = props => {
     });
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setState({
       ...state,
       placement: e.target.value,

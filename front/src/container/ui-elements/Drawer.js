@@ -1,14 +1,14 @@
 import React from 'react';
-import {Col, DatePicker, Form, Input, Row, Select} from 'antd';
+import { Col, DatePicker, Form, Input, Row, Select } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Drawer} from '../../components/drawer/drawer';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Drawer } from '../../components/drawer/drawer';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const { Option } = Select;
 const Drawers = () => {
@@ -147,7 +147,7 @@ const Drawers = () => {
                         >
                           <DatePicker.RangePicker
                             style={{ width: '100%' }}
-                            getPopupContainer={trigger => trigger.parentNode}
+                            getPopupContainer={(trigger) => trigger.parentNode}
                           />
                         </Form.Item>
                       </Col>

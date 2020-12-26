@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Spin} from 'antd';
-import {RevenueChartWrapper} from '../../style';
-import {ChartjsDonutChart2} from '../../../../components/charts/chartjs';
-import {deviceFilterData, deviceGetData} from '../../../../redux/chartContent/actionCreator';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Spin } from 'antd';
+import { RevenueChartWrapper } from '../../style';
+import { ChartjsDonutChart2 } from '../../../../components/charts/chartjs';
+import { deviceFilterData, deviceGetData } from '../../../../redux/chartContent/actionCreator';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const RevenueByDevice = () => {
   const dispatch = useDispatch();
-  const { deviceState, dvIsLoading } = useSelector(state => {
+  const { deviceState, dvIsLoading } = useSelector((state) => {
     return {
       deviceState: state.chartContent.deviceData,
       dvIsLoading: state.chartContent.dvLoading,
@@ -25,7 +25,7 @@ const RevenueByDevice = () => {
     }
   }, [dispatch]);
 
-  const handleActiveChangeDevice = value => {
+  const handleActiveChangeDevice = (value) => {
     setState({
       ...state,
       device: value,

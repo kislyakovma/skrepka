@@ -15,7 +15,7 @@ const actions = {
 
   SEARCH_PRODUCT: 'SEARCH_PRODUCT',
 
-  searchProduct: data => {
+  searchProduct: (data) => {
     return {
       type: actions.SEARCH_PRODUCT,
       data,
@@ -26,21 +26,21 @@ const actions = {
       type: actions.SINGLE_PRODUCT_BEGIN,
     };
   },
-  init: data => {
+  init: (data) => {
     return {
       type: actions.INIT,
       data,
     };
   },
 
-  singleProductSuccess: data => {
+  singleProductSuccess: (data) => {
     return {
       type: actions.SINGLE_PRODUCT_SUCCESS,
       data,
     };
   },
 
-  singleProductErr: err => {
+  singleProductErr: (err) => {
     return {
       type: actions.SINGLE_PRODUCT_ERR,
       err,
@@ -53,14 +53,14 @@ const actions = {
     };
   },
 
-  filterProductSuccess: data => {
+  filterProductSuccess: (data) => {
     return {
       type: actions.FILTER_PRODUCT_SUCCESS,
       data,
     };
   },
 
-  filterProductErr: err => {
+  filterProductErr: (err) => {
     return {
       type: actions.FILTER_PRODUCT_ERR,
       err,
@@ -73,14 +73,14 @@ const actions = {
     };
   },
 
-  sortingProductSuccess: data => {
+  sortingProductSuccess: (data) => {
     return {
       type: actions.SORTING_PRODUCT_SUCCESS,
       data,
     };
   },
 
-  sortingProductErr: err => {
+  sortingProductErr: (err) => {
     return {
       type: actions.SORTING_PRODUCT_ERR,
       err,

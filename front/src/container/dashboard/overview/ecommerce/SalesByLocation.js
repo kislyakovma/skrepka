@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Table} from 'antd';
-import {VectorMap} from 'react-jvectormap';
-import {LocationMapWrapper} from '../../style';
-import {locationFilterData, locationGetData} from '../../../../redux/chartContent/actionCreator';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Table } from 'antd';
+import { VectorMap } from 'react-jvectormap';
+import { LocationMapWrapper } from '../../style';
+import { locationFilterData, locationGetData } from '../../../../redux/chartContent/actionCreator';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const SalesByLocation = () => {
   const dispatch = useDispatch();
-  const { locationState } = useSelector(state => {
+  const { locationState } = useSelector((state) => {
     return {
       locationState: state.chartContent.locationData,
     };
@@ -22,7 +22,7 @@ const SalesByLocation = () => {
       dispatch(locationGetData());
     }
   }, [dispatch]);
-  const handleActiveChangeLocation = value => {
+  const handleActiveChangeLocation = (value) => {
     setState({
       ...state,
       location: value,
@@ -33,7 +33,7 @@ const SalesByLocation = () => {
   const locationData = [];
 
   if (locationState !== null) {
-    locationState.map(value => {
+    locationState.map((value) => {
       const { key, location, order, revenue } = value;
       return locationData.push({
         key,

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Col, Row} from 'antd';
+import { Col, Row } from 'antd';
 import FontAwesome from 'react-fontawesome';
-import {Icon, IconWrapper} from './IconStyled';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
-import {faIcons} from '../../config/icon/icon.json';
+import { Icon, IconWrapper } from './IconStyled';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
+import { faIcons } from '../../config/icon/icon.json';
 
 const FaIcons = () => {
   let key = 0;
@@ -18,7 +18,7 @@ const FaIcons = () => {
             <IconWrapper>
               <Cards title="Simply beautiful open source icons" size="large">
                 <Row gutter={25}>
-                  {faIcons.map(icon => {
+                  {faIcons.map((icon) => {
                     key += 1;
                     return (
                       <Col lg={6} md={12} xs={24} key={key}>

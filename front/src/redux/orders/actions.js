@@ -9,14 +9,14 @@ const actions = {
     };
   },
 
-  filterOrderSuccess: data => {
+  filterOrderSuccess: (data) => {
     return {
       type: actions.FILTER_ORDER_SUCCESS,
       data,
     };
   },
 
-  filterOrderErr: err => {
+  filterOrderErr: (err) => {
     return {
       type: actions.FILTER_ORDER_ERR,
       err,

@@ -17,14 +17,14 @@ const actions = {
     };
   },
 
-  singleProjectSuccess: data => {
+  singleProjectSuccess: (data) => {
     return {
       type: actions.SINGLE_PROJECT_SUCCESS,
       data,
     };
   },
 
-  singleProjectErr: err => {
+  singleProjectErr: (err) => {
     return {
       type: actions.SINGLE_PROJECT_ERR,
       err,
@@ -37,14 +37,14 @@ const actions = {
     };
   },
 
-  filterProjectSuccess: data => {
+  filterProjectSuccess: (data) => {
     return {
       type: actions.FILTER_PROJECT_SUCCESS,
       data,
     };
   },
 
-  filterProjectErr: err => {
+  filterProjectErr: (err) => {
     return {
       type: actions.FILTER_PROJECT_ERR,
       err,
@@ -57,14 +57,14 @@ const actions = {
     };
   },
 
-  sortingProjectSuccess: data => {
+  sortingProjectSuccess: (data) => {
     return {
       type: actions.SORTING_PROJECT_SUCCESS,
       data,
     };
   },
 
-  sortingProjectErr: err => {
+  sortingProjectErr: (err) => {
     return {
       type: actions.SORTING_PROJECT_ERR,
       err,

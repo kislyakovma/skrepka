@@ -1,16 +1,16 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Col, Row, Skeleton} from 'antd';
+import React, { lazy, Suspense, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Col, Row, Skeleton } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {CardToolbox, Main} from '../styled';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
+import { Link } from 'react-router-dom';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { CardToolbox, Main } from '../styled';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
 
 const Team = () => {
-  const { searchData, team } = useSelector(state => {
+  const { searchData, team } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       team: state.team.data,
@@ -22,8 +22,8 @@ const Team = () => {
   });
 
   const { notData } = state;
-  const handleSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
@@ -75,7 +75,7 @@ const Team = () => {
 
       <Main>
         <Row gutter={25}>
-          {team.map(user => {
+          {team.map((user) => {
             const TeamCard = lazy(() => import('./overview/TeamCard'));
             const { id } = user;
             return (

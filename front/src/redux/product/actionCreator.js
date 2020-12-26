@@ -25,22 +25,22 @@ const {
 const getData = async () => {
   const arr = [];
   const snapshot = await db.collection('products').get();
-  snapshot.docs.map(doc => {
+  snapshot.docs.map((doc) => {
     arr.push(doc.data());
   });
   return arr;
 };
 
-const search = text => {
-  return async dispatch => {
+const search = (text) => {
+  return async (dispatch) => {
     dispatch(sortingProductBegin());
     if (text.trim() === '') {
       console.log('JOPAAA');
-      getData().then(data => {
+      getData().then((data) => {
         dispatch(init(data));
       });
     } else {
-      getData().then(data => {
+      getData().then((data) => {
         var search = new JsSearch.Search('id');
         search.addIndex('brand');
         search.addIndex('description');
@@ -54,11 +54,11 @@ const search = text => {
 };
 
 const initProduct = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(sortingProductBegin());
     const arr = [];
     const snapshot = await db.collection('products').get();
-    snapshot.docs.map(doc => {
+    snapshot.docs.map((doc) => {
       arr.push(doc.data());
     });
 
@@ -66,12 +66,12 @@ const initProduct = () => {
   };
 };
 
-const filterSinglePage = paramsId => {
-  return async dispatch => {
+const filterSinglePage = (paramsId) => {
+  return async (dispatch) => {
     try {
       dispatch(singleProductBegin());
-      getData().then(data => {
-        data.map(product => {
+      getData().then((data) => {
+        data.map((product) => {
           if (product.id === paramsId) {
             console.log(product);
             dispatch(singleProductSuccess(product));
@@ -85,7 +85,7 @@ const filterSinglePage = paramsId => {
 };
 
 const sorting = (sortBy, products, sorted) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(sortingProductBegin());
       setTimeout(() => {
@@ -104,11 +104,11 @@ const sorting = (sortBy, products, sorted) => {
   };
 };
 
-const filterByPriceRange = range => {
-  return async dispatch => {
+const filterByPriceRange = (range) => {
+  return async (dispatch) => {
     dispatch(filterProductBegin());
     try {
-      const data = initialState.filter(product => {
+      const data = initialState.filter((product) => {
         return product.price >= range[0] && product.price <= range[1];
       });
       dispatch(filterProductSuccess(data));
@@ -118,12 +118,12 @@ const filterByPriceRange = range => {
   };
 };
 
-const filterByRating = range => {
-  return async dispatch => {
+const filterByRating = (range) => {
+  return async (dispatch) => {
     try {
       dispatch(filterProductBegin());
       setTimeout(() => {
-        const data = initialState.filter(product => {
+        const data = initialState.filter((product) => {
           if (range[0].length) {
             return range[0].includes(product.rate);
           }
@@ -137,12 +137,12 @@ const filterByRating = range => {
   };
 };
 
-const filterByBrand = brand => {
-  return async dispatch => {
+const filterByBrand = (brand) => {
+  return async (dispatch) => {
     try {
       dispatch(filterProductBegin());
       setTimeout(() => {
-        const data = initialState.filter(product => {
+        const data = initialState.filter((product) => {
           if (brand[0].length) {
             return brand[0].includes(product.brand);
           }
@@ -156,13 +156,13 @@ const filterByBrand = brand => {
   };
 };
 
-const filterByCategory = category => {
-  return async dispatch => {
+const filterByCategory = (category) => {
+  return async (dispatch) => {
     try {
       dispatch(filterProductBegin());
-      getData().then(data => {
+      getData().then((data) => {
         if (category !== 'all') {
-          data = data.filter(product => {
+          data = data.filter((product) => {
             return product.category == category;
           });
         }
@@ -174,12 +174,12 @@ const filterByCategory = category => {
   };
 };
 
-const updateWishList = id => {
-  return async dispatch => {
+const updateWishList = (id) => {
+  return async (dispatch) => {
     try {
       dispatch(filterProductBegin());
 
-      initialState.map(product => {
+      initialState.map((product) => {
         if (product.id === id) {
           return product.popular ? (product.popular = false) : (product.popular = true);
         }

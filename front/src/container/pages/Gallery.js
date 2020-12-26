@@ -1,23 +1,23 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { lazy, Suspense, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import {Col, Row, Skeleton, Spin} from 'antd';
-import {Link} from 'react-router-dom';
-import {GalleryNav} from './style';
-import {Main} from '../styled';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {galleryFilter} from '../../redux/gallary/actionCreator';
-import {Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
-import {Cards} from '../../components/cards/frame/cards-frame';
+import { Col, Row, Skeleton, Spin } from 'antd';
+import { Link } from 'react-router-dom';
+import { GalleryNav } from './style';
+import { Main } from '../styled';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { galleryFilter } from '../../redux/gallary/actionCreator';
+import { Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import { Cards } from '../../components/cards/frame/cards-frame';
 
 const GalleryCards = lazy(() => import('./overview/GalleryCard'));
 
 const Gallery = () => {
   const dispatch = useDispatch();
-  const { gallery, isLoading } = useSelector(state => {
+  const { gallery, isLoading } = useSelector((state) => {
     return {
       gallery: state.gallery.data,
       isLoading: state.gallery.loading,
@@ -28,7 +28,7 @@ const Gallery = () => {
     activeClass: '',
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     dispatch(galleryFilter('category', value));
     setState({
       ...state,
@@ -113,7 +113,7 @@ const Gallery = () => {
               </div>
             </Col>
           ) : (
-            gallery.map(item => {
+            gallery.map((item) => {
               const { id } = item;
               return (
                 <Col key={id} xxl={6} lg={8} sm={12} xs={24}>

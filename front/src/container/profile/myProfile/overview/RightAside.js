@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Col, Row} from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Col, Row } from 'antd';
 import ModalVideo from 'react-modal-video';
-import {RightAsideWrapper} from './style';
-import {Button} from '../../../../components/buttons/buttons';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {profileFriendsChangeStatus} from '../../../../redux/profile/actionCreator';
+import { RightAsideWrapper } from './style';
+import { Button } from '../../../../components/buttons/buttons';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { profileFriendsChangeStatus } from '../../../../redux/profile/actionCreator';
 import './video-modal.css';
 
 const RightAside = () => {
   const dispatch = useDispatch();
-  const { friends, gallery } = useSelector(state => {
+  const { friends, gallery } = useSelector((state) => {
     return {
       friends: state.Profile.friends,
       gallery: state.gallery.data,

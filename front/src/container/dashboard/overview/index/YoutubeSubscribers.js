@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {Spin} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Spin } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {CardBarChart} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { CardBarChart } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {ChartjsBarChartTransparent} from '../../../../components/charts/chartjs';
+import { ChartjsBarChartTransparent } from '../../../../components/charts/chartjs';
 
-import {youtubeSubscribeFilterData, youtubeSubscribeGetData} from '../../../../redux/chartContent/actionCreator';
+import { youtubeSubscribeFilterData, youtubeSubscribeGetData } from '../../../../redux/chartContent/actionCreator';
 
 const YoutubeSubscribers = () => {
   const dispatch = useDispatch();
-  const { youtubeSubscribeState, yuIsLoading } = useSelector(state => {
+  const { youtubeSubscribeState, yuIsLoading } = useSelector((state) => {
     return {
       youtubeSubscribeState: state.chartContent.youtubeSubscribeData,
       yuIsLoading: state.chartContent.yuLoading,
@@ -48,7 +48,7 @@ const YoutubeSubscribers = () => {
     },
   ];
 
-  const handleActiveChangeYoutube = value => {
+  const handleActiveChangeYoutube = (value) => {
     setState({
       ...state,
       youtubeSubscribeTabActive: value,

@@ -1,16 +1,16 @@
 /* eslint-disable no-shadow */
-import React, {Component} from 'react';
-import {Button, Col, Layout, Row} from 'antd';
+import React, { Component } from 'react';
+import { Button, Col, Layout, Row } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link, NavLink} from 'react-router-dom';
-import {Scrollbars} from 'react-custom-scrollbars';
-import {ThemeProvider} from 'styled-components';
-import {connect} from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { ThemeProvider } from 'styled-components';
+import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import MenueItems from './MenueItems';
-import {Div, SmallScreenAuthInfo, SmallScreenSearch} from './style';
+import { Div, SmallScreenAuthInfo, SmallScreenSearch } from './style';
 import AuthInfo from '../components/utilities/auth-info/info';
-import {changeLayoutMode, changeMenuMode, changeRtlMode} from '../redux/themeLayout/actionCreator';
+import { changeLayoutMode, changeMenuMode, changeRtlMode } from '../redux/themeLayout/actionCreator';
 
 const { darkTheme } = require('../config/theme/themeVariables');
 

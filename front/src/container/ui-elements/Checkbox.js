@@ -16,11 +16,11 @@ const Checkboxs = () => {
     checked: null,
   });
 
-  const multipleChange = childData => {
+  const multipleChange = (childData) => {
     setState({ ...state, checkData: childData });
   };
 
-  const onChange = checked => {
+  const onChange = (checked) => {
     setState({ ...state, checked });
   };
 

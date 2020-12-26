@@ -4,7 +4,7 @@ import staticData from '../../demoData/teamData.json';
 const { teamDataBegin, teamDataSuccess, teamDataErr } = actions;
 
 const teamGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(teamDataBegin());
       dispatch(teamDataSuccess(staticData));

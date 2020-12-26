@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {Col, DatePicker, Form, Input, Row, Select} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, DatePicker, Form, Input, Row, Select } from 'antd';
 import propTypes from 'prop-types';
-import {Button} from '../../../components/buttons/buttons';
-import {Modal} from '../../../components/modals/antd-modals';
-import {CheckboxGroup} from '../../../components/checkbox/checkbox';
-import {BasicFormWrapper} from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { Modal } from '../../../components/modals/antd-modals';
+import { CheckboxGroup } from '../../../components/checkbox/checkbox';
+import { BasicFormWrapper } from '../../styled';
 
 const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';

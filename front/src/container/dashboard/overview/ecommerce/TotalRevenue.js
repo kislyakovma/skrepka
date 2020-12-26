@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {Spin} from 'antd';
-import {RevenueWrapper} from '../../style';
-import {ChartjsAreaChart} from '../../../../components/charts/chartjs';
-import {chartLinearGradient, customTooltips} from '../../../../components/utilities/utilities';
-import {performanceFilterData, performanceGetData} from '../../../../redux/chartContent/actionCreator';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { Spin } from 'antd';
+import { RevenueWrapper } from '../../style';
+import { ChartjsAreaChart } from '../../../../components/charts/chartjs';
+import { chartLinearGradient, customTooltips } from '../../../../components/utilities/utilities';
+import { performanceFilterData, performanceGetData } from '../../../../redux/chartContent/actionCreator';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 
 const moreContent = (
   <>
@@ -35,7 +35,7 @@ const moreContent = (
 );
 const TotalRevenue = () => {
   const dispatch = useDispatch();
-  const { performanceState, preIsLoading } = useSelector(state => {
+  const { performanceState, preIsLoading } = useSelector((state) => {
     return {
       performanceState: state.chartContent.performanceData,
       preIsLoading: state.chartContent.perLoading,
@@ -49,7 +49,7 @@ const TotalRevenue = () => {
       dispatch(performanceGetData());
     }
   }, [dispatch]);
-  const handleActiveChangeRevenue = value => {
+  const handleActiveChangeRevenue = (value) => {
     setState({
       ...state,
       revenue: value,

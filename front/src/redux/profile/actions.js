@@ -13,14 +13,14 @@ const actions = {
     };
   },
 
-  profileFriendsSuccess: data => {
+  profileFriendsSuccess: (data) => {
     return {
       type: actions.PROFILE_FRIENDS_SUCCESS,
       data,
     };
   },
 
-  profileFriendsErr: err => {
+  profileFriendsErr: (err) => {
     return {
       type: actions.PROFILE_FRIENDS_ERR,
       err,
@@ -33,14 +33,14 @@ const actions = {
     };
   },
 
-  postDataSuccess: data => {
+  postDataSuccess: (data) => {
     return {
       type: actions.POST_DATA_SUCCESS,
       data,
     };
   },
 
-  postDataErr: err => {
+  postDataErr: (err) => {
     return {
       type: actions.POST_DATA_ERR,
       err,

@@ -29,7 +29,7 @@ const Cascaders = () => {
     value: null,
     loading: [],
   });
-  const onChange = value => {
+  const onChange = (value) => {
     setState({ ...state, value });
   };
 

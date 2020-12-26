@@ -1,23 +1,23 @@
 import React from 'react';
-import {Col, Form, Input, Row, Select, Spin, Upload} from 'antd';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { Col, Form, Input, Row, Select, Spin, Upload } from 'antd';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FeatherIcon from 'feather-icons-react';
-import {RecordFormWrapper} from './style';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Button} from '../../../components/buttons/buttons';
+import { RecordFormWrapper } from './style';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Button } from '../../../components/buttons/buttons';
 
-import {BasicFormWrapper, Main} from '../../styled';
-import {fbDataSubmit, fbFileClear, fbFileUploder, fbNewUser} from '../../../redux/firestore/actionCreator';
+import { BasicFormWrapper, Main } from '../../styled';
+import { fbDataSubmit, fbFileClear, fbFileUploder, fbNewUser } from '../../../redux/firestore/actionCreator';
 import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;
 
 const AddNew = () => {
   const dispatch = useDispatch();
-  const { isLoading, url, isFileLoading } = useSelector(state => {
+  const { isLoading, url, isFileLoading } = useSelector((state) => {
     return {
       isLoading: state.crud.loading,
       url: state.crud.url,
@@ -27,7 +27,7 @@ const AddNew = () => {
 
   const [form] = Form.useForm();
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     dispatch(fbNewUser(values));
     dispatch(
       fbDataSubmit('users', {

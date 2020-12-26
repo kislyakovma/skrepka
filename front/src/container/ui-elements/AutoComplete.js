@@ -13,7 +13,7 @@ import { CalendarButtonPageHeader } from '../../components/buttons/calendar-butt
 
 const { TextArea } = Input;
 const AutoCompletess = () => {
-  const searchData = useSelector(state => state.headerSearchData);
+  const searchData = useSelector((state) => state.headerSearchData);
 
   const [state, setState] = useState({
     dataSource: [],
@@ -21,11 +21,11 @@ const AutoCompletess = () => {
   });
   const { dataSource, notData } = state;
 
-  const onSearch = searchText => {
+  const onSearch = (searchText) => {
     let arrayData = [];
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     if (data.length) {
-      data.map(item => arrayData.push(item.title));
+      data.map((item) => arrayData.push(item.title));
     } else {
       arrayData = ['Data Not Found!'];
     }
@@ -34,8 +34,8 @@ const AutoCompletess = () => {
     });
   };
 
-  const patternSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const patternSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       notData: data,
     });

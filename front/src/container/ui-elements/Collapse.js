@@ -15,7 +15,7 @@ const Collapses = () => {
   const [state, setstate] = useState({
     key: 0,
   });
-  const callback = key => {
+  const callback = (key) => {
     setstate({ ...state, key });
   };
 

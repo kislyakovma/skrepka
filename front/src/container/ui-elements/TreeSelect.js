@@ -46,19 +46,19 @@ const TreeSelects = () => {
     ],
   });
 
-  const onChange = value => {
+  const onChange = (value) => {
     setState({ ...state, value });
   };
 
-  const onMultiChange = value => {
+  const onMultiChange = (value) => {
     setState({ ...state, multi_value: value });
   };
 
-  const onGenerateChange = value => {
+  const onGenerateChange = (value) => {
     setState({ ...state, generate_value: value });
   };
 
-  const onCheckChange = value => {
+  const onCheckChange = (value) => {
     setState({ ...state, check_value: value });
   };
 
@@ -75,9 +75,7 @@ const TreeSelects = () => {
   };
 
   const genTreeNode = (parentId, isLeaf = false) => {
-    const random = Math.random()
-      .toString(36)
-      .substring(2, 6);
+    const random = Math.random().toString(36).substring(2, 6);
     return {
       id: random,
       pId: parentId,
@@ -87,8 +85,8 @@ const TreeSelects = () => {
     };
   };
 
-  const onLoadData = treeNode =>
-    new Promise(resolve => {
+  const onLoadData = (treeNode) =>
+    new Promise((resolve) => {
       const { id } = treeNode.props;
       setTimeout(() => {
         setState({
@@ -99,7 +97,7 @@ const TreeSelects = () => {
       }, 300);
     });
 
-  const onAsyncChange = value => {
+  const onAsyncChange = (value) => {
     setState({ ...state, async_value: value });
   };
   const { asyncTreeData } = state;

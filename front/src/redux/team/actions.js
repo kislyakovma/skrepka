@@ -9,14 +9,14 @@ const actions = {
     };
   },
 
-  teamDataSuccess: data => {
+  teamDataSuccess: (data) => {
     return {
       type: actions.TEAM_DATA_SUCCESS,
       data,
     };
   },
 
-  teamDataErr: err => {
+  teamDataErr: (err) => {
     return {
       type: actions.TEAM_DATA_ERR,
       err,

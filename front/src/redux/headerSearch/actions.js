@@ -9,14 +9,14 @@ const actions = {
     };
   },
 
-  searchHeaderSuccess: data => {
+  searchHeaderSuccess: (data) => {
     return {
       type: actions.SEARCH_HEADER_SUCCESS,
       data,
     };
   },
 
-  searchHeaderErr: err => {
+  searchHeaderErr: (err) => {
     return {
       type: actions.SEARCH_HEADER_ERR,
       err,

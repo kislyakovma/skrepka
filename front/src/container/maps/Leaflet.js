@@ -1,13 +1,13 @@
 import React from 'react';
-import {Col, Row} from 'antd';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
+import { Col, Row } from 'antd';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
 import {
-    LeafletMapBasic,
-    LeafletMapCustomIcon,
-    LeafletMapMultipleIcon,
-    LeafletMarkerCluster,
+  LeafletMapBasic,
+  LeafletMapCustomIcon,
+  LeafletMapMultipleIcon,
+  LeafletMarkerCluster,
 } from '../../components/maps/leaflet';
 
 const place = [

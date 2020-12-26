@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Table} from 'antd';
-import {Link} from 'react-router-dom';
-import {Button} from '../../../components/buttons/buttons';
-import {Dropdown} from '../../../components/dropdown/dropdown';
-import {TasklistAction} from '../style';
+import { Table } from 'antd';
+import { Link } from 'react-router-dom';
+import { Button } from '../../../components/buttons/buttons';
+import { Dropdown } from '../../../components/dropdown/dropdown';
+import { TasklistAction } from '../style';
 
 const TaskList = () => {
   const [state, setState] = useState({
@@ -281,7 +281,7 @@ const TaskList = () => {
     onChange: (selectedRowKeys, selectedRows) => {
       setState({ ...state, selectedRowKeys, selectedRows });
     },
-    getCheckboxProps: record => ({
+    getCheckboxProps: (record) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),

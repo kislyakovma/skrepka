@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, Row} from 'antd';
-import {AccountWrapper} from './style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {Button} from '../../../../components/buttons/buttons';
-import {BasicFormWrapper} from '../../../styled';
+import React, { useState } from 'react';
+import { Col, Form, Input, Row } from 'antd';
+import { AccountWrapper } from './style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { Button } from '../../../../components/buttons/buttons';
+import { BasicFormWrapper } from '../../../styled';
 import Heading from '../../../../components/heading/heading';
 
 const Account = () => {
@@ -14,16 +14,16 @@ const Account = () => {
     values: null,
   });
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, values });
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     e.preventDefault();
     form.resetFields();
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({
       name: e.target.value,
     });

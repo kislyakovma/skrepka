@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {NavLink} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
-import {Badge} from 'antd';
-import {BlockSpan, ChatWrapper} from '../style';
-import {textRefactor} from '../../../components/utilities/utilities';
-import {filterSinglePage} from '../../../redux/chat/actionCreator';
-import {Button} from '../../../components/buttons/buttons';
+import { Badge } from 'antd';
+import { BlockSpan, ChatWrapper } from '../style';
+import { textRefactor } from '../../../components/utilities/utilities';
+import { filterSinglePage } from '../../../redux/chat/actionCreator';
+import { Button } from '../../../components/buttons/buttons';
 
 const AllContacts = ({ match }) => {
   const dispatch = useDispatch();
-  const chat = useSelector(state => state.chat.data);
+  const chat = useSelector((state) => state.chat.data);
 
   const [state] = useState({
     chatData: chat,
@@ -20,7 +20,7 @@ const AllContacts = ({ match }) => {
 
   const { chatData } = state;
 
-  const dataFiltering = e => {
+  const dataFiltering = (e) => {
     dispatch(filterSinglePage(e.currentTarget.getAttribute('data-email')));
   };
 

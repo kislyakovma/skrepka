@@ -1,15 +1,15 @@
 import React from 'react';
-import {Progress} from 'antd';
+import { Progress } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {useSelector} from 'react-redux';
-import {OverviewCard} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
+import { useSelector } from 'react-redux';
+import { OverviewCard } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
 import Heading from '../../../../components/heading/heading';
-import {Button} from '../../../../components/buttons/buttons';
-import {Dropdown} from '../../../../components/dropdown/dropdown';
+import { Button } from '../../../../components/buttons/buttons';
+import { Dropdown } from '../../../../components/dropdown/dropdown';
 
 const DailyOverview = () => {
-  const { rtl } = useSelector(state => {
+  const { rtl } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
     };

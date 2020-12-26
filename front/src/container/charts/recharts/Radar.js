@@ -1,10 +1,10 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Col, Row} from 'antd';
-import {Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart} from 'recharts';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Main} from '../../styled';
-import {radar} from '../../../demoData/recharts.json';
+import React, { useLayoutEffect, useState } from 'react';
+import { Col, Row } from 'antd';
+import { Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart } from 'recharts';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Main } from '../../styled';
+import { radar } from '../../../demoData/recharts.json';
 
 const ReChartRadar = () => {
   const [state, setState] = useState({

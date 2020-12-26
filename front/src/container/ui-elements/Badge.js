@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Badge, Col, Row, Switch} from 'antd';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Badge, Col, Row, Switch } from 'antd';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {BellOutlined, ClockCircleOutlined, MinusOutlined, PlusOutlined} from '@ant-design/icons';
+import { BellOutlined, ClockCircleOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import {
-    BadgeDynamicStyle,
-    BadgeOverflowStyle,
-    BadgeRedStyle,
-    BadgeStandAloneStyle,
-    BadgeWraperStyle,
+  BadgeDynamicStyle,
+  BadgeOverflowStyle,
+  BadgeRedStyle,
+  BadgeStandAloneStyle,
+  BadgeWraperStyle,
 } from './ui-elements-styled';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main} from '../styled';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {BtnGroup, Button} from '../../components/buttons/buttons';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main } from '../styled';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { BtnGroup, Button } from '../../components/buttons/buttons';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const colors = [
   'pink',
@@ -54,7 +54,7 @@ const Badges = () => {
     setState({ ...state, count });
   };
 
-  const onChange = show => {
+  const onChange = (show) => {
     setState({ ...state, show });
   };
 
@@ -124,12 +124,12 @@ const Badges = () => {
             <Cards title="Status">
               <BadgeWraperStyle>
                 <div style={{ marginBottom: 10 }}>
-                  {colors.map(color => (
+                  {colors.map((color) => (
                     <Badge key={color} color={color} />
                   ))}
                 </div>
                 <div>
-                  {colors.map(color => (
+                  {colors.map((color) => (
                     <div key={color}>
                       <Badge color={color} text={color} />
                     </div>

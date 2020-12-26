@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Progress, Table} from 'antd';
-import {Link, NavLink} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Progress, Table } from 'antd';
+import { Link, NavLink } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {useDispatch, useSelector} from 'react-redux';
-import {TrafficTableWrapper} from '../../style';
-import {Cards} from '../../../../components/cards/frame/cards-frame';
-import {trafficChanelFilterData, trafficChanelGetData} from '../../../../redux/chartContent/actionCreator';
+import { useDispatch, useSelector } from 'react-redux';
+import { TrafficTableWrapper } from '../../style';
+import { Cards } from '../../../../components/cards/frame/cards-frame';
+import { trafficChanelFilterData, trafficChanelGetData } from '../../../../redux/chartContent/actionCreator';
 
 const moreContent = (
   <>
@@ -67,7 +67,7 @@ const locationColumns = [
 
 const TrafficChannel = () => {
   const dispatch = useDispatch();
-  const { trafficState } = useSelector(state => {
+  const { trafficState } = useSelector((state) => {
     return {
       trafficState: state.chartContent.trafficChanelData,
     };
@@ -188,7 +188,7 @@ const TrafficChannel = () => {
     },
   ];
 
-  const handleActiveChangeTraffic = value => {
+  const handleActiveChangeTraffic = (value) => {
     setState({
       ...state,
       traffic: value,

@@ -13,21 +13,21 @@ const actions = {
       type: actions.LOGIN_BEGIN,
     };
   },
-  setUser: data => {
+  setUser: (data) => {
     return {
       type: actions.SET_USER,
       data,
     };
   },
 
-  loginSuccess: data => {
+  loginSuccess: (data) => {
     return {
       type: actions.LOGIN_SUCCESS,
       data,
     };
   },
 
-  loginErr: err => {
+  loginErr: (err) => {
     return {
       type: actions.LOGIN_ERR,
       err,
@@ -40,14 +40,14 @@ const actions = {
     };
   },
 
-  logoutSuccess: data => {
+  logoutSuccess: (data) => {
     return {
       type: actions.LOGOUT_SUCCESS,
       data,
     };
   },
 
-  logoutErr: err => {
+  logoutErr: (err) => {
     return {
       type: actions.LOGOUT_ERR,
       err,

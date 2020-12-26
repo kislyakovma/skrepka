@@ -13,14 +13,14 @@ const actions = {
     };
   },
 
-  starUpdateSuccess: data => {
+  starUpdateSuccess: (data) => {
     return {
       type: actions.STAR_UPDATE_SUCCESS,
       data,
     };
   },
 
-  starUpdateErr: err => {
+  starUpdateErr: (err) => {
     return {
       type: actions.STAR_UPDATE_ERR,
       err,
@@ -33,14 +33,14 @@ const actions = {
     };
   },
 
-  singleEmailSuccess: data => {
+  singleEmailSuccess: (data) => {
     return {
       type: actions.SINGLE_EMAIL_SUCCESS,
       data,
     };
   },
 
-  singleEmailErr: err => {
+  singleEmailErr: (err) => {
     return {
       type: actions.SINGLE_EMAIL_ERR,
       err,

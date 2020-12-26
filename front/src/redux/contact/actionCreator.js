@@ -4,7 +4,7 @@ import initialState from '../../demoData/contact.json';
 const { readBegin, readSuccess, readErr, starUpdateBegin, starUpdateSuccess, starUpdateErr } = actions;
 
 const contactGetData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(readBegin());
       dispatch(readSuccess(initialState));
@@ -14,8 +14,8 @@ const contactGetData = () => {
   };
 };
 
-const contactAddData = data => {
-  return async dispatch => {
+const contactAddData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(readBegin());
       dispatch(readSuccess(data));
@@ -25,8 +25,8 @@ const contactAddData = data => {
   };
 };
 
-const contactDeleteData = data => {
-  return async dispatch => {
+const contactDeleteData = (data) => {
+  return async (dispatch) => {
     try {
       dispatch(readBegin());
       dispatch(readSuccess(data));
@@ -36,11 +36,11 @@ const contactDeleteData = data => {
   };
 };
 
-const contactSearchData = value => {
-  return async dispatch => {
+const contactSearchData = (value) => {
+  return async (dispatch) => {
     try {
       dispatch(readBegin());
-      const data = initialState.filter(item => item.name.toUpperCase().startsWith(value.toUpperCase()));
+      const data = initialState.filter((item) => item.name.toUpperCase().startsWith(value.toUpperCase()));
       dispatch(readSuccess(data));
     } catch (err) {
       dispatch(readErr(err));
@@ -49,10 +49,10 @@ const contactSearchData = value => {
 };
 
 const onStarUpdate = (data, id) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(starUpdateBegin());
-      data.map(item => {
+      data.map((item) => {
         if (item.id === id) {
           const fav = item;
           if (item.stared) {

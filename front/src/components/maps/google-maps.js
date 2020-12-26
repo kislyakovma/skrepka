@@ -6,7 +6,7 @@ import { GmapWraper } from './map-style';
 const apiKey = process.env.REACT_APP_GOOGLE_MAP_KEY;
 const GoogleMaps = GoogleApiWrapper({
   apiKey,
-})(property => {
+})((property) => {
   const { latitude, longitude, google, width, height, zoom, mapStyles, place, styles, infoWindow } = property;
   const [state, setState] = useState({
     showingInfoWindow: false,
@@ -48,7 +48,7 @@ const GoogleMaps = GoogleApiWrapper({
         height="400px"
       >
         {place !== undefined ? (
-          place.map(item => {
+          place.map((item) => {
             return (
               <Marker
                 key={item.id}

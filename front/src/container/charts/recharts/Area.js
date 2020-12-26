@@ -1,10 +1,10 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Col, Row} from 'antd';
-import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from 'recharts';
-import {PageHeader} from '../../../components/page-headers/page-headers';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Main} from '../../styled';
-import {data, nullChart} from '../../../demoData/recharts.json';
+import React, { useLayoutEffect, useState } from 'react';
+import { Col, Row } from 'antd';
+import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Main } from '../../styled';
+import { data, nullChart } from '../../../demoData/recharts.json';
 
 const ReChartArea = () => {
   const [state, setState] = useState({

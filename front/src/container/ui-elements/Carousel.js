@@ -24,7 +24,7 @@ const Carousels = () => {
 
   return (
     <>
-      <PageHeader 
+      <PageHeader
         title="Carousel"
         buttons={[
           <div key="1" className="page-header-actions">

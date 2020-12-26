@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Style } from './styled';
 
-const Alert = props => {
+const Alert = (props) => {
   const { type, icon, message, description, showIcon, outlined, closable, closeText } = props;
 
   return (

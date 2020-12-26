@@ -1,9 +1,9 @@
 import React from 'react';
-import {Col, Row} from 'antd';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {Main} from '../styled';
-import {GoogleMaps} from '../../components/maps/google-maps';
+import { Col, Row } from 'antd';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main } from '../styled';
+import { GoogleMaps } from '../../components/maps/google-maps';
 import mapData from '../../config/map/google-maps-styles';
 
 const { mapOneStyles, mapStyleDark, mapTwoStyles, mapThreeStyles } = mapData;

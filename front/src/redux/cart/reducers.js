@@ -1,6 +1,5 @@
 import actions from './actions';
 
-
 const {
   CART_DATA_BEGIN,
   CART_DATA_SUCCESS,

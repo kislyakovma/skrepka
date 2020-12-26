@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
-import {Link} from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import propTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
-import {EmailAuthor, EmailHeader, Style} from './style';
+import { EmailAuthor, EmailHeader, Style } from './style';
 import Topbar from './Topbar';
-import {AutoComplete} from '../../../components/autoComplete/autoComplete';
+import { AutoComplete } from '../../../components/autoComplete/autoComplete';
 import Heading from '../../../components/heading/heading';
-import {textRefactor} from '../../../components/utilities/utilities';
-import {Dropdown} from '../../../components/dropdown/dropdown';
-import {onSortingAscending, onSortingDescending, onStarUpdate} from '../../../redux/email/actionCreator';
+import { textRefactor } from '../../../components/utilities/utilities';
+import { Dropdown } from '../../../components/dropdown/dropdown';
+import { onSortingAscending, onSortingDescending, onStarUpdate } from '../../../redux/email/actionCreator';
 
 const Content = ({ searchData, email }) => {
   const dispatch = useDispatch();
-  const { rtl } = useSelector(state => {
+  const { rtl } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
     };
@@ -36,17 +36,17 @@ const Content = ({ searchData, email }) => {
     });
   }, [email, selectedRowKeys, sort]);
 
-  const handleSearch = searchText => {
+  const handleSearch = (searchText) => {
     const data =
       searchData !== undefined &&
-      searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+      searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
     });
   };
 
-  const refreshState = e => {
+  const refreshState = (e) => {
     e.preventDefault();
     setState({
       ...state,
@@ -54,7 +54,7 @@ const Content = ({ searchData, email }) => {
     });
   };
 
-  const onStaredChange = id => {
+  const onStaredChange = (id) => {
     dispatch(onStarUpdate(id));
   };
 
@@ -94,7 +94,7 @@ const Content = ({ searchData, email }) => {
             </Heading>
             <p>{textRefactor(body, 10)}</p>
             {attach.length
-              ? attach.map(item => (
+              ? attach.map((item) => (
                   <a key={item} className="btn-attachment" download href={require(`../../../static/img/email/${item}`)}>
                     <FeatherIcon icon="paperclip" size={14} />
                     {item}
@@ -114,19 +114,19 @@ const Content = ({ searchData, email }) => {
     });
   };
 
-  const onRowSelection = filterObj => {
+  const onRowSelection = (filterObj) => {
     const { filter, byValue } = filterObj;
 
     const newSelectedRowKeys = emails
-      .filter(value => {
+      .filter((value) => {
         return value[filter] === byValue;
       })
-      .map(item => item.id);
+      .map((item) => item.id);
 
     setState({ ...state, selectedRowKeys: newSelectedRowKeys });
   };
 
-  const onSelectChange = selectedRowKey => {
+  const onSelectChange = (selectedRowKey) => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
 
@@ -139,7 +139,7 @@ const Content = ({ searchData, email }) => {
         key: 'all',
         text: 'All',
         onSelect: () => {
-          const newSelectedRowKeys = email.map(item => item.id);
+          const newSelectedRowKeys = email.map((item) => item.id);
           setState({ ...state, selectedRowKeys: newSelectedRowKeys });
         },
       },

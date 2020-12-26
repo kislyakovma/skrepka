@@ -1,12 +1,12 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
-import {UserCard} from '../style';
+import { UserCard } from '../style';
 import Heading from '../../../components/heading/heading';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Dropdown} from '../../../components/dropdown/dropdown';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Dropdown } from '../../../components/dropdown/dropdown';
 
 const TeamCard = ({ user, actions }) => {
   const { name, designation, img } = user;

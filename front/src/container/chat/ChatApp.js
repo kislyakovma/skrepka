@@ -1,29 +1,29 @@
-import React, {lazy, Suspense, useState} from 'react';
-import {Badge, Col, Row, Skeleton} from 'antd';
-import {useSelector} from 'react-redux';
-import {NavLink, Route, Switch} from 'react-router-dom';
+import React, { lazy, Suspense, useState } from 'react';
+import { Badge, Col, Row, Skeleton } from 'antd';
+import { useSelector } from 'react-redux';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
-import {Scrollbars} from 'react-custom-scrollbars';
-import {ChatSidebar, Content, UL} from './style';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { ChatSidebar, Content, UL } from './style';
 import PrivetChat from './overview/PrivetChat';
 import GroupChat from './overview/GroupChat';
 import AllContacts from './overview/AllContacts';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Main} from '../styled';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {PageHeader} from '../../components/page-headers/page-headers';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Main } from '../styled';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../components/page-headers/page-headers';
 
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const SingleChat = lazy(() => import('./overview/singleChat'));
 const SingleGroup = lazy(() => import('./overview/SingleGroupChat'));
 
 const ChatApp = ({ match }) => {
-  const { rtl, searchData } = useSelector(state => {
+  const { rtl, searchData } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
       searchData: state.headerSearchData,
@@ -37,8 +37,8 @@ const ChatApp = ({ match }) => {
 
   const { notData } = state;
 
-  const patternSearch = searchText => {
-    const data = searchData.filter(item => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const patternSearch = (searchText) => {
+    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       search: data,

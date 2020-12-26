@@ -1,20 +1,20 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {NavLink} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import FeatherIcon from 'feather-icons-react';
 import PropTypes from 'prop-types';
-import {Badge} from 'antd';
-import {BlockSpan, ChatWrapper} from '../style';
-import {textRefactor} from '../../../components/utilities/utilities';
-import {filterSinglepageGroup} from '../../../redux/chat/actionCreator';
-import {Button} from '../../../components/buttons/buttons';
+import { Badge } from 'antd';
+import { BlockSpan, ChatWrapper } from '../style';
+import { textRefactor } from '../../../components/utilities/utilities';
+import { filterSinglepageGroup } from '../../../redux/chat/actionCreator';
+import { Button } from '../../../components/buttons/buttons';
 
 const GroupChat = ({ match }) => {
-  const chatData = useSelector(state => state.groupChat.data);
+  const chatData = useSelector((state) => state.groupChat.data);
   const dispatch = useDispatch();
 
-  const dataFiltering = id => {
+  const dataFiltering = (id) => {
     dispatch(filterSinglepageGroup(id));
   };
 

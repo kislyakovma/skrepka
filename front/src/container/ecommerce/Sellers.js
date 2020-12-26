@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Col, Row, Table} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Col, Row, Table } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {TopToolBox} from './Style';
-import {PageHeader} from '../../components/page-headers/page-headers';
-import {Main, TableWrapper} from '../styled';
-import {AutoComplete} from '../../components/autoComplete/autoComplete';
-import {Button} from '../../components/buttons/buttons';
-import {Cards} from '../../components/cards/frame/cards-frame';
-import {ShareButtonPageHeader} from '../../components/buttons/share-button/share-button';
-import {ExportButtonPageHeader} from '../../components/buttons/export-button/export-button';
-import {CalendarButtonPageHeader} from '../../components/buttons/calendar-button/calendar-button';
+import { TopToolBox } from './Style';
+import { PageHeader } from '../../components/page-headers/page-headers';
+import { Main, TableWrapper } from '../styled';
+import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
+import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
+import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const Sellers = () => {
-  const { searchData, sellers } = useSelector(state => {
+  const { searchData, sellers } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       sellers: state.sellers,
@@ -36,8 +36,8 @@ const Sellers = () => {
     }
   }, [sellers, selectedRowKeys]);
 
-  const handleSearch = searchText => {
-    const data = searchData.filter(value => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = (searchText) => {
+    const data = searchData.filter((value) => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
       notData: data,
@@ -46,7 +46,7 @@ const Sellers = () => {
 
   const dataSource = [];
   if (sellers.length)
-    item.map(value => {
+    item.map((value) => {
       const { storeName, id, name, product, amount, date, img } = value;
       return dataSource.push({
         key: id,
@@ -110,7 +110,7 @@ const Sellers = () => {
     },
   ];
 
-  const onSelectChange = selectedRowKey => {
+  const onSelectChange = (selectedRowKey) => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
 

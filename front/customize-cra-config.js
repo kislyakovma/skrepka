@@ -2,7 +2,7 @@ import { override, addLessLoader, fixBabelImports } from 'customize-cra';
 import hotLoader from 'react-app-rewire-hot-loader';
 import { theme } from './src/config/theme/themeVariables';
 
-const supportMjs = () => webpackConfig => {
+const supportMjs = () => (webpackConfig) => {
   webpackConfig.module.rules.push({
     test: /\.mjs$/,
     include: /node_modules/,

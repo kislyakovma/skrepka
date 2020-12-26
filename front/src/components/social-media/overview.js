@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { MainWraper, SocialIcon } from './overview-style';
 import Heading from '../heading/heading';
 
-const SocialMediaContent = props => {
+const SocialMediaContent = (props) => {
   const { icon, bgColor, title, subTitle } = props;
   return (
     <MainWraper>

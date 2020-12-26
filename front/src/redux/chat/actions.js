@@ -21,14 +21,14 @@ const actions = {
     };
   },
 
-  singleChatSuccess: data => {
+  singleChatSuccess: (data) => {
     return {
       type: actions.SINGLE_CHAT_SUCCESS,
       data,
     };
   },
 
-  singleChatErr: err => {
+  singleChatErr: (err) => {
     return {
       type: actions.SINGLE_CHAT_ERR,
       err,
@@ -41,14 +41,14 @@ const actions = {
     };
   },
 
-  singleGroupChatSuccess: data => {
+  singleGroupChatSuccess: (data) => {
     return {
       type: actions.SINGLE_GROUP_CHAT_SUCCESS,
       data,
     };
   },
 
-  singleGroupChatErr: err => {
+  singleGroupChatErr: (err) => {
     return {
       type: actions.SINGLE_GROUP_CHAT_ERR,
       err,
@@ -61,14 +61,14 @@ const actions = {
     };
   },
 
-  updateGroupChatSuccess: data => {
+  updateGroupChatSuccess: (data) => {
     return {
       type: actions.UPDATE_GROUP_CHAT_SUCCESS,
       data,
     };
   },
 
-  updateGroupChatErr: err => {
+  updateGroupChatErr: (err) => {
     return {
       type: actions.UPDATE_GROUP_CHAT_ERR,
       err,
@@ -81,14 +81,14 @@ const actions = {
     };
   },
 
-  updatePrivetChatSuccess: data => {
+  updatePrivetChatSuccess: (data) => {
     return {
       type: actions.UPDATE_PRIVET_CHAT_SUCCESS,
       data,
     };
   },
 
-  updatePrivetChatErr: err => {
+  updatePrivetChatErr: (err) => {
     return {
       type: actions.UPDATE_PRIVET_CHAT_ERR,
       err,

@@ -1,12 +1,12 @@
 import React from 'react';
-import {Progress, Tag} from 'antd';
+import { Progress, Tag } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {Cards} from '../../../components/cards/frame/cards-frame';
-import {Dropdown} from '../../../components/dropdown/dropdown';
-import {textRefactor} from '../../../components/utilities/utilities';
-import {ProjectCard} from '../style';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Dropdown } from '../../../components/dropdown/dropdown';
+import { textRefactor } from '../../../components/utilities/utilities';
+import { ProjectCard } from '../style';
 
 const GridCard = ({ value }) => {
   const { id, title, status, content, percentage } = value;

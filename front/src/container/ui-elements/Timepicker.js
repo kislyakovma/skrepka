@@ -13,7 +13,7 @@ const format = 'HH:mm';
 const TimePickers = () => {
   const [state, setState] = useState({ open: false });
 
-  const handleOpenChange = open => {
+  const handleOpenChange = (open) => {
     setState({ open });
   };
 

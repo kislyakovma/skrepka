@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {Col, Form, Input, Row, Select, Upload} from 'antd';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Col, Form, Input, Row, Select, Upload } from 'antd';
+import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import {BasicFormWrapper} from '../../styled';
-import {Button} from '../../../components/buttons/buttons';
+import { BasicFormWrapper } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;
@@ -12,7 +12,7 @@ const Info = () => {
     values: '',
   });
   const [form] = Form.useForm();
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     setState({ ...state, values });
   };
 
@@ -44,11 +44,7 @@ const Info = () => {
                 <Input placeholder="Input Name" />
               </Form.Item>
 
-              <Form.Item
-                label="email"
-                name="email"
-                rules={[{ message: 'Please input your email!', type: 'email' }]}
-              >
+              <Form.Item label="email" name="email" rules={[{ message: 'Please input your email!', type: 'email' }]}>
                 <Input placeholder="name@example.com" />
               </Form.Item>
 

@@ -5,13 +5,13 @@ const { pullCompany, pushCompany, companyBegin, deleteCompany } = actions;
 
 const db = firebase.firestore();
 
-const companyPull = (email) => {
-  return async (dispatch) => {
+const companyPull = email => {
+  return async dispatch => {
     dispatch(companyBegin());
     db.collection('users')
       .doc(email)
       .get()
-      .then((doc) => {
+      .then(doc => {
         if (doc.data().companies) {
           console.log(doc.data().companies);
           dispatch(pullCompany(doc.data().companies));
@@ -23,7 +23,7 @@ const companyPull = (email) => {
 };
 
 const companyPush = (data, email) => {
-  return async (dispatch) => {
+  return async dispatch => {
     dispatch(companyBegin());
     console.log(data);
     try {
@@ -40,17 +40,16 @@ const companyPush = (data, email) => {
 };
 
 const companyDelete = (data, email) => {
-  return async (dispatch) => {
-    console.log('HUY');
+  return async dispatch => {
     console.log(data);
     dispatch(companyBegin());
     try {
       db.collection('users')
-      .doc(email)
-      .update({ companies: firebase.firestore.FieldValue.arrayRemove(data) })
-      .then(() => {
-        dispatch(deleteCompany(data))
-      });
+        .doc(email)
+        .update({ companies: firebase.firestore.FieldValue.arrayRemove(data) })
+        .then(() => {
+          dispatch(deleteCompany(data));
+        });
     } catch (err) {
       console.log(err);
     }
